@@ -4,15 +4,16 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.androidbase.databinding.ItemPeopleBinding
-import com.example.domain.entities.remote.ResultPeople
+import com.example.androidbase.presentation.extensions.loadUrl
+import com.example.domain.entities.remote.PeopleResponseItem
 
 
 class PeopleAdapter :
     RecyclerView.Adapter<PeopleAdapter.ViewHolder>() {
 
-    private var listOfCategories: List<ResultPeople> = arrayListOf()
+    private var listOfCategories: List<PeopleResponseItem> = arrayListOf()
 
-    fun setData(lista: List<ResultPeople>) {
+    fun setData(lista: List<PeopleResponseItem>) {
         listOfCategories = lista
         notifyDataSetChanged()
     }
@@ -20,9 +21,10 @@ class PeopleAdapter :
 
     class ViewHolder(private val binding: ItemPeopleBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(people: ResultPeople) = with(binding) {
+        fun bind(people: PeopleResponseItem) = with(binding) {
             tvName.text = people.name
             tvSpecie.text = people.gender
+            image.loadUrl(people.image)
         }
     }
 
