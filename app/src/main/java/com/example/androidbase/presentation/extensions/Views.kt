@@ -8,6 +8,8 @@ import android.widget.ImageView
 import androidx.annotation.ColorRes
 import androidx.navigation.NavDirections
 import androidx.navigation.findNavController
+import androidx.swiperefreshlayout.widget.CircularProgressDrawable
+import com.bumptech.glide.Glide
 
 
 fun View.visible() {
@@ -50,5 +52,16 @@ fun View.takeScreenshot(): Bitmap {
     this.draw(canvas)
     return bitmap
 }
+
+fun ImageView.loadUrl(url: String?) {
+    url?.let {
+        val circularProgressDrawable = CircularProgressDrawable(this.context)
+        circularProgressDrawable.strokeWidth = 5f
+        circularProgressDrawable.centerRadius = 30f
+        circularProgressDrawable.start()
+        Glide.with(this.context).load(url).placeholder(circularProgressDrawable).into(this)
+    }
+}
+
 
 

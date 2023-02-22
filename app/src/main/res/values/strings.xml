@@ -15,4 +15,6 @@
     <string name="id">Id:</string>
     <string name="empty">***************</string>
     <string name="t_tulo">Título</string>
+    <string name="yoda">Yoda</string>
+    <string name="mammal">mammal</string>
 </resources>

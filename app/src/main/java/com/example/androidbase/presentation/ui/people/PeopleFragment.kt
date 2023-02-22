@@ -1,41 +1,41 @@
-package com.example.androidbase.presentation.ui.users
+package com.example.androidbase.presentation.ui.people
 
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.androidbase.R
-import com.example.domain.entities.remote.User
-import com.example.androidbase.databinding.FragmentUsersBinding
+import com.example.androidbase.databinding.FragmentPeopleBinding
 import com.example.androidbase.presentation.base.BaseFragment
 import com.example.androidbase.presentation.extensions.click
 import com.example.androidbase.presentation.extensions.observeApiResult
+import com.example.domain.entities.remote.ResultPeople
 import dagger.hilt.android.AndroidEntryPoint
 
 
 @AndroidEntryPoint
-class UsersFragment : BaseFragment<FragmentUsersBinding>(R.layout.fragment_users) {
+class PeopleFragment : BaseFragment<FragmentPeopleBinding>(R.layout.fragment_people) {
 
 
-    private val viewModel: UsersViewModel by viewModels()
+    private val viewModel: PeopleViewModel by viewModels()
     private val userAdapter by lazy {
-        UserAdapter()
+        PeopleAdapter()
     }
+    private var currentPage = 1
+    private var totalPages = 0
+    private var canCallToTheNextPage = true
+    private var episodesList: ArrayList<ResultPeople> = arrayListOf()
 
     override fun setUpUi() = with(binding) {
         toolbarLayout.toolbarBack.click {
             findNavController().popBackStack()
         }
-        viewModel.getUsers()
+        viewModel.getPeople(currentPage.toString())
         recycler.adapter = userAdapter
     }
 
     override fun observerViewModel() {
         super.observerViewModel()
-        observeApiResult(viewModel.userResponse) {
-            val users = arrayListOf<User>()
-            it.data.forEach { user ->
-                users.add(user)
-            }
-            userAdapter.setData(users)
+        observeApiResult(viewModel.peopleResponse) {
+            userAdapter.setData(it.results)
         }
     }
 

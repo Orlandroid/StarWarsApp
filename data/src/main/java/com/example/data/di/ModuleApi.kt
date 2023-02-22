@@ -37,7 +37,7 @@ abstract class DataModule {
 object ModuleApi {
 
 
-    private const val BASE_URL = "https://api.storerestapi.com/"
+    private const val BASE_URL = "https://swapi.dev/api/"
 
     @Singleton
     @Provides
