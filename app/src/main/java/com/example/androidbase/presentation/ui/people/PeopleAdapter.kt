@@ -5,13 +5,11 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.androidbase.databinding.ItemPeopleBinding
 import com.example.androidbase.presentation.extensions.loadUrl
-import com.example.domain.entities.remote.PeopleResponseItem
+import com.example.androidbase.presentation.util.getImagePeopleByName
 import com.example.domain.entities.remote.ResultPeople
-import com.example.domain.entities.remote.ResultResponse
 
 
-class PeopleAdapter :
-    RecyclerView.Adapter<PeopleAdapter.ViewHolder>() {
+class PeopleAdapter : RecyclerView.Adapter<PeopleAdapter.ViewHolder>() {
 
     private var listOfCategories: List<ResultPeople> = arrayListOf()
 
@@ -26,7 +24,10 @@ class PeopleAdapter :
         fun bind(people: ResultPeople) = with(binding) {
             tvName.text = people.name
             tvSpecie.text = people.gender
-            //image.loadUrl(people.image)
+            val imagePeople = getImagePeopleByName(itemView.context, people.name)
+            imagePeople?.let {
+                image.loadUrl(it)
+            }
         }
     }
 
