@@ -10,6 +10,7 @@ import androidx.navigation.NavDirections
 import androidx.navigation.findNavController
 import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import com.bumptech.glide.Glide
+import com.example.androidbase.R
 
 
 fun View.visible() {
@@ -59,7 +60,7 @@ fun ImageView.loadUrl(url: String?) {
         circularProgressDrawable.strokeWidth = 5f
         circularProgressDrawable.centerRadius = 30f
         circularProgressDrawable.start()
-        Glide.with(this.context).load(url).placeholder(circularProgressDrawable).into(this)
+        Glide.with(this.context).load(url).placeholder(circularProgressDrawable).error(R.drawable.startwars).into(this)
     }
 }
 

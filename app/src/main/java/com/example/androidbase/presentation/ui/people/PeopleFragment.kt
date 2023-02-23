@@ -9,9 +9,7 @@ import com.example.androidbase.presentation.base.BaseFragment
 import com.example.androidbase.presentation.extensions.click
 import com.example.androidbase.presentation.extensions.myOnScrolled
 import com.example.androidbase.presentation.extensions.observeApiResult
-import com.example.domain.entities.remote.PeopleResponseItem
 import com.example.domain.entities.remote.ResultPeople
-import com.google.gson.Gson
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -31,6 +29,7 @@ class PeopleFragment : BaseFragment<FragmentPeopleBinding>(R.layout.fragment_peo
         toolbarLayout.toolbarBack.click {
             findNavController().popBackStack()
         }
+        toolbarLayout.toolbarTitle.text = getString(R.string.people)
         viewModel.getPeople(currentPage.toString())
         recycler.adapter = userAdapter
         recycler.myOnScrolled {
@@ -61,7 +60,6 @@ class PeopleFragment : BaseFragment<FragmentPeopleBinding>(R.layout.fragment_peo
         }
         return pageInUrl.split("=")[1].toInt()
     }
-
 
 
 }
