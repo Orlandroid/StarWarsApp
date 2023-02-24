@@ -18,4 +18,10 @@
     <string name="t_tulo">Título</string>
     <string name="yoda">Yoda</string>
     <string name="mammal">mammal</string>
+    <string name="character">characters</string>
+    <string name="flims">Flims</string>
+    <string name="planets">Planets </string>
+    <string name="species">Species</string>
+    <string name="startships">Starships</string>
+    <string name="vehicles">Vehicles</string>
 </resources>
