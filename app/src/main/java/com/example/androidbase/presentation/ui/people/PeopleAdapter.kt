@@ -4,16 +4,17 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.androidbase.databinding.ItemPeopleBinding
+import com.example.androidbase.presentation.extensions.click
 import com.example.androidbase.presentation.extensions.loadUrl
-import com.example.androidbase.presentation.util.getImagePeopleByName
-import com.example.domain.entities.remote.ResultPeople
+import com.example.domain.entities.remote.PeopleResponseItem
 
 
-class PeopleAdapter : RecyclerView.Adapter<PeopleAdapter.ViewHolder>() {
+class PeopleAdapter(private val clickOnPeople: (PeopleResponseItem) -> Unit) :
+    RecyclerView.Adapter<PeopleAdapter.ViewHolder>() {
 
-    private var listOfCategories: List<ResultPeople> = arrayListOf()
+    private var listOfCategories: List<PeopleResponseItem> = arrayListOf()
 
-    fun setData(lista: List<ResultPeople>) {
+    fun setData(lista: List<PeopleResponseItem>) {
         listOfCategories = lista
         notifyDataSetChanged()
     }
@@ -21,13 +22,10 @@ class PeopleAdapter : RecyclerView.Adapter<PeopleAdapter.ViewHolder>() {
 
     class ViewHolder(private val binding: ItemPeopleBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(people: ResultPeople) = with(binding) {
+        fun bind(people: PeopleResponseItem) = with(binding) {
             tvName.text = people.name
             tvSpecie.text = people.gender
-            val imagePeople = getImagePeopleByName(itemView.context, people.name)
-            imagePeople?.let {
-                image.loadUrl(it)
-            }
+            image.loadUrl(people.image)
         }
     }
 
@@ -38,7 +36,11 @@ class PeopleAdapter : RecyclerView.Adapter<PeopleAdapter.ViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(listOfCategories[position])
+        val item = listOfCategories[position]
+        holder.bind(item)
+        holder.itemView.click {
+            clickOnPeople(item)
+        }
     }
 
     override fun getItemCount(): Int {

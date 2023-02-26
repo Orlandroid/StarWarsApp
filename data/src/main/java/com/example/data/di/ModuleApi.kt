@@ -1,7 +1,6 @@
 package com.example.data.di
 
 
-
 import com.example.data.local.LocalDataSourceImpl
 import com.example.data.remote.Api
 import com.example.data.remote.RemoteDataSourceImpl
@@ -37,7 +36,8 @@ abstract class DataModule {
 object ModuleApi {
 
 
-    private const val BASE_URL = "https://swapi.dev/api/"
+    private const val BASE_URL =
+        "https://raw.githubusercontent.com/Orlandroid/Resources_Repos/main/starwarsapp/"
 
     @Singleton
     @Provides

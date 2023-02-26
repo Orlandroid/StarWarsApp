@@ -13,4 +13,6 @@ class Repository @Inject constructor(
 
     suspend fun getPeople(page: String) = remoteDataSource.getPeople(page)
     suspend fun getAllPeople() = remoteDataSource.getAllPeople()
+
+    suspend fun getPeopleDetail(peopleId: Int) = remoteDataSource.getPeopleDetail(peopleId)
 }

@@ -83,4 +83,5 @@ object Dependencies {
     const val TEST_JUNIT = "androidx.test.ext:junit:1.1.4"
     const val TEST_EXPRESO = "androidx.test.espresso:espresso-core:3.5.0"
     const val SWIPE_REFRESH_LAYOUT = "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
+    const val CIRCULAR_IMAGE_VIEW = "com.mikhaellopez:circularimageview:4.3.1"
 }

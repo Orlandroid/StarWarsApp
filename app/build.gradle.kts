@@ -80,4 +80,5 @@ dependencies {
     implementation(Dependencies.GLIDE)
     annotationProcessor(Dependencies.GLIDE_COMPILER)
     implementation(Dependencies.SWIPE_REFRESH_LAYOUT)
+    implementation(Dependencies.CIRCULAR_IMAGE_VIEW)
 }
