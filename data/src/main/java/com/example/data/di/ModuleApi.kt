@@ -1,11 +1,11 @@
 package com.example.data.di
 
 
+import com.example.androidbase.LocalDataSource
+import com.example.androidbase.RemoteDataSource
 import com.example.data.local.LocalDataSourceImpl
 import com.example.data.remote.Api
 import com.example.data.remote.RemoteDataSourceImpl
-import com.example.domain.LocalDataSource
-import com.example.domain.RemoteDataSource
 import dagger.Binds
 import dagger.Module
 import dagger.Provides

@@ -1,8 +1,9 @@
 package com.example.data.remote
 
 
-import com.example.domain.RemoteDataSource
-import com.example.domain.entities.remote.ResultPeople
+
+import com.example.androidbase.RemoteDataSource
+import com.example.androidbase.entities.remote.ResultPeople
 import javax.inject.Inject
 import javax.inject.Singleton
 

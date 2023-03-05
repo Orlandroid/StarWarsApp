@@ -1,4 +1,4 @@
-package com.example.domain.state
+package com.example.androidbase.state
 
 sealed class Result<out R> {
 

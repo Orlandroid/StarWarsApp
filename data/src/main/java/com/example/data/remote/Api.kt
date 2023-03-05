@@ -1,9 +1,10 @@
 package com.example.data.remote
 
 
-import com.example.domain.entities.remote.PeopleResponseItem
-import com.example.domain.entities.remote.ResultPeople
-import com.example.domain.entities.remote.ResultResponse
+
+import com.example.androidbase.entities.remote.PeopleResponseItem
+import com.example.androidbase.entities.remote.ResultPeople
+import com.example.androidbase.entities.remote.ResultResponse
 import retrofit2.http.GET
 import retrofit2.http.Query
 import retrofit2.http.Url

@@ -1,8 +1,7 @@
 package com.example.data.db
 
 import androidx.room.*
-import com.example.data.db.entities.PeopleCache
-import com.example.data.db.entities.User
+import com.example.androidbase.entities.db.PeopleCache
 import kotlinx.coroutines.flow.Flow
 
 

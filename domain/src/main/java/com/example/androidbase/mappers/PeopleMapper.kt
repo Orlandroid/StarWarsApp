@@ -1,7 +1,9 @@
-package com.example.data.mappers
+package com.example.androidbase.mappers
 
-import com.example.data.db.entities.PeopleCache
-import com.example.domain.entities.remote.PeopleResponseItem
+import com.example.androidbase.entities.db.PeopleCache
+import com.example.androidbase.entities.remote.PeopleResponseItem
+
+
 
 
 fun PeopleResponseItem.toPeopleCache(): PeopleCache {

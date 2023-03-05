@@ -1,8 +1,9 @@
 package com.example.data.di
 
+import com.example.androidbase.LocalDataSource
+import com.example.androidbase.RemoteDataSource
 import com.example.data.Repository
-import com.example.domain.LocalDataSource
-import com.example.domain.RemoteDataSource
+
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

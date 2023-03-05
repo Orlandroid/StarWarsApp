@@ -1,4 +1,4 @@
-package com.example.domain.entities.remote
+package com.example.androidbase.entities.remote
 
 data class ResultPeople(
     val birth_year: String,

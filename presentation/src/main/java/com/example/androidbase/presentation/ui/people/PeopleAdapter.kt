@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.androidbase.databinding.ItemPeopleBinding
 import com.example.androidbase.presentation.extensions.click
 import com.example.androidbase.presentation.extensions.loadUrl
-import com.example.domain.entities.remote.PeopleResponseItem
+import com.example.androidbase.entities.remote.PeopleResponseItem
 
 
 class PeopleAdapter(private val clickOnPeople: (PeopleResponseItem) -> Unit) :

@@ -1,9 +1,10 @@
 package com.example.data
 
 
-import com.example.domain.LocalDataSource
-import com.example.domain.RemoteDataSource
-import com.example.domain.entities.remote.PeopleResponseItem
+
+import com.example.androidbase.LocalDataSource
+import com.example.androidbase.RemoteDataSource
+import com.example.androidbase.entities.remote.PeopleResponseItem
 import javax.inject.Inject
 
 

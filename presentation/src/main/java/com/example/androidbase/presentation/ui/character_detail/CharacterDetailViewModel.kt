@@ -7,8 +7,8 @@ import com.example.androidbase.presentation.base.BaseViewModel
 import com.example.androidbase.presentation.helpers.NetworkHelper
 import com.example.data.Repository
 import com.example.data.di.CoroutineDispatchers
-import com.example.domain.entities.remote.ResultPeople
-import com.example.domain.state.Result
+import com.example.androidbase.entities.remote.ResultPeople
+import com.example.androidbase.state.Result
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

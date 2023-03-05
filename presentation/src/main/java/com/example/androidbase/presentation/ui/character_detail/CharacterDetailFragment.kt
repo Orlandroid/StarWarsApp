@@ -1,14 +1,13 @@
 package com.example.androidbase.presentation.ui.character_detail
 
-import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.androidbase.R
 import com.example.androidbase.databinding.FragmentCharacterDetailBinding
+import com.example.androidbase.entities.remote.PeopleResponseItem
 import com.example.androidbase.presentation.base.BaseFragment
 import com.example.androidbase.presentation.extensions.click
 import com.example.androidbase.presentation.extensions.loadUrl
-import com.example.domain.entities.remote.PeopleResponseItem
 import com.google.gson.Gson
 import dagger.hilt.android.AndroidEntryPoint
 

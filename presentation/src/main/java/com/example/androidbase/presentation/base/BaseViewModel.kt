@@ -11,7 +11,8 @@ import okio.IOException
 import retrofit2.HttpException
 import java.net.SocketTimeoutException
 import com.example.data.di.CoroutineDispatchers
-import com.example.domain.state.Result
+import com.example.androidbase.state.Result
+
 
 abstract class BaseViewModel constructor(
     protected val coroutineDispatchers: CoroutineDispatchers,
