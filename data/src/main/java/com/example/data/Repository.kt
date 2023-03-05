@@ -3,6 +3,7 @@ package com.example.data
 
 import com.example.domain.LocalDataSource
 import com.example.domain.RemoteDataSource
+import com.example.domain.entities.remote.PeopleResponseItem
 import javax.inject.Inject
 
 
@@ -12,7 +13,9 @@ class Repository @Inject constructor(
 ) {
 
     suspend fun getPeople(page: String) = remoteDataSource.getPeople(page)
-    suspend fun getAllPeople() = remoteDataSource.getAllPeople()
+    suspend fun getAllPeople(): List<PeopleResponseItem> {
+        return remoteDataSource.getAllPeople()
+    }
 
     suspend fun getPeopleDetail(peopleId: Int) = remoteDataSource.getPeopleDetail(peopleId)
 }

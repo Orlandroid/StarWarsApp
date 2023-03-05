@@ -31,7 +31,7 @@ object ModuleDb {
 
     @Singleton
     @Provides
-    fun provideUserDao(db: MainDatabase) = db.userDao()
+    fun providePeopleDao(db: MainDatabase) = db.peopleDao()
 
 
 }
