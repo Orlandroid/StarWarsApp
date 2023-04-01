@@ -8,8 +8,11 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface PeopleDao {
 
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun addPeople(user: PeopleCache): Long
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertManyPeople(manyPeople: List<PeopleCache>)
 
     @Update
     suspend fun updatePeople(user: PeopleCache)

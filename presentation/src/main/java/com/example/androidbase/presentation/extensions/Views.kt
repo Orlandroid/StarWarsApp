@@ -11,6 +11,7 @@ import androidx.navigation.findNavController
 import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import com.bumptech.glide.Glide
 import com.example.androidbase.R
+import com.example.androidbase.presentation.helpers.GlideApp
 
 
 fun View.visible() {

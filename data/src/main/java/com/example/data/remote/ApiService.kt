@@ -10,7 +10,7 @@ import retrofit2.http.Query
 import retrofit2.http.Url
 
 
-interface Api {
+interface ApiService {
 
     @GET("people")
     suspend fun getPeople(@Query("page") page: String): ResultResponse

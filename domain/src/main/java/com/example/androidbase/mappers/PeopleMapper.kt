@@ -4,8 +4,6 @@ import com.example.androidbase.entities.db.PeopleCache
 import com.example.androidbase.entities.remote.PeopleResponseItem
 
 
-
-
 fun PeopleResponseItem.toPeopleCache(): PeopleCache {
     return PeopleCache(
         0,
@@ -21,6 +19,14 @@ fun PeopleResponseItem.toPeopleCache(): PeopleCache {
     )
 }
 
+fun List<PeopleResponseItem>.toPeopleCacheList(): List<PeopleCache> {
+    val listOfPeopleCache = arrayListOf<PeopleCache>()
+    forEach {
+        listOfPeopleCache.add(it.toPeopleCache())
+    }
+    return listOfPeopleCache
+}
+
 fun PeopleCache.toPeopleResponseItem(): PeopleResponseItem {
     return PeopleResponseItem(
         gender = gender,
@@ -34,3 +40,12 @@ fun PeopleCache.toPeopleResponseItem(): PeopleResponseItem {
         skinColor = skinColor,
     )
 }
+
+fun List<PeopleCache>.toPeopleResponseItemList(): List<PeopleResponseItem> {
+    val listOfPeopleItem = arrayListOf<PeopleResponseItem>()
+    forEach {
+        listOfPeopleItem.add(it.toPeopleResponseItem())
+    }
+    return listOfPeopleItem
+}
+

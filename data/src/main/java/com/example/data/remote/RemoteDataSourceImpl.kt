@@ -9,7 +9,7 @@ import javax.inject.Singleton
 
 @Singleton
 class RemoteDataSourceImpl @Inject constructor(
-    private val api: Api
+    private val api: ApiService
 ) : RemoteDataSource {
     override suspend fun getPeople(page: String) = api.getPeople(page)
     override suspend fun getPeopleDetail(id: Int): ResultPeople {

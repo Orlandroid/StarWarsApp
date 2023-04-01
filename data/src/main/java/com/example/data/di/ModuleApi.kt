@@ -4,7 +4,7 @@ package com.example.data.di
 import com.example.androidbase.LocalDataSource
 import com.example.androidbase.RemoteDataSource
 import com.example.data.local.LocalDataSourceImpl
-import com.example.data.remote.Api
+import com.example.data.remote.ApiService
 import com.example.data.remote.RemoteDataSourceImpl
 import dagger.Binds
 import dagger.Module
@@ -64,8 +64,8 @@ object ModuleApi {
 
     @Singleton
     @Provides
-    fun provideApiService(retrofit: Retrofit): Api =
-        retrofit.create(Api::class.java)
+    fun provideApiService(retrofit: Retrofit): ApiService =
+        retrofit.create(ApiService::class.java)
 
 
 }
