@@ -36,8 +36,7 @@ abstract class DataModule {
 object ModuleApi {
 
 
-    private const val BASE_URL =
-        "https://raw.githubusercontent.com/Orlandroid/Resources_Repos/main/starwarsapp/"
+    private const val BASE_URL = "https://swapi.dev/api/"
 
     @Singleton
     @Provides

@@ -19,8 +19,9 @@ class Repository @Inject constructor(
 
     suspend fun getPeople(page: String) = remoteDataSource.getPeople(page)
     suspend fun getAllPeople(): List<PeopleResponseItem> {
+        return remoteDataSource.getAllPeople()
+        /*
         val peopleFromCache = localDataSource.getPeople()
-
         if (peopleFromCache.isNotEmpty()) {
             Log.w(PACKAGE_NAME, peopleFromCache.size.toString())
             return peopleFromCache.toPeopleResponseItemList()
@@ -32,7 +33,7 @@ class Repository @Inject constructor(
                 Log.w(PACKAGE_NAME, insert.toString())
             }
         }
-        return peopleFromApi
+        return peopleFromApi*/
     }
 
     suspend fun getPeopleDetail(peopleId: Int) = remoteDataSource.getPeopleDetail(peopleId)

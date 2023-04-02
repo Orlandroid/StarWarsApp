@@ -4,17 +4,15 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.androidbase.databinding.ItemPeopleBinding
-import com.example.androidbase.presentation.extensions.click
-import com.example.androidbase.presentation.extensions.loadUrl
-import com.example.androidbase.entities.remote.PeopleResponseItem
+import com.example.androidbase.entities.remote.ResultPeople
 
 
-class PeopleAdapter(private val clickOnPeople: (PeopleResponseItem) -> Unit) :
+class PeopleAdapter :
     RecyclerView.Adapter<PeopleAdapter.ViewHolder>() {
 
-    private var listOfCategories: List<PeopleResponseItem> = arrayListOf()
+    private var listOfCategories: List<ResultPeople> = arrayListOf()
 
-    fun setData(lista: List<PeopleResponseItem>) {
+    fun setData(lista: List<ResultPeople>) {
         listOfCategories = lista
         notifyDataSetChanged()
     }
@@ -22,10 +20,9 @@ class PeopleAdapter(private val clickOnPeople: (PeopleResponseItem) -> Unit) :
 
     class ViewHolder(private val binding: ItemPeopleBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(people: PeopleResponseItem) = with(binding) {
+        fun bind(people: ResultPeople) = with(binding) {
             tvName.text = people.name
             tvSpecie.text = people.gender
-            image.loadUrl(people.image)
         }
     }
 
@@ -36,11 +33,7 @@ class PeopleAdapter(private val clickOnPeople: (PeopleResponseItem) -> Unit) :
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val item = listOfCategories[position]
-        holder.bind(item)
-        holder.itemView.click {
-            clickOnPeople(item)
-        }
+        holder.bind(listOfCategories[position])
     }
 
     override fun getItemCount(): Int {

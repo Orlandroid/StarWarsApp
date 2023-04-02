@@ -8,6 +8,7 @@ import com.example.androidbase.presentation.helpers.NetworkHelper
 import com.example.data.Repository
 import com.example.data.di.CoroutineDispatchers
 import com.example.androidbase.entities.remote.PeopleResponseItem
+import com.example.androidbase.entities.remote.ResultResponse
 import com.example.androidbase.state.Result
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -31,6 +32,10 @@ class PeopleViewModel @Inject constructor(
     val peopleDetailResponse: LiveData<Result<PeopleResponseItem?>>
         get() = _peopleDetailResponse
 
+    private val _peopleResponse = MutableLiveData<Result<ResultResponse>>()
+    val peopleResponse: LiveData<Result<ResultResponse>>
+        get() = _peopleResponse
+
     fun getAllPeople() {
         viewModelScope.launch {
             safeApiCall(_allPeopleResponse, coroutineDispatchers) {
@@ -48,6 +53,17 @@ class PeopleViewModel @Inject constructor(
                 val response = getPeopleById(repository.getAllPeople(), peopleId)
                 withContext(Dispatchers.Main) {
                     _peopleDetailResponse.value = Result.Success(response)
+                }
+            }
+        }
+    }
+
+    fun getPeople(page: String) {
+        viewModelScope.launch {
+            safeApiCall(_peopleResponse, coroutineDispatchers) {
+                val response = repository.getPeople(page)
+                withContext(Dispatchers.Main) {
+                    _peopleResponse.value = Result.Success(response)
                 }
             }
         }
