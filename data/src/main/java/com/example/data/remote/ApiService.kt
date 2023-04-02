@@ -1,10 +1,7 @@
 package com.example.data.remote
 
 
-
-import com.example.androidbase.entities.remote.PeopleResponseItem
-import com.example.androidbase.entities.remote.ResultPeople
-import com.example.androidbase.entities.remote.ResultResponse
+import com.example.androidbase.entities.remote.*
 import retrofit2.http.GET
 import retrofit2.http.Query
 import retrofit2.http.Url
@@ -20,5 +17,21 @@ interface ApiService {
 
     @GET("allpeople.json")
     suspend fun getAllPeople(): List<PeopleResponseItem>
+
+    @GET("films")
+    suspend fun getFilms(@Query("page") page: String): FlimsResponse
+
+    @GET("planets")
+    suspend fun getPlanets(@Query("page") page: String): PlanetsResponse
+
+    @GET("species")
+    suspend fun getSpecies(@Query("page") page: String): SpeciesResponse
+
+    @GET("starships")
+    suspend fun getStarships(@Query("page") page: String): StarshipsResponse
+
+    @GET("vehicles")
+    suspend fun getVehicles(@Query("page") page: String): VehiclesResponse
+
 
 }

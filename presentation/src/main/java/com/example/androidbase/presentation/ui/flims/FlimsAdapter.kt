@@ -1,4 +1,4 @@
-package com.example.androidbase.presentation.ui.people
+package com.example.androidbase.presentation.ui.flims
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -8,8 +8,8 @@ import com.example.androidbase.entities.remote.ResultPeople
 import com.example.androidbase.presentation.extensions.click
 
 
-class PeopleAdapter(private val clickOnPeople: (ResultPeople) -> Unit) :
-    RecyclerView.Adapter<PeopleAdapter.ViewHolder>() {
+class FlimsAdapter(private val clickOnPeople: (ResultPeople) -> Unit) :
+    RecyclerView.Adapter<FlimsAdapter.ViewHolder>() {
 
     private var listOfCategories: List<ResultPeople> = arrayListOf()
 

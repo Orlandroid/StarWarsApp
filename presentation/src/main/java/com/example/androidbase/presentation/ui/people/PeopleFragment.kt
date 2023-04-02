@@ -18,7 +18,7 @@ class PeopleFragment : BaseFragment<FragmentPeopleBinding>(R.layout.fragment_peo
 
 
     private val viewModel: PeopleViewModel by viewModels()
-    private val userAdapter = PeopleAdapter()
+    private val userAdapter = PeopleAdapter { clickOnPeople(it) }
     private var currentPage: Int? = 1
     private var canCallToTheNextPage = true
     private var peopleList: ArrayList<ResultPeople> = arrayListOf()
@@ -56,6 +56,10 @@ class PeopleFragment : BaseFragment<FragmentPeopleBinding>(R.layout.fragment_peo
             return null
         }
         return pageInUrl.split("=")[1].toInt()
+    }
+
+    private fun clickOnPeople(clickOnPeople: ResultPeople) {
+        findNavController().navigate( PeopleFragmentDirections.actionUsersFragmentToCharacterDetailFragment(""))
     }
 
 

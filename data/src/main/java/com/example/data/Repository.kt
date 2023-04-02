@@ -1,14 +1,9 @@
 package com.example.data
 
 
-import android.provider.ContactsContract.Directory.PACKAGE_NAME
-import android.util.Log
 import com.example.androidbase.LocalDataSource
 import com.example.androidbase.RemoteDataSource
-import com.example.androidbase.entities.remote.PeopleResponseItem
-import com.example.androidbase.mappers.toPeopleCache
-import com.example.androidbase.mappers.toPeopleCacheList
-import com.example.androidbase.mappers.toPeopleResponseItemList
+import com.example.androidbase.entities.remote.*
 import javax.inject.Inject
 
 
@@ -18,6 +13,18 @@ class Repository @Inject constructor(
 ) {
 
     suspend fun getPeople(page: String) = remoteDataSource.getPeople(page)
+
+    suspend fun getFilms(page: String) = remoteDataSource.getFilms(page)
+
+    suspend fun getPlanets(page: String): PlanetsResponse = remoteDataSource.getPlanets(page)
+
+    suspend fun getSpecies(page: String): SpeciesResponse = remoteDataSource.getSpecies(page)
+
+    suspend fun getStarships(page: String): StarshipsResponse = remoteDataSource.getStarships(page)
+
+    suspend fun getVehicles(page: String): VehiclesResponse = remoteDataSource.getVehicles(page)
+
+
     suspend fun getAllPeople(): List<PeopleResponseItem> {
         return remoteDataSource.getAllPeople()
         /*

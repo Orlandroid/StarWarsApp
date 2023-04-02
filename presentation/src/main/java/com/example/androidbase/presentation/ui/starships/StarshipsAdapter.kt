@@ -1,19 +1,20 @@
-package com.example.androidbase.presentation.ui.people
+package com.example.androidbase.presentation.ui.starships
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.androidbase.databinding.ItemPeopleBinding
 import com.example.androidbase.entities.remote.ResultPeople
+import com.example.androidbase.entities.remote.ResultStarship
 import com.example.androidbase.presentation.extensions.click
 
 
-class PeopleAdapter(private val clickOnPeople: (ResultPeople) -> Unit) :
-    RecyclerView.Adapter<PeopleAdapter.ViewHolder>() {
+class StarshipsAdapter(private val clickOnPeople: (ResultStarship) -> Unit) :
+    RecyclerView.Adapter<StarshipsAdapter.ViewHolder>() {
 
-    private var listOfCategories: List<ResultPeople> = arrayListOf()
+    private var listOfCategories: List<ResultStarship> = arrayListOf()
 
-    fun setData(lista: List<ResultPeople>) {
+    fun setData(lista: List<ResultStarship>) {
         listOfCategories = lista
         notifyDataSetChanged()
     }
@@ -21,12 +22,8 @@ class PeopleAdapter(private val clickOnPeople: (ResultPeople) -> Unit) :
 
     class ViewHolder(private val binding: ItemPeopleBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(people: ResultPeople, clickOnPeople: (ResultPeople) -> Unit) = with(binding) {
-            root.click {
-                clickOnPeople(people)
-            }
-            tvName.text = people.name
-            tvSpecie.text = people.gender
+        fun bind(people: ResultStarship, clickOnPeople: (ResultStarship) -> Unit) = with(binding) {
+
         }
     }
 

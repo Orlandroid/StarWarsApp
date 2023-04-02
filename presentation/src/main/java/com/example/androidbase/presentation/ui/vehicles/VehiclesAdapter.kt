@@ -1,19 +1,18 @@
-package com.example.androidbase.presentation.ui.people
+package com.example.androidbase.presentation.ui.vehicles
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.androidbase.databinding.ItemPeopleBinding
-import com.example.androidbase.entities.remote.ResultPeople
-import com.example.androidbase.presentation.extensions.click
+import com.example.androidbase.entities.remote.ResultVehicle
 
 
-class PeopleAdapter(private val clickOnPeople: (ResultPeople) -> Unit) :
-    RecyclerView.Adapter<PeopleAdapter.ViewHolder>() {
+class VehiclesAdapter(private val clickOnPeople: (ResultVehicle) -> Unit) :
+    RecyclerView.Adapter<VehiclesAdapter.ViewHolder>() {
 
-    private var listOfCategories: List<ResultPeople> = arrayListOf()
+    private var listOfCategories: List<ResultVehicle> = arrayListOf()
 
-    fun setData(lista: List<ResultPeople>) {
+    fun setData(lista: List<ResultVehicle>) {
         listOfCategories = lista
         notifyDataSetChanged()
     }
@@ -21,12 +20,8 @@ class PeopleAdapter(private val clickOnPeople: (ResultPeople) -> Unit) :
 
     class ViewHolder(private val binding: ItemPeopleBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(people: ResultPeople, clickOnPeople: (ResultPeople) -> Unit) = with(binding) {
-            root.click {
-                clickOnPeople(people)
-            }
-            tvName.text = people.name
-            tvSpecie.text = people.gender
+        fun bind(people: ResultVehicle, clickOnPeople: (ResultVehicle) -> Unit) = with(binding) {
+
         }
     }
 
