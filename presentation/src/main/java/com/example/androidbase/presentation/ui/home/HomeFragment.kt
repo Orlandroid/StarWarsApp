@@ -33,7 +33,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
             getString(R.string.character) -> {
                 findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToUsersFragment())
             }
-            getString(R.string.flims) -> {}
+            getString(R.string.flims) -> {
+                findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToFilmsFragment())
+            }
             getString(R.string.planets) -> {}
             getString(R.string.species) -> {}
             getString(R.string.startships) -> {}

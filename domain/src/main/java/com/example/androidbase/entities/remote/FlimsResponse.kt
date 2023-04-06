@@ -2,8 +2,8 @@ package com.example.androidbase.entities.remote
 
 data class FlimsResponse(
     val count: Int,
-    val next: Any,
-    val previous: Any,
+    val next: String?,
+    val previous: String?,
     val results: List<ResultX>
 )
 

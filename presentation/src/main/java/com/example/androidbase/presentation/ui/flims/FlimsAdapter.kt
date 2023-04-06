@@ -3,36 +3,37 @@ package com.example.androidbase.presentation.ui.flims
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.androidbase.databinding.ItemPeopleBinding
-import com.example.androidbase.entities.remote.ResultPeople
-import com.example.androidbase.presentation.extensions.click
+import com.example.androidbase.databinding.ItemFilmBinding
+import com.example.androidbase.entities.remote.ResultX
+import com.example.androidbase.presentation.extensions.loadUrl
+import com.example.androidbase.presentation.util.data.getFilmsImages
+import com.example.androidbase.presentation.util.getImageFromJson
 
 
-class FlimsAdapter(private val clickOnPeople: (ResultPeople) -> Unit) :
+class FlimsAdapter(private val clickOnPeople: (ResultX) -> Unit) :
     RecyclerView.Adapter<FlimsAdapter.ViewHolder>() {
 
-    private var listOfCategories: List<ResultPeople> = arrayListOf()
+    private var listOfCategories: List<ResultX> = arrayListOf()
 
-    fun setData(lista: List<ResultPeople>) {
+    fun setData(lista: List<ResultX>) {
         listOfCategories = lista
         notifyDataSetChanged()
     }
 
 
-    class ViewHolder(private val binding: ItemPeopleBinding) :
+    class ViewHolder(private val binding: ItemFilmBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(people: ResultPeople, clickOnPeople: (ResultPeople) -> Unit) = with(binding) {
-            root.click {
-                clickOnPeople(people)
-            }
-            tvName.text = people.name
-            tvSpecie.text = people.gender
+        fun bind(film: ResultX, clickOnPeople: (ResultX) -> Unit) = with(binding) {
+            tvTitle.text = film.title
+            tvEpisodeId.text = film.episode_id.toString()
+            tvExtreno.text = film.release_date
+            image.loadUrl(getImageFromJson(film.title, getFilmsImages()))
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
-        val binding = ItemPeopleBinding.inflate(layoutInflater, parent, false)
+        val binding = ItemFilmBinding.inflate(layoutInflater, parent, false)
         return ViewHolder(binding)
     }
 

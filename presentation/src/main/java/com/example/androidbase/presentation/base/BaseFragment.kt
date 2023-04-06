@@ -32,8 +32,8 @@ abstract class BaseFragment<ViewBinding : ViewDataBinding>(@LayoutRes protected 
     protected abstract fun setUpUi()
 
     open fun observerViewModel() {
-
     }
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -46,4 +46,5 @@ abstract class BaseFragment<ViewBinding : ViewDataBinding>(@LayoutRes protected 
         _binding = null
         hideProgress()
     }
+
 }

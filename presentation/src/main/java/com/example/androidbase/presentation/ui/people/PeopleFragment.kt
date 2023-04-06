@@ -7,7 +7,7 @@ import com.example.androidbase.R
 import com.example.androidbase.databinding.FragmentPeopleBinding
 import com.example.androidbase.entities.remote.ResultPeople
 import com.example.androidbase.presentation.base.BaseFragment
-import com.example.androidbase.presentation.extensions.click
+import com.example.androidbase.presentation.extensions.configure
 import com.example.androidbase.presentation.extensions.myOnScrolled
 import com.example.androidbase.presentation.extensions.observeApiResult
 import dagger.hilt.android.AndroidEntryPoint
@@ -24,9 +24,7 @@ class PeopleFragment : BaseFragment<FragmentPeopleBinding>(R.layout.fragment_peo
     private var peopleList: ArrayList<ResultPeople> = arrayListOf()
 
     override fun setUpUi() = with(binding) {
-        toolbarLayout.toolbarBack.click {
-            findNavController().popBackStack()
-        }
+        configure(binding.toolbarLayout, title = getString(R.string.personajes))
         viewModel.getPeople(currentPage.toString())
         recycler.adapter = userAdapter
         recycler.myOnScrolled {
@@ -59,7 +57,11 @@ class PeopleFragment : BaseFragment<FragmentPeopleBinding>(R.layout.fragment_peo
     }
 
     private fun clickOnPeople(clickOnPeople: ResultPeople) {
-        findNavController().navigate( PeopleFragmentDirections.actionUsersFragmentToCharacterDetailFragment(""))
+        findNavController().navigate(
+            PeopleFragmentDirections.actionUsersFragmentToCharacterDetailFragment(
+                ""
+            )
+        )
     }
 
 

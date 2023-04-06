@@ -6,6 +6,7 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         app:cardCornerRadius="16sp"
         app:cardUseCompatPadding="true">
 
@@ -21,11 +22,12 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
+
             <com.mikhaellopez.circularimageview.CircularImageView
                 android:id="@+id/characterImage"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="24dp"
                 android:src="@drawable/character"
                 app:civ_border_color="#3f51b5"
                 app:civ_border_width="4dp"
