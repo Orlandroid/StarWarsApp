@@ -1,4 +1,4 @@
-package com.example.androidbase.presentation.util.data
+package com.example.androidbase.presentation.util.utilimages.data
 
 fun getStartShipsImages(): String{
     return """[

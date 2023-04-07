@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.androidbase.databinding.ItemFilmBinding
 import com.example.androidbase.entities.remote.ResultX
 import com.example.androidbase.presentation.extensions.loadUrl
-import com.example.androidbase.presentation.util.data.getFilmsImages
+import com.example.androidbase.presentation.util.utilimages.data.getFilmsImages
 import com.example.androidbase.presentation.util.getImageFromJson
 
 
@@ -16,7 +16,7 @@ class FlimsAdapter(private val clickOnPeople: (ResultX) -> Unit) :
     private var listOfCategories: List<ResultX> = arrayListOf()
 
     fun setData(lista: List<ResultX>) {
-        listOfCategories = lista
+        listOfCategories = lista.sortedBy { it.release_date }
         notifyDataSetChanged()
     }
 

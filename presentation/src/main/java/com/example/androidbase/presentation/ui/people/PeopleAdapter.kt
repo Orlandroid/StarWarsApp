@@ -6,6 +6,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.androidbase.databinding.ItemPeopleBinding
 import com.example.androidbase.entities.remote.ResultPeople
 import com.example.androidbase.presentation.extensions.click
+import com.example.androidbase.presentation.extensions.loadUrl
+import com.example.androidbase.presentation.util.getImageFromJson
+import com.example.androidbase.presentation.util.utilimages.data.getFilmsImages
+import com.example.androidbase.presentation.util.utilimages.data.getPeopleImages
 
 
 class PeopleAdapter(private val clickOnPeople: (ResultPeople) -> Unit) :
@@ -27,6 +31,7 @@ class PeopleAdapter(private val clickOnPeople: (ResultPeople) -> Unit) :
             }
             tvName.text = people.name
             tvSpecie.text = people.gender
+            image.loadUrl(getImageFromJson(people.name, getPeopleImages()))
         }
     }
 
