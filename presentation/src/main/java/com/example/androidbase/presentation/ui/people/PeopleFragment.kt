@@ -10,6 +10,7 @@ import com.example.androidbase.presentation.base.BaseFragment
 import com.example.androidbase.presentation.extensions.configure
 import com.example.androidbase.presentation.extensions.myOnScrolled
 import com.example.androidbase.presentation.extensions.observeApiResult
+import com.google.gson.Gson
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -56,11 +57,11 @@ class PeopleFragment : BaseFragment<FragmentPeopleBinding>(R.layout.fragment_peo
         return pageInUrl.split("=")[1].toInt()
     }
 
-    private fun clickOnPeople(clickOnPeople: ResultPeople) {
+    private fun clickOnPeople(people: ResultPeople) {
+        val gson = Gson()
+        val peopleJson = gson.toJson(people)
         findNavController().navigate(
-            PeopleFragmentDirections.actionUsersFragmentToCharacterDetailFragment(
-                ""
-            )
+            PeopleFragmentDirections.actionUsersFragmentToCharacterDetailFragment(peopleJson)
         )
     }
 

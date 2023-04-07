@@ -32,7 +32,7 @@
         android:label="CharacterDetailFragment"
         tools:layout="@layout/fragment_character_detail">
         <argument
-            android:name="characterWithImage"
+            android:name="character"
             app:argType="string" />
     </fragment>
     <fragment
