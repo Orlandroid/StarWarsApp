@@ -8,6 +8,7 @@ import com.example.androidbase.presentation.base.BaseFragment
 import com.example.androidbase.presentation.extensions.configure
 import com.example.androidbase.presentation.extensions.myOnScrolled
 import com.example.androidbase.presentation.extensions.observeApiResult
+import com.example.androidbase.presentation.util.getCurrentPage
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -32,7 +33,6 @@ class FilmsFragment : BaseFragment<FragmentFlimsBinding>(R.layout.fragment_flims
                 return@myOnScrolled
             }
             currentPage?.let {
-                currentPage = currentPage!! + 1
                 canCallToTheNextPage = false
                 viewModel.getFilms(page = currentPage.toString())
             }
@@ -48,12 +48,5 @@ class FilmsFragment : BaseFragment<FragmentFlimsBinding>(R.layout.fragment_flims
             currentPage = getCurrentPage(it.next)
         }
     }
-
-    private fun getCurrentPage(pageInUrl: String?): Int? {
-        if (pageInUrl == null) {
-            return null
-        }
-        return pageInUrl.split("=")[1].toInt()
-    }
-
+    
 }

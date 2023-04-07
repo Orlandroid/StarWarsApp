@@ -25,6 +25,9 @@
         <action
             android:id="@+id/action_homeFragment_to_filmsFragment"
             app:destination="@id/filmsFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_planetsFragment"
+            app:destination="@id/planetsFragment" />
     </fragment>
     <fragment
         android:id="@+id/characterDetailFragment"
@@ -40,4 +43,8 @@
         android:name="com.example.androidbase.presentation.ui.flims.FilmsFragment"
         android:label="FilmsFragment"
         tools:layout="@layout/fragment_flims" />
+    <fragment
+        android:id="@+id/planetsFragment"
+        android:name="com.example.androidbase.presentation.ui.planets.PlanetsFragment"
+        android:label="PlanetsFragment" />
 </navigation>

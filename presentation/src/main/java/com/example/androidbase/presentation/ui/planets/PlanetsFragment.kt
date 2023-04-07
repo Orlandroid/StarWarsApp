@@ -1,15 +1,19 @@
 package com.example.androidbase.presentation.ui.planets
 
+import android.util.Log
 import androidx.fragment.app.viewModels
 import com.example.androidbase.R
 import com.example.androidbase.databinding.FragmentPlanetsBinding
-import com.example.androidbase.entities.remote.ResultPeople
 import com.example.androidbase.entities.remote.ResultPlanet
 import com.example.androidbase.presentation.base.BaseFragment
+import com.example.androidbase.presentation.extensions.configure
 import com.example.androidbase.presentation.extensions.myOnScrolled
 import com.example.androidbase.presentation.extensions.observeApiResult
+import com.example.androidbase.presentation.util.getCurrentPage
+import dagger.hilt.android.AndroidEntryPoint
 
 
+@AndroidEntryPoint
 class PlanetsFragment : BaseFragment<FragmentPlanetsBinding>(R.layout.fragment_planets) {
 
     private val viewModel: PlanetsViewModel by viewModels()
@@ -24,13 +28,13 @@ class PlanetsFragment : BaseFragment<FragmentPlanetsBinding>(R.layout.fragment_p
 
     override fun setUpUi() = with(binding) {
         viewModel.getPlanets(currentPage.toString())
+        configure(binding.toolbarLayout, title = getString(R.string.planets))
         binding.recycler.adapter = planetsAdapter
         recycler.myOnScrolled {
             if (!canCallToTheNextPage) {
                 return@myOnScrolled
             }
             currentPage?.let {
-                currentPage = currentPage!! + 1
                 canCallToTheNextPage = false
                 viewModel.getPlanets(page = currentPage.toString())
             }
@@ -46,12 +50,4 @@ class PlanetsFragment : BaseFragment<FragmentPlanetsBinding>(R.layout.fragment_p
             currentPage = getCurrentPage(it.next)
         }
     }
-
-    private fun getCurrentPage(pageInUrl: String?): Int? {
-        if (pageInUrl == null) {
-            return null
-        }
-        return pageInUrl.split("=")[1].toInt()
-    }
-
 }

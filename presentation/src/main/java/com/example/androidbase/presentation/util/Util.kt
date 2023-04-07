@@ -15,3 +15,12 @@ fun getImageFromJson(name: String, jsonStr: String): String {
     return ""
 }
 
+fun getCurrentPage(pageInUrl: String?): Int? {
+    if (pageInUrl == null) {
+        return null
+    }
+    return pageInUrl.split("=")[1].toInt()
+}
+
+
+

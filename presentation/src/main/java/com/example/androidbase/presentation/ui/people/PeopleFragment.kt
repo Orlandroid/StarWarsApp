@@ -10,6 +10,7 @@ import com.example.androidbase.presentation.base.BaseFragment
 import com.example.androidbase.presentation.extensions.configure
 import com.example.androidbase.presentation.extensions.myOnScrolled
 import com.example.androidbase.presentation.extensions.observeApiResult
+import com.example.androidbase.presentation.util.getCurrentPage
 import com.google.gson.Gson
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -33,7 +34,6 @@ class PeopleFragment : BaseFragment<FragmentPeopleBinding>(R.layout.fragment_peo
                 return@myOnScrolled
             }
             currentPage?.let {
-                currentPage = currentPage!! + 1
                 canCallToTheNextPage = false
                 viewModel.getPeople(page = currentPage.toString())
             }
@@ -48,13 +48,6 @@ class PeopleFragment : BaseFragment<FragmentPeopleBinding>(R.layout.fragment_peo
             canCallToTheNextPage = true
             currentPage = getCurrentPage(it.next)
         }
-    }
-
-    private fun getCurrentPage(pageInUrl: String?): Int? {
-        if (pageInUrl == null) {
-            return null
-        }
-        return pageInUrl.split("=")[1].toInt()
     }
 
     private fun clickOnPeople(people: ResultPeople) {
