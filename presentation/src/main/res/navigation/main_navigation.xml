@@ -28,6 +28,9 @@
         <action
             android:id="@+id/action_homeFragment_to_planetsFragment"
             app:destination="@id/planetsFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_speciesFragment"
+            app:destination="@id/speciesFragment" />
     </fragment>
     <fragment
         android:id="@+id/characterDetailFragment"
@@ -46,5 +49,11 @@
     <fragment
         android:id="@+id/planetsFragment"
         android:name="com.example.androidbase.presentation.ui.planets.PlanetsFragment"
-        android:label="PlanetsFragment" />
+        android:label="PlanetsFragment"
+        tools:layout="@layout/fragment_planets" />
+    <fragment
+        android:id="@+id/speciesFragment"
+        android:name="com.example.androidbase.presentation.ui.species.SpeciesFragment"
+        android:label="SpeciesFragment"
+        tools:layout="@layout/fragment_species" />
 </navigation>

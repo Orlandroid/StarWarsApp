@@ -24,7 +24,7 @@ fun getSpeciesImages(): String {
     },
     {
         "name":"Yoda\'s species",
-        "image":"https:\\www.looper.com\img\gallery\everything-we-know-about-yodas-species\intro-1574290530.jpg"
+        "image":"https://static.wikia.nocookie.net/starwars/images/d/d0/Yoda_claws.png/revision/latest/scale-to-width-down/180?cb=20130205044900"
     },
     {
         "name": "Trandoshan",

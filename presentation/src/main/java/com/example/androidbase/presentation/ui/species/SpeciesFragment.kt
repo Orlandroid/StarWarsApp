@@ -3,12 +3,15 @@ package com.example.androidbase.presentation.ui.species
 import androidx.fragment.app.viewModels
 import com.example.androidbase.R
 import com.example.androidbase.databinding.FragmentSpeciesBinding
-import com.example.androidbase.entities.remote.ResultPeople
 import com.example.androidbase.entities.remote.ResultSpecie
 import com.example.androidbase.presentation.base.BaseFragment
+import com.example.androidbase.presentation.extensions.configure
 import com.example.androidbase.presentation.extensions.myOnScrolled
 import com.example.androidbase.presentation.extensions.observeApiResult
+import com.example.androidbase.presentation.util.getCurrentPage
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class SpeciesFragment : BaseFragment<FragmentSpeciesBinding>(R.layout.fragment_species) {
 
     private val viewModel: SpeciesViewModel by viewModels()
@@ -22,14 +25,14 @@ class SpeciesFragment : BaseFragment<FragmentSpeciesBinding>(R.layout.fragment_s
     }
 
     override fun setUpUi() = with(binding) {
+        configure(binding.toolbarLayout, title = getString(R.string.species))
         viewModel.getSpecies(currentPage.toString())
-        binding.recycler.adapter = speciesAdapter
+        recycler.adapter = speciesAdapter
         recycler.myOnScrolled {
             if (!canCallToTheNextPage) {
                 return@myOnScrolled
             }
             currentPage?.let {
-                currentPage = currentPage!! + 1
                 canCallToTheNextPage = false
                 viewModel.getSpecies(page = currentPage.toString())
             }
@@ -44,13 +47,6 @@ class SpeciesFragment : BaseFragment<FragmentSpeciesBinding>(R.layout.fragment_s
             canCallToTheNextPage = true
             currentPage = getCurrentPage(it.next)
         }
-    }
-
-    private fun getCurrentPage(pageInUrl: String?): Int? {
-        if (pageInUrl == null) {
-            return null
-        }
-        return pageInUrl.split("=")[1].toInt()
     }
 
 }

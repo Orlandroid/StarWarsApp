@@ -4,26 +4,28 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.androidbase.databinding.ItemPeopleBinding
-import com.example.androidbase.entities.remote.ResultPeople
 import com.example.androidbase.entities.remote.ResultSpecie
-import com.example.androidbase.presentation.extensions.click
+import com.example.androidbase.presentation.extensions.loadUrl
+import com.example.androidbase.presentation.util.getImageFromJson
+import com.example.androidbase.presentation.util.utilimages.data.getSpeciesImages
 
 
-class SpeciesAdapter(private val clickOnPeople: (ResultSpecie) -> Unit) :
+class SpeciesAdapter(private val clickOnSpecie: (ResultSpecie) -> Unit) :
     RecyclerView.Adapter<SpeciesAdapter.ViewHolder>() {
 
-    private var listOfCategories: List<ResultSpecie> = arrayListOf()
+    private var listOfSpecies: List<ResultSpecie> = arrayListOf()
 
     fun setData(lista: List<ResultSpecie>) {
-        listOfCategories = lista
+        listOfSpecies = lista
         notifyDataSetChanged()
     }
 
 
     class ViewHolder(private val binding: ItemPeopleBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(people: ResultSpecie, clickOnPeople: (ResultSpecie) -> Unit) = with(binding) {
-
+        fun bind(specie: ResultSpecie, clickOnSpecie: (ResultSpecie) -> Unit) = with(binding) {
+            tvName.text = specie.name
+            image.loadUrl(getImageFromJson(specie.name, getSpeciesImages()))
         }
     }
 
@@ -34,11 +36,11 @@ class SpeciesAdapter(private val clickOnPeople: (ResultSpecie) -> Unit) :
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(listOfCategories[position], clickOnPeople)
+        holder.bind(listOfSpecies[position], clickOnSpecie)
     }
 
     override fun getItemCount(): Int {
-        return listOfCategories.size
+        return listOfSpecies.size
     }
 
 

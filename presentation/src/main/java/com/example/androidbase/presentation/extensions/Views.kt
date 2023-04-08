@@ -4,6 +4,7 @@ import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.Color
 import android.provider.Settings.Global.getString
+import android.view.LayoutInflater
 import android.view.View
 import android.widget.ImageView
 import androidx.annotation.ColorRes
@@ -13,9 +14,13 @@ import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment.Companion.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.swiperefreshlayout.widget.CircularProgressDrawable
+import androidx.viewbinding.ViewBinding
 import com.bumptech.glide.Glide
 import com.example.androidbase.R
+import com.example.androidbase.databinding.ItemPeopleBinding
 import com.example.androidbase.databinding.ToolbarViewBinding
+import com.example.androidbase.presentation.ui.home.HomeFragmentDirections
+import kotlinx.coroutines.NonDisposableHandle.parent
 
 
 fun View.visible() {
