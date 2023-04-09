@@ -12,8 +12,6 @@
         android:layout_height="100dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:layout_marginBottom="16dp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/startwars" />
@@ -24,7 +22,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
-        android:text="@string/yoda"
+        android:text="@string/cr90_corvette"
         android:textColor="@color/black"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -36,7 +34,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="@string/population"
+        android:text="@string/manufacturer"
         android:textColor="@color/black"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/tv_name"
@@ -45,67 +43,47 @@
     <View
         android:layout_width="0dp"
         android:layout_height="1dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="40dp"
         android:background="@color/gris"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/image" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_model"
+        app:layout_constraintVertical_bias="1.0" />
 
     <TextView
         android:id="@+id/climate_label"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="@string/climate"
+        android:text="@string/model"
         android:textColor="@color/black"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@+id/population_label"
+        app:layout_constraintHorizontal_bias="0.479"
         app:layout_constraintStart_toStartOf="@+id/population_label"
-        app:layout_constraintTop_toBottomOf="@+id/population_label" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_manufacturer" />
 
     <TextView
-        android:id="@+id/terrain_label"
+        android:id="@+id/tv_manufacturer"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="@string/terrain"
-        android:textColor="@color/black"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/climate_label"
-        app:layout_constraintStart_toStartOf="@+id/climate_label"
-        app:layout_constraintTop_toBottomOf="@+id/climate_label" />
-
-    <TextView
-        android:id="@+id/tv_population"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:text="@string/_200000"
+        android:layout_marginStart="16dp"
+        android:text="@string/corellian_engineering_corporation"
         android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="@+id/tv_name"
         app:layout_constraintStart_toEndOf="@+id/population_label"
         app:layout_constraintTop_toTopOf="@+id/population_label" />
 
     <TextView
-        android:id="@+id/tv_climate"
+        android:id="@+id/tv_model"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="@string/arid"
+        android:text="@string/cr90_corvette"
         android:textColor="@color/black"
-        app:layout_constraintEnd_toEndOf="@+id/tv_population"
-        app:layout_constraintStart_toStartOf="@+id/tv_population"
-        app:layout_constraintTop_toBottomOf="@+id/tv_population" />
+        app:layout_constraintEnd_toEndOf="@+id/tv_manufacturer"
+        app:layout_constraintStart_toStartOf="@+id/tv_manufacturer"
+        app:layout_constraintTop_toTopOf="@+id/climate_label" />
 
-    <TextView
-        android:id="@+id/tv_terrain"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="@string/desert"
-        android:textColor="@color/black"
-        app:layout_constraintEnd_toEndOf="@+id/tv_climate"
-        app:layout_constraintStart_toStartOf="@+id/tv_climate"
-        app:layout_constraintTop_toBottomOf="@+id/tv_climate" />
 </androidx.constraintlayout.widget.ConstraintLayout>

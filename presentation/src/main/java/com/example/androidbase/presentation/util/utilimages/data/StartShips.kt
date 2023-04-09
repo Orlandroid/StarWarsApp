@@ -1,6 +1,6 @@
 package com.example.androidbase.presentation.util.utilimages.data
 
-fun getStartShipsImages(): String{
+fun getStartShipsImages(): String {
     return """[
     {
         "name": "CR90 corvette",
@@ -40,7 +40,7 @@ fun getStartShipsImages(): String{
     },
     {
         "name": "Rebel transport",
-        "image":"https:\\static.wikia.nocookie.net\starwars\images\e\eb\GR-75_Medium_Transport.jpg\revision\latest?cb=20070106181949"
+        "image":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRLZkymXXozhM6Oc7RCLMksApt0sfSP5ydtQC5LYWY-EC7KPjTZs6hQAc9Jh8ibcxNBo1s&usqp=CAU"
     },
     {
         "name": "Slave 1",
@@ -60,7 +60,7 @@ fun getStartShipsImages(): String{
     },
     {
         "name": "A-wing",
-        "image":"https:\\static.wikia.nocookie.net\starwars\images\8\8d\A-wing_DICE.png\revision\latest?cb=20161021230115"
+        "image":"https://static.wikia.nocookie.net/esstarwars/images/8/8d/A-wing_DICE.png/revision/latest/scale-to-width-down/350?cb=20180319210024"
     },
     {
         "name": "B-wing",
@@ -104,7 +104,7 @@ fun getStartShipsImages(): String{
     },
     {
         "name": "Republic Assault ship",
-        "image":"https:\\static.wikia.nocookie.net\starwars\images\8\84\Acclamator-OCF.jpg\revision\latest?cb=20091003023542"
+        "image":"https://static.wikia.nocookie.net/starwars/images/7/70/Acclamator-TCWIV.png/revision/latest/scale-to-width-down/500?cb=20221105061503"
     },
     {
         "name": "Solar Sailer",
@@ -124,7 +124,7 @@ fun getStartShipsImages(): String{
     },
     {
         "name": "Naboo star skiff",
-        "image":"https:\\static.wikia.nocookie.net\starwars\images\0\08\Nabooskiff2-chron.jpg\revision\latest?cb=20070922232853"
+        "image":"https://static.wikia.nocookie.net/starwars/images/7/73/Nabooskiff3-chron.jpg/revision/latest?cb=20070922233227"
     },
     {
         "name": "Jedi Interceptor",
@@ -140,11 +140,11 @@ fun getStartShipsImages(): String{
     },
     {
         "name": "Belbullab-22 starfighter",
-        "image":"https:\\static.wikia.nocookie.net\starwars\images\3\3e\Soulless_One2_TCW.jpg\revision\latest?cb=20090311020627"
+        "image":"https://static.wikia.nocookie.net/starwars/images/2/21/SoullessOne-TCW.png/revision/latest/scale-to-width-down/500?cb=20221117145011"
     },
     {
         "name": "V-wing",
         "image":"https:\\static.wikia.nocookie.net\starwars\images\6\66\Nimbus-class_V-wing_TFOWM.png\revision\latest?cb=20190629212809"
     }
-]""".replace('\\','/').trimIndent()
+]""".replace('\\', '/').trimIndent()
 }

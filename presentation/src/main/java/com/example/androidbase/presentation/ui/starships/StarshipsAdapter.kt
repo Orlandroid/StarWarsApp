@@ -3,10 +3,12 @@ package com.example.androidbase.presentation.ui.starships
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.androidbase.databinding.ItemPeopleBinding
-import com.example.androidbase.entities.remote.ResultPeople
+import com.example.androidbase.databinding.ItemStarshipsBinding
 import com.example.androidbase.entities.remote.ResultStarship
-import com.example.androidbase.presentation.extensions.click
+import com.example.androidbase.presentation.extensions.loadUrl
+import com.example.androidbase.presentation.util.getImageFromJson
+import com.example.androidbase.presentation.util.utilimages.data.getStartShipsImages
+import com.example.androidbase.presentation.util.utilimages.data.getVehiclesImages
 
 
 class StarshipsAdapter(private val clickOnPeople: (ResultStarship) -> Unit) :
@@ -20,16 +22,20 @@ class StarshipsAdapter(private val clickOnPeople: (ResultStarship) -> Unit) :
     }
 
 
-    class ViewHolder(private val binding: ItemPeopleBinding) :
+    class ViewHolder(private val binding: ItemStarshipsBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(people: ResultStarship, clickOnPeople: (ResultStarship) -> Unit) = with(binding) {
-
-        }
+        fun bind(starShip: ResultStarship, clickOnPeople: (ResultStarship) -> Unit) =
+            with(binding) {
+                tvName.text = starShip.name
+                tvManufacturer.text = starShip.manufacturer
+                tvModel.text = starShip.model
+                image.loadUrl(getImageFromJson(starShip.name, getStartShipsImages()))
+            }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
-        val binding = ItemPeopleBinding.inflate(layoutInflater, parent, false)
+        val binding = ItemStarshipsBinding.inflate(layoutInflater, parent, false)
         return ViewHolder(binding)
     }
 

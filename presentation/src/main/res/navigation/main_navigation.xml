@@ -31,6 +31,9 @@
         <action
             android:id="@+id/action_homeFragment_to_speciesFragment"
             app:destination="@id/speciesFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_starshipsFragment"
+            app:destination="@id/starshipsFragment" />
     </fragment>
     <fragment
         android:id="@+id/characterDetailFragment"
@@ -56,4 +59,9 @@
         android:name="com.example.androidbase.presentation.ui.species.SpeciesFragment"
         android:label="SpeciesFragment"
         tools:layout="@layout/fragment_species" />
+    <fragment
+        android:id="@+id/starshipsFragment"
+        android:name="com.example.androidbase.presentation.ui.starships.StarshipsFragment"
+        android:label="StarshipsFragment"
+        tools:layout="@layout/fragment_starships" />
 </navigation>

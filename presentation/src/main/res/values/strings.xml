@@ -49,4 +49,10 @@
     <string name="episode">Episode</string>
     <string name="premiere">Premiere</string>
     <string name="_1977_05_25">1977-05-25</string>
+    <string name="model">Model:</string>
+    <string name="cr90_corvette">CR90 corvette</string>
+    <string name="manufacturer">Manufacturer:</string>
+    <string name="cost">Cost:</string>
+    <string name="_3500000">3500000</string>
+    <string name="corellian_engineering_corporation">Corellian Engineering Corporation</string>
 </resources>

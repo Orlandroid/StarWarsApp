@@ -3,12 +3,15 @@ package com.example.androidbase.presentation.ui.starships
 import androidx.fragment.app.viewModels
 import com.example.androidbase.R
 import com.example.androidbase.databinding.FragmentStarshipsBinding
-import com.example.androidbase.entities.remote.ResultPeople
 import com.example.androidbase.entities.remote.ResultStarship
 import com.example.androidbase.presentation.base.BaseFragment
+import com.example.androidbase.presentation.extensions.configure
 import com.example.androidbase.presentation.extensions.myOnScrolled
 import com.example.androidbase.presentation.extensions.observeApiResult
+import com.example.androidbase.presentation.util.getCurrentPage
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class StarshipsFragment : BaseFragment<FragmentStarshipsBinding>(R.layout.fragment_starships) {
 
     private val viewModel: StarshipViewModel by viewModels()
@@ -22,6 +25,7 @@ class StarshipsFragment : BaseFragment<FragmentStarshipsBinding>(R.layout.fragme
     }
 
     override fun setUpUi() = with(binding) {
+        configure(binding.toolbarLayout, title = getString(R.string.startships))
         viewModel.getStarships(currentPage.toString())
         binding.recycler.adapter = starshipsAdapter
         recycler.myOnScrolled {
@@ -29,7 +33,6 @@ class StarshipsFragment : BaseFragment<FragmentStarshipsBinding>(R.layout.fragme
                 return@myOnScrolled
             }
             currentPage?.let {
-                currentPage = currentPage!! + 1
                 canCallToTheNextPage = false
                 viewModel.getStarships(page = currentPage.toString())
             }
@@ -45,12 +48,4 @@ class StarshipsFragment : BaseFragment<FragmentStarshipsBinding>(R.layout.fragme
             currentPage = getCurrentPage(it.next)
         }
     }
-
-    private fun getCurrentPage(pageInUrl: String?): Int? {
-        if (pageInUrl == null) {
-            return null
-        }
-        return pageInUrl.split("=")[1].toInt()
-    }
-
 }

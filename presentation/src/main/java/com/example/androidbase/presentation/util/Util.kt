@@ -3,7 +3,7 @@ package com.example.androidbase.presentation.util
 import com.example.androidbase.presentation.util.utilimages.models.ImagesResponse
 import com.google.gson.Gson
 
-const val PACKAGE_NAME = "com.example.androidbase"
+const val PACKAGE_NAME = "com.example.presentation"
 
 fun getImageFromJson(name: String, jsonStr: String): String {
     val images = Gson().fromJson(jsonStr, ImagesResponse::class.java)
