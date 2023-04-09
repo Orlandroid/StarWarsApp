@@ -25,8 +25,8 @@ class FlimsAdapter(private val clickOnPeople: (ResultX) -> Unit) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(film: ResultX, clickOnPeople: (ResultX) -> Unit) = with(binding) {
             tvTitle.text = film.title
-            tvEpisodeId.text = film.episode_id.toString()
-            tvExtreno.text = film.release_date
+            tvEpisode.text = film.episode_id.toString()
+            tvPremiere.text = film.release_date
             image.loadUrl(getImageFromJson(film.title, getFilmsImages()))
         }
     }

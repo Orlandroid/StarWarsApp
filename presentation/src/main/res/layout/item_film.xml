@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/white"
@@ -31,34 +32,59 @@
             android:text="@string/a_new_hope"
             android:textColor="@color/black"
             android:textSize="18sp"
+            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/image"
             app:layout_constraintTop_toTopOf="@+id/image" />
 
         <TextView
-            android:id="@+id/tv_episode_id"
-            android:layout_width="0dp"
+            android:id="@+id/episode_label"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
-            android:text="@string/_4"
+            android:text="@string/episode"
             android:textColor="@color/black"
             android:textSize="18sp"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:textStyle="bold"
             app:layout_constraintStart_toEndOf="@+id/image"
             app:layout_constraintTop_toBottomOf="@+id/tv_title" />
 
         <TextView
-            android:id="@+id/tv_extreno"
-            android:layout_width="0dp"
+            android:id="@+id/extreno_label"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
-            android:text="@string/estreno_1977_05_25"
+            android:text="@string/premiere"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@+id/image"
+            app:layout_constraintTop_toBottomOf="@+id/episode_label" />
+
+        <TextView
+            android:id="@+id/tv_episode"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:text="@string/_1"
             android:textColor="@color/black"
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/image"
-            app:layout_constraintTop_toBottomOf="@+id/tv_episode_id" />
+            app:layout_constraintStart_toEndOf="@+id/episode_label"
+            app:layout_constraintTop_toTopOf="@+id/episode_label" />
+
+        <TextView
+            android:id="@+id/tv_premiere"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:text="@string/_1977_05_25"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/extreno_label"
+            app:layout_constraintTop_toTopOf="@+id/extreno_label" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

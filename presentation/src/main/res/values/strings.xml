@@ -45,4 +45,8 @@
     <string name="_200000">200000</string>
     <string name="arid">arid</string>
     <string name="desert">desert</string>
+    <string name="_1">1</string>
+    <string name="episode">Episode</string>
+    <string name="premiere">Premiere</string>
+    <string name="_1977_05_25">1977-05-25</string>
 </resources>
