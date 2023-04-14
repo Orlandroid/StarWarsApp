@@ -34,6 +34,9 @@
         <action
             android:id="@+id/action_homeFragment_to_starshipsFragment"
             app:destination="@id/starshipsFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_vehiclesFragment"
+            app:destination="@id/vehiclesFragment" />
     </fragment>
     <fragment
         android:id="@+id/characterDetailFragment"
@@ -64,4 +67,9 @@
         android:name="com.example.androidbase.presentation.ui.starships.StarshipsFragment"
         android:label="StarshipsFragment"
         tools:layout="@layout/fragment_starships" />
+    <fragment
+        android:id="@+id/vehiclesFragment"
+        android:name="com.example.androidbase.presentation.ui.vehicles.VehiclesFragment"
+        android:label="VehiclesFragment"
+        tools:layout="@layout/fragment_vehicles" />
 </navigation>

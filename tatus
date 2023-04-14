@@ -1,0 +1,151 @@
+[33mcommit 94d63196008e799feab3220de3c039c87befb93d[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: Orlandroid <lopez.orlando.gold9@gmail.com>
+Date:   Sun Apr 9 00:04:08 2023 -0600
+
+    [FRT] StarShips
+
+[33mcommit dc866dc9302677e56977fa304e188024148ad37a[m
+Author: Orlandroid <lopez.orlando.gold9@gmail.com>
+Date:   Sat Apr 8 20:56:26 2023 -0600
+
+    no message
+
+[33mcommit c57ca7ee040dc2ead059aedce34d2eda17e51e37[m
+Author: Orlandroid <lopez.orlando.gold9@gmail.com>
+Date:   Sat Apr 8 17:43:56 2023 -0600
+
+    [FRT] Species
+
+[33mcommit faf2fea31cb402d6f393d383a2cfbd746535c5f0[m
+Author: Orlandroid <lopez.orlando.gold9@gmail.com>
+Date:   Fri Apr 7 15:42:10 2023 -0600
+
+    [FTR] list of planets
+
+[33mcommit 417b833c3f15fd9b9f24b707f7ebfd24d1ac90ba[m
+Author: Orlandroid <lopez.orlando.gold9@gmail.com>
+Date:   Thu Apr 6 21:36:56 2023 -0600
+
+    [FIX] Detail people
+
+[33mcommit f1e7aadb1cf230b3cfba36736625fc2f5943db96[m
+Author: Orlandroid <lopez.orlando.gold9@gmail.com>
+Date:   Thu Apr 6 20:56:57 2023 -0600
+
+    Add images to people
+
+[33mcommit 85a138bc5466071054c113bf9a0785662dd32f4e[m
+Author: Orlandroid <lopez.orlando.gold9@gmail.com>
+Date:   Thu Apr 6 17:59:35 2023 -0600
+
+    Add images to flims
+
+[33mcommit 36c073bf13c12bf9aa5cb7b5c2822218ada4c337[m
+Author: Orlandroid <lopez.orlando.gold9@gmail.com>
+Date:   Sat Apr 1 22:49:54 2023 -0600
+
+    Add Configuration Base to
+    List films,plantes,species,starships,vehicles
+
+[33mcommit 20eef28c83342f617e3bc90826ed5a50aa063313[m
+Author: Orlandroid <lopez.orlando.gold9@gmail.com>
+Date:   Sat Apr 1 18:47:42 2023 -0600
+
+    Change service people to pagination
+
+[33mcommit 8e88dafa4d3a652e09cb4b63452d39bf5c72590e[m
+Author: Orlandroid <lopez.orlando.gold9@gmail.com>
+Date:   Sat Apr 1 14:59:59 2023 -0600
+
+    Update Libreris
+
+[33mcommit b32daf2eb402cf5b1a8a60a5480843f3cea5dbcf[m
+Author: Orlandroid <lopez.orlando.gold9@gmail.com>
+Date:   Sat Mar 4 23:26:28 2023 -0600
+
+    Update Domain module
+
+[33mcommit 57a15ffdf642128031154f536a256a6181d309a4[m
+Merge: 3087d96 502c3bd
+Author: Orlandroid <lopez.orlando.gold9@gmail.com>
+Date:   Sat Mar 4 19:59:47 2023 -0600
+
+    Merge branch 'main' of https://github.com/Orlandroid/StarWarsApp
+
+[33mcommit 3087d960694485a6cd8701feb11185988684232e[m
+Author: Orlandroid <lopez.orlando.gold9@gmail.com>
+Date:   Sat Mar 4 19:58:56 2023 -0600
+
+    no message
+
+[33mcommit 502c3bd76d71cbec4e37eede563e230b980c3753[m
+Author: Guadalupe Orlando <39423969+Orlandroid@users.noreply.github.com>
+Date:   Sat Mar 4 19:17:36 2023 -0600
+
+    Update README.md
+
+[33mcommit a4e9ce909b84370b41f34c1068ea885423a3f71a[m
+Author: Orlandroid <lopez.orlando.gold9@gmail.com>
+Date:   Sat Feb 25 20:36:33 2023 -0600
+
+    [FTR] Detail character
+
+[33mcommit af9dd7d7c25055b90ef1a752d6f6a6eb68d7a8da[m
+Author: Orlandroid <lopez.orlando.gold9@gmail.com>
+Date:   Fri Feb 24 20:48:33 2023 -0600
+
+    [WIP] Detalle
+
+[33mcommit 164a8f418c7630b64946a19f0ba490ac62355f6a[m
+Author: Orlandroid <lopez.orlando.gold9@gmail.com>
+Date:   Fri Feb 24 17:17:01 2023 -0600
+
+    [FTR] add menuView
+
+[33mcommit d6ff8d02a99af7ea2a0356fe5231f2f8e296328e[m
+Author: Orlandroid <lopez.orlando.gold9@gmail.com>
+Date:   Fri Feb 24 15:03:23 2023 -0600
+
+    Se agregan imagenes de personajes faltantes
+
+[33mcommit 86a0c401c2d4b7fb531596dd1cb13da2119d7bd8[m
+Author: Orlandroid <lopez.orlando.gold9@gmail.com>
+Date:   Wed Feb 22 20:40:34 2023 -0600
+
+    no message
+
+[33mcommit b04c7cdbc8d78e8afabe11f66bce2c7eeba3fda0[m
+Author: Orlandroid <lopez.orlando.gold9@gmail.com>
+Date:   Wed Feb 22 19:47:29 2023 -0600
+
+    Add json with images url and create method for get image by name
+
+[33mcommit 2282bb4f9ff6eecb081a89ecfacf6029576bcd01[m
+Author: Orlandroid <lopez.orlando.gold9@gmail.com>
+Date:   Wed Feb 22 17:39:09 2023 -0600
+
+    no message
+
+[33mcommit 6cc68884f3e73c0401d4b1f836fd6633c4013b97[m
+Author: Orlandroid <lopez.orlando.gold9@gmail.com>
+Date:   Wed Feb 22 17:27:05 2023 -0600
+
+    Integrate new Service with images of people
+
+[33mcommit 3b76ac412c5cc9e36b13c07823c6ccd3766d7239[m
+Author: Orlandroid <lopez.orlando.gold9@gmail.com>
+Date:   Wed Feb 22 16:26:14 2023 -0600
+
+    Add pagination to people service
+
+[33mcommit 8f6bfb259a29d94400b64657e13092f92c328e99[m
+Author: Orlandroid <lopez.orlando.gold9@gmail.com>
+Date:   Wed Feb 22 13:58:28 2023 -0600
+
+    Integrate people service
+
+[33mcommit c396f66646a545ce99b79c51c30c20d96f0ff3e5[m
+Author: Guadalupe Orlando <39423969+Orlandroid@users.noreply.github.com>
+Date:   Tue Feb 21 21:28:38 2023 -0600
+
+    Initial commit

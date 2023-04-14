@@ -40,7 +40,7 @@ fun getVehiclesImages(): String {
     },
     {
         "name": "Sail barge",
-        "image":"https:\\starwarsblog.starwars.com\wp-content\uploads\2019\02\haslab-sail-barge-final-05.jpg"
+        "image":"https:\\starwarsblog.starwars.com\wp-content\uploads\2019\02\haslab-sail-barge-final-05.jphttps://static.wikia.nocookie.net/starwars/images/8/8c/Sail_Barge.png/revision/latest?cb=20130331043828"
     },
     {
         "name": "Bantha-II cargo skiff",
@@ -124,7 +124,7 @@ fun getVehiclesImages(): String {
     },
     {
         "name": "Tsmeu-6 personal wheel bike",
-        "image": "https://static.wikia.nocookie.net/starwars/images/2/2c/GrievWheelBike_wsmi.jpg"
+        "image": "https://static.wikia.nocookie.net/starwars/images/d/d7/GrievousWheelBike-WSMI.png/revision/latest/scale-to-width-down/500?cb=20221008170103"
     },
     {
         "name": "Emergency Firespeeder",

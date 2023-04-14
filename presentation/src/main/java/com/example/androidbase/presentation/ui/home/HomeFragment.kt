@@ -45,7 +45,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
             getString(R.string.startships) -> {
                 findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToStarshipsFragment())
             }
-            getString(R.string.vehicles) -> {}
+            getString(R.string.vehicles) -> {
+                findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToVehiclesFragment())
+            }
 
         }
     }

@@ -4,13 +4,11 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import com.example.androidbase.R
 import com.example.androidbase.databinding.FragmentCharacterDetailBinding
-import com.example.androidbase.entities.remote.PeopleResponseItem
 import com.example.androidbase.entities.remote.ResultPeople
 import com.example.androidbase.presentation.base.BaseFragment
 import com.example.androidbase.presentation.extensions.configure
 import com.example.androidbase.presentation.extensions.loadUrl
 import com.example.androidbase.presentation.extensions.observeApiResult
-import com.example.androidbase.presentation.ui.people.PeopleViewModel
 import com.example.androidbase.presentation.util.getImageFromJson
 import com.example.androidbase.presentation.util.utilimages.data.getPeopleImages
 import com.google.gson.Gson
