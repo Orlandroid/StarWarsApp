@@ -7,9 +7,9 @@ import com.example.androidbase.R
 import com.example.androidbase.databinding.FragmentPeopleBinding
 import com.example.androidbase.entities.remote.ResultPeople
 import com.example.androidbase.presentation.base.BaseFragment
-import com.example.androidbase.presentation.extensions.configure
 import com.example.androidbase.presentation.extensions.myOnScrolled
 import com.example.androidbase.presentation.extensions.observeApiResult
+import com.example.androidbase.presentation.ui.MainActivity
 import com.example.androidbase.presentation.util.getCurrentPage
 import com.google.gson.Gson
 import dagger.hilt.android.AndroidEntryPoint
@@ -25,8 +25,12 @@ class PeopleFragment : BaseFragment<FragmentPeopleBinding>(R.layout.fragment_peo
     private var canCallToTheNextPage = true
     private var peopleList: ArrayList<ResultPeople> = arrayListOf()
 
+    override fun configureToolbar() = MainActivity.ToolbarConfiguration(
+        showToolbar = true,
+        toolbarTitle = getString(R.string.personajes)
+    )
+
     override fun setUpUi() = with(binding) {
-        configure(binding.toolbarLayout, title = getString(R.string.personajes))
         viewModel.getPeople(currentPage.toString())
         recycler.adapter = userAdapter
         recycler.myOnScrolled {

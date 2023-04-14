@@ -6,9 +6,9 @@ import com.example.androidbase.R
 import com.example.androidbase.databinding.FragmentCharacterDetailBinding
 import com.example.androidbase.entities.remote.ResultPeople
 import com.example.androidbase.presentation.base.BaseFragment
-import com.example.androidbase.presentation.extensions.configure
 import com.example.androidbase.presentation.extensions.loadUrl
 import com.example.androidbase.presentation.extensions.observeApiResult
+import com.example.androidbase.presentation.ui.MainActivity
 import com.example.androidbase.presentation.util.getImageFromJson
 import com.example.androidbase.presentation.util.utilimages.data.getPeopleImages
 import com.google.gson.Gson
@@ -22,8 +22,13 @@ class CharacterDetailFragment :
     private var peopleItemWithImage: ResultPeople? = null
     private val viewModel: CharacterDetailViewModel by viewModels()
 
+
+    override fun configureToolbar() = MainActivity.ToolbarConfiguration(
+        showToolbar = true,
+        toolbarTitle = getString(R.string.detalle)
+    )
+
     override fun setUpUi() {
-        configure(binding.toolbarLayout, title = getString(R.string.detalle))
         val gson = Gson()
         peopleItemWithImage = gson.fromJson(args.character, ResultPeople::class.java)
         peopleItemWithImage?.let {

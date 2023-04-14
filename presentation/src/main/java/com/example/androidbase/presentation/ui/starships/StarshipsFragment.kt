@@ -5,9 +5,9 @@ import com.example.androidbase.R
 import com.example.androidbase.databinding.FragmentStarshipsBinding
 import com.example.androidbase.entities.remote.ResultStarship
 import com.example.androidbase.presentation.base.BaseFragment
-import com.example.androidbase.presentation.extensions.configure
 import com.example.androidbase.presentation.extensions.myOnScrolled
 import com.example.androidbase.presentation.extensions.observeApiResult
+import com.example.androidbase.presentation.ui.MainActivity
 import com.example.androidbase.presentation.util.getCurrentPage
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -24,8 +24,12 @@ class StarshipsFragment : BaseFragment<FragmentStarshipsBinding>(R.layout.fragme
 
     }
 
+    override fun configureToolbar() = MainActivity.ToolbarConfiguration(
+        showToolbar = true,
+        toolbarTitle = getString(R.string.startships)
+    )
+
     override fun setUpUi() = with(binding) {
-        configure(binding.toolbarLayout, title = getString(R.string.startships))
         viewModel.getStarships(currentPage.toString())
         binding.recycler.adapter = starshipsAdapter
         recycler.myOnScrolled {

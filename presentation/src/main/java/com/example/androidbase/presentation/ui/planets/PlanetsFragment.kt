@@ -1,14 +1,13 @@
 package com.example.androidbase.presentation.ui.planets
 
-import android.util.Log
 import androidx.fragment.app.viewModels
 import com.example.androidbase.R
 import com.example.androidbase.databinding.FragmentPlanetsBinding
 import com.example.androidbase.entities.remote.ResultPlanet
 import com.example.androidbase.presentation.base.BaseFragment
-import com.example.androidbase.presentation.extensions.configure
 import com.example.androidbase.presentation.extensions.myOnScrolled
 import com.example.androidbase.presentation.extensions.observeApiResult
+import com.example.androidbase.presentation.ui.MainActivity
 import com.example.androidbase.presentation.util.getCurrentPage
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -26,9 +25,14 @@ class PlanetsFragment : BaseFragment<FragmentPlanetsBinding>(R.layout.fragment_p
 
     }
 
+    override fun configureToolbar() = MainActivity.ToolbarConfiguration(
+        showToolbar = true,
+        toolbarTitle = getString(R.string.planets)
+    )
+
+
     override fun setUpUi() = with(binding) {
         viewModel.getPlanets(currentPage.toString())
-        configure(binding.toolbarLayout, title = getString(R.string.planets))
         binding.recycler.adapter = planetsAdapter
         recycler.myOnScrolled {
             if (!canCallToTheNextPage) {

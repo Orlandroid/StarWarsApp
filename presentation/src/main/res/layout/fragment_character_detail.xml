@@ -7,6 +7,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        android:background="@color/background"
         app:cardCornerRadius="16sp"
         app:cardUseCompatPadding="true">
 
@@ -14,13 +15,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             tools:context=".presentation.ui.character_detail.CharacterDetailFragment">
-
-            <include
-                android:id="@+id/toolbar_layout"
-                layout="@layout/toolbar_view"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
 
 
             <com.mikhaellopez.circularimageview.CircularImageView
@@ -36,7 +30,7 @@
                 app:civ_shadow_radius="10dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/toolbar_layout" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/tv_character_name"

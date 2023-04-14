@@ -5,9 +5,9 @@ import com.example.androidbase.R
 import com.example.androidbase.databinding.FragmentFlimsBinding
 import com.example.androidbase.entities.remote.ResultX
 import com.example.androidbase.presentation.base.BaseFragment
-import com.example.androidbase.presentation.extensions.configure
 import com.example.androidbase.presentation.extensions.myOnScrolled
 import com.example.androidbase.presentation.extensions.observeApiResult
+import com.example.androidbase.presentation.ui.MainActivity
 import com.example.androidbase.presentation.util.getCurrentPage
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -24,8 +24,12 @@ class FilmsFragment : BaseFragment<FragmentFlimsBinding>(R.layout.fragment_flims
 
     }
 
+    override fun configureToolbar() = MainActivity.ToolbarConfiguration(
+        showToolbar = true,
+        toolbarTitle = getString(R.string.flims)
+    )
+
     override fun setUpUi() = with(binding) {
-        configure(binding.toolbarLayout, title = getString(R.string.flims))
         viewModel.getFilms(currentPage.toString())
         binding.recycler.adapter = filmsAdapter
         recycler.myOnScrolled {
@@ -48,5 +52,5 @@ class FilmsFragment : BaseFragment<FragmentFlimsBinding>(R.layout.fragment_flims
             currentPage = getCurrentPage(it.next)
         }
     }
-    
+
 }
