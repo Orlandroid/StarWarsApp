@@ -1,6 +1,6 @@
 # AndroidKotlinBaseMvvmClean
 
-# Skeduly
+# StarWarsApp
 
 ## Features
 - Single-Activity Arquitecture
