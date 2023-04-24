@@ -1,12 +1,14 @@
 package com.example.androidbase.presentation.ui.vehicles
 
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.example.androidbase.R
 import com.example.androidbase.databinding.FragmentVehiclesBinding
 import com.example.androidbase.entities.remote.ResultVehicle
 import com.example.androidbase.presentation.base.BaseFragment
 import com.example.androidbase.presentation.extensions.myOnScrolled
 import com.example.androidbase.presentation.extensions.observeApiResult
+import com.example.androidbase.presentation.extensions.toJson
 import com.example.androidbase.presentation.ui.MainActivity
 import com.example.androidbase.presentation.util.getCurrentPage
 import dagger.hilt.android.AndroidEntryPoint
@@ -23,7 +25,11 @@ class VehiclesFragment : BaseFragment<FragmentVehiclesBinding>(R.layout.fragment
     private var isFirstTimeOnTheView: Boolean = true
 
     private fun clickOnVehicle(vehicle: ResultVehicle) {
-
+        findNavController().navigate(
+            VehiclesFragmentDirections.actionVehiclesFragmentToVehicleDetailFragment(
+                vehicle.toJson()
+            )
+        )
     }
 
     override fun configureToolbar() = MainActivity.ToolbarConfiguration(

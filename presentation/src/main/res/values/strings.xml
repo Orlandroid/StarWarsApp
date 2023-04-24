@@ -72,4 +72,9 @@
     <string name="grey_green">grey, green</string>
     <string name="skin_colors">Skin Colors:</string>
     <string name="average_lifespan">Average Lifespan:</string>
+    <string name="death_star">Death Star</string>
+    <string name="ds_1_orbital_battle_station">DS-1 Orbital Battle Station</string>
+    <string name="imperial_department_of_military_research_sienar_fleet_systems">Imperial Department of Military Research, Sienar Fleet Systems</string>
+    <string name="max_atmosphering_speed">Max Atmosphering Speed:</string>
+    <string name="_950">950</string>
 </resources>

@@ -78,12 +78,20 @@
         android:id="@+id/starshipsFragment"
         android:name="com.example.androidbase.presentation.ui.starships.StarshipsFragment"
         android:label="StarshipsFragment"
-        tools:layout="@layout/fragment_starships" />
+        tools:layout="@layout/fragment_starships">
+        <action
+            android:id="@+id/action_starshipsFragment_to_starShipDetailFragment"
+            app:destination="@id/starShipDetailFragment" />
+    </fragment>
     <fragment
         android:id="@+id/vehiclesFragment"
         android:name="com.example.androidbase.presentation.ui.vehicles.VehiclesFragment"
         android:label="VehiclesFragment"
-        tools:layout="@layout/fragment_vehicles" />
+        tools:layout="@layout/fragment_vehicles">
+        <action
+            android:id="@+id/action_vehiclesFragment_to_vehicleDetailFragment"
+            app:destination="@id/vehicleDetailFragment" />
+    </fragment>
     <fragment
         android:id="@+id/filmDetailFragment"
         android:name="com.example.androidbase.presentation.ui.flims.FilmDetailFragment"
@@ -106,9 +114,27 @@
         android:id="@+id/speciesDetailFragment"
         android:name="com.example.androidbase.presentation.ui.species.SpeciesDetailFragment"
         android:label="SpeciesDetailFragment"
-        tools:layout="@layout/fragment_species_detail" >
+        tools:layout="@layout/fragment_species_detail">
         <argument
             android:name="specie"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/starShipDetailFragment"
+        android:name="com.example.androidbase.presentation.ui.starships.StarShipDetailFragment"
+        android:label="StarShipDetailFragment"
+        tools:layout="@layout/fragment_star_ship_detail" >
+        <argument
+            android:name="startShip"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/vehicleDetailFragment"
+        android:name="com.example.androidbase.presentation.ui.vehicles.VehicleDetailFragment"
+        android:label="VehicleDetailFragment"
+        tools:layout="@layout/fragment_vehicle_detail" >
+        <argument
+            android:name="vehicle"
             app:argType="string" />
     </fragment>
 </navigation>

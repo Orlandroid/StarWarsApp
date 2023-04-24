@@ -5,13 +5,13 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.androidbase.databinding.ItemStarshipsBinding
 import com.example.androidbase.entities.remote.ResultStarship
+import com.example.androidbase.presentation.extensions.click
 import com.example.androidbase.presentation.extensions.loadUrl
 import com.example.androidbase.presentation.util.getImageFromJson
 import com.example.androidbase.presentation.util.utilimages.data.getStartShipsImages
-import com.example.androidbase.presentation.util.utilimages.data.getVehiclesImages
 
 
-class StarshipsAdapter(private val clickOnPeople: (ResultStarship) -> Unit) :
+class StarshipsAdapter(private val clickOnStarShip: (ResultStarship) -> Unit) :
     RecyclerView.Adapter<StarshipsAdapter.ViewHolder>() {
 
     private var listOfCategories: List<ResultStarship> = arrayListOf()
@@ -24,8 +24,11 @@ class StarshipsAdapter(private val clickOnPeople: (ResultStarship) -> Unit) :
 
     class ViewHolder(private val binding: ItemStarshipsBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(starShip: ResultStarship, clickOnPeople: (ResultStarship) -> Unit) =
+        fun bind(starShip: ResultStarship, clickOnStarShip: (ResultStarship) -> Unit) =
             with(binding) {
+                binding.root.click {
+                    clickOnStarShip.invoke(starShip)
+                }
                 tvName.text = starShip.name
                 tvManufacturer.text = starShip.manufacturer
                 tvModel.text = starShip.model
@@ -40,7 +43,7 @@ class StarshipsAdapter(private val clickOnPeople: (ResultStarship) -> Unit) :
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(listOfCategories[position], clickOnPeople)
+        holder.bind(listOfCategories[position], clickOnStarShip)
     }
 
     override fun getItemCount(): Int {
