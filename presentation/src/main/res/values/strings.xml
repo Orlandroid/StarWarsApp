@@ -77,4 +77,9 @@
     <string name="imperial_department_of_military_research_sienar_fleet_systems">Imperial Department of Military Research, Sienar Fleet Systems</string>
     <string name="max_atmosphering_speed">Max Atmosphering Speed:</string>
     <string name="_950">950</string>
+    <string name="sand_crawler">Sand Crawler</string>
+    <string name="corellia_mining_corporation">Corellia Mining Corporation</string>
+    <string name="_30">30</string>
+    <string name="consumables">Consumables:</string>
+    <string name="_2_months">2 months</string>
 </resources>

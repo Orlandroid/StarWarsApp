@@ -27,9 +27,12 @@ class VehicleDetailFragment :
         bind(args.vehicle.fromJson())
     }
 
-    private fun bind(planet: ResultVehicle) = with(binding) {
-        tvName.text = planet.name
-        imagePlanet.loadUrl(getImageFromJson(planet.name, getVehiclesImages()))
+    private fun bind(vehicle: ResultVehicle) = with(binding) {
+        tvName.text = vehicle.name
+        tvManufacturer.text = vehicle.manufacturer
+        tvSpeed.text = vehicle.max_atmosphering_speed
+        tvConsumables.text = vehicle.consumables
+        imageVehicle.loadUrl(getImageFromJson(vehicle.name, getVehiclesImages()))
     }
 
 }
