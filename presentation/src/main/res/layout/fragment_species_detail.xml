@@ -10,14 +10,14 @@
         android:background="@color/background">
 
         <ImageView
-            android:id="@+id/image_film"
+            android:id="@+id/image_planet"
             android:layout_width="0dp"
             android:layout_height="300dp"
             android:scaleType="fitXY"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/films" />
+            app:srcCompat="@drawable/species" />
 
         <TextView
             android:id="@+id/tv_title"
@@ -25,19 +25,19 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
             android:layout_marginTop="24dp"
-            android:text="@string/title"
+            android:text="@string/name"
             android:textColor="@color/black"
             android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/image_film" />
+            app:layout_constraintTop_toBottomOf="@+id/image_planet" />
 
         <TextView
             android:id="@+id/tv_title2"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="@string/episode_"
+            android:text="@string/classification"
             android:textColor="@color/black"
             android:textSize="18sp"
             android:textStyle="bold"
@@ -49,7 +49,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="@string/producer"
+            android:text="@string/skin_colors"
             android:textColor="@color/black"
             android:textSize="18sp"
             android:textStyle="bold"
@@ -61,7 +61,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="@string/release_date"
+            android:text="@string/average_lifespan"
             android:textColor="@color/black"
             android:textSize="18sp"
             android:textStyle="bold"
@@ -69,12 +69,12 @@
             app:layout_constraintTop_toBottomOf="@+id/tv_title3" />
 
         <TextView
-            android:id="@+id/tv_titulo"
+            android:id="@+id/tv_name"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
-            android:text="@string/a_new_hope"
+            android:text="@string/neimodian"
             android:textColor="@color/black"
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -82,12 +82,12 @@
             app:layout_constraintTop_toTopOf="@+id/tv_title" />
 
         <TextView
-            android:id="@+id/tv_episode_id"
+            android:id="@+id/tv_clasification"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
-            android:text="@string/_4"
+            android:text="@string/unknown"
             android:textColor="@color/black"
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -95,12 +95,12 @@
             app:layout_constraintTop_toTopOf="@+id/tv_title2" />
 
         <TextView
-            android:id="@+id/tv_producer"
+            android:id="@+id/tv_skin_color"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
-            android:text="@string/gary_kurtz_rick_mccallum"
+            android:text="@string/grey_green"
             android:textColor="@color/black"
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -108,12 +108,12 @@
             app:layout_constraintTop_toTopOf="@+id/tv_title3" />
 
         <TextView
-            android:id="@+id/tv_release_date"
+            android:id="@+id/tv_avarage_lifespan"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
-            android:text="1977-05-25"
+            android:text="@string/unknown"
             android:textColor="@color/black"
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"

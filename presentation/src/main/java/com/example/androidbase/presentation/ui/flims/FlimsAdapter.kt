@@ -5,12 +5,13 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.androidbase.databinding.ItemFilmBinding
 import com.example.androidbase.entities.remote.ResultX
+import com.example.androidbase.presentation.extensions.click
 import com.example.androidbase.presentation.extensions.loadUrl
 import com.example.androidbase.presentation.util.utilimages.data.getFilmsImages
 import com.example.androidbase.presentation.util.getImageFromJson
 
 
-class FlimsAdapter(private val clickOnPeople: (ResultX) -> Unit) :
+class FlimsAdapter(private val clickOnFilm: (ResultX) -> Unit) :
     RecyclerView.Adapter<FlimsAdapter.ViewHolder>() {
 
     private var listOfCategories: List<ResultX> = arrayListOf()
@@ -23,11 +24,14 @@ class FlimsAdapter(private val clickOnPeople: (ResultX) -> Unit) :
 
     class ViewHolder(private val binding: ItemFilmBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(film: ResultX, clickOnPeople: (ResultX) -> Unit) = with(binding) {
+        fun bind(film: ResultX, clickOnFilm: (ResultX) -> Unit) = with(binding) {
             tvTitle.text = film.title
             tvEpisode.text = film.episode_id.toString()
             tvPremiere.text = film.release_date
             image.loadUrl(getImageFromJson(film.title, getFilmsImages()))
+            binding.root.click {
+                clickOnFilm(film)
+            }
         }
     }
 
@@ -38,7 +42,7 @@ class FlimsAdapter(private val clickOnPeople: (ResultX) -> Unit) :
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(listOfCategories[position], clickOnPeople)
+        holder.bind(listOfCategories[position], clickOnFilm)
     }
 
     override fun getItemCount(): Int {

@@ -24,6 +24,7 @@ class PeopleFragment : BaseFragment<FragmentPeopleBinding>(R.layout.fragment_peo
     private var currentPage: Int? = 1
     private var canCallToTheNextPage = true
     private var peopleList: ArrayList<ResultPeople> = arrayListOf()
+    private var isFirstTimeOnTheView: Boolean = true
 
     override fun configureToolbar() = MainActivity.ToolbarConfiguration(
         showToolbar = true,
@@ -31,7 +32,10 @@ class PeopleFragment : BaseFragment<FragmentPeopleBinding>(R.layout.fragment_peo
     )
 
     override fun setUpUi() = with(binding) {
-        viewModel.getPeople(currentPage.toString())
+        if (isFirstTimeOnTheView) {
+            isFirstTimeOnTheView = false
+            viewModel.getPeople(currentPage.toString())
+        }
         recycler.adapter = userAdapter
         recycler.myOnScrolled {
             if (!canCallToTheNextPage) {

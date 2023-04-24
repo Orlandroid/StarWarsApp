@@ -1,12 +1,14 @@
 package com.example.androidbase.presentation.ui.species
 
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.example.androidbase.R
 import com.example.androidbase.databinding.FragmentSpeciesBinding
 import com.example.androidbase.entities.remote.ResultSpecie
 import com.example.androidbase.presentation.base.BaseFragment
 import com.example.androidbase.presentation.extensions.myOnScrolled
 import com.example.androidbase.presentation.extensions.observeApiResult
+import com.example.androidbase.presentation.extensions.toJson
 import com.example.androidbase.presentation.ui.MainActivity
 import com.example.androidbase.presentation.util.getCurrentPage
 import dagger.hilt.android.AndroidEntryPoint
@@ -15,13 +17,18 @@ import dagger.hilt.android.AndroidEntryPoint
 class SpeciesFragment : BaseFragment<FragmentSpeciesBinding>(R.layout.fragment_species) {
 
     private val viewModel: SpeciesViewModel by viewModels()
-    private val speciesAdapter = SpeciesAdapter { clickOnPeople(it) }
+    private val speciesAdapter = SpeciesAdapter { clickOnSpecie(it) }
     private var currentPage: Int? = 1
     private var canCallToTheNextPage = true
     private var speciesList: ArrayList<ResultSpecie> = arrayListOf()
+    private var isFirstTimeOnTheView: Boolean = true
 
-    private fun clickOnPeople(clickOnPeople: ResultSpecie) {
-
+    private fun clickOnSpecie(specie: ResultSpecie) {
+        findNavController().navigate(
+            SpeciesFragmentDirections.actionSpeciesFragmentToSpeciesDetailFragment(
+                specie.toJson()
+            )
+        )
     }
 
     override fun configureToolbar() = MainActivity.ToolbarConfiguration(
@@ -30,7 +37,10 @@ class SpeciesFragment : BaseFragment<FragmentSpeciesBinding>(R.layout.fragment_s
     )
 
     override fun setUpUi() = with(binding) {
-        viewModel.getSpecies(currentPage.toString())
+        if (isFirstTimeOnTheView) {
+            isFirstTimeOnTheView = false
+            viewModel.getSpecies(currentPage.toString())
+        }
         recycler.adapter = speciesAdapter
         recycler.myOnScrolled {
             if (!canCallToTheNextPage) {

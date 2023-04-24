@@ -51,17 +51,29 @@
         android:id="@+id/filmsFragment"
         android:name="com.example.androidbase.presentation.ui.flims.FilmsFragment"
         android:label="FilmsFragment"
-        tools:layout="@layout/fragment_flims" />
+        tools:layout="@layout/fragment_flims">
+        <action
+            android:id="@+id/action_filmsFragment_to_filmDetailFragment"
+            app:destination="@id/filmDetailFragment" />
+    </fragment>
     <fragment
         android:id="@+id/planetsFragment"
         android:name="com.example.androidbase.presentation.ui.planets.PlanetsFragment"
         android:label="PlanetsFragment"
-        tools:layout="@layout/fragment_planets" />
+        tools:layout="@layout/fragment_planets">
+        <action
+            android:id="@+id/action_planetsFragment_to_planetDetailFragment"
+            app:destination="@id/planetDetailFragment" />
+    </fragment>
     <fragment
         android:id="@+id/speciesFragment"
         android:name="com.example.androidbase.presentation.ui.species.SpeciesFragment"
         android:label="SpeciesFragment"
-        tools:layout="@layout/fragment_species" />
+        tools:layout="@layout/fragment_species">
+        <action
+            android:id="@+id/action_speciesFragment_to_speciesDetailFragment"
+            app:destination="@id/speciesDetailFragment" />
+    </fragment>
     <fragment
         android:id="@+id/starshipsFragment"
         android:name="com.example.androidbase.presentation.ui.starships.StarshipsFragment"
@@ -72,4 +84,31 @@
         android:name="com.example.androidbase.presentation.ui.vehicles.VehiclesFragment"
         android:label="VehiclesFragment"
         tools:layout="@layout/fragment_vehicles" />
+    <fragment
+        android:id="@+id/filmDetailFragment"
+        android:name="com.example.androidbase.presentation.ui.flims.FilmDetailFragment"
+        android:label="FilmDetailFragment"
+        tools:layout="@layout/fragment_film_detail">
+        <argument
+            android:name="flim"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/planetDetailFragment"
+        android:name="com.example.androidbase.presentation.ui.planets.PlanetDetailFragment"
+        android:label="PlanetDetailFragment"
+        tools:layout="@layout/fragment_planet_detail">
+        <argument
+            android:name="planet"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/speciesDetailFragment"
+        android:name="com.example.androidbase.presentation.ui.species.SpeciesDetailFragment"
+        android:label="SpeciesDetailFragment"
+        tools:layout="@layout/fragment_species_detail" >
+        <argument
+            android:name="specie"
+            app:argType="string" />
+    </fragment>
 </navigation>

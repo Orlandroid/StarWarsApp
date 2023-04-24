@@ -1,12 +1,14 @@
 package com.example.androidbase.presentation.ui.planets
 
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.example.androidbase.R
 import com.example.androidbase.databinding.FragmentPlanetsBinding
 import com.example.androidbase.entities.remote.ResultPlanet
 import com.example.androidbase.presentation.base.BaseFragment
 import com.example.androidbase.presentation.extensions.myOnScrolled
 import com.example.androidbase.presentation.extensions.observeApiResult
+import com.example.androidbase.presentation.extensions.toJson
 import com.example.androidbase.presentation.ui.MainActivity
 import com.example.androidbase.presentation.util.getCurrentPage
 import dagger.hilt.android.AndroidEntryPoint
@@ -16,23 +18,30 @@ import dagger.hilt.android.AndroidEntryPoint
 class PlanetsFragment : BaseFragment<FragmentPlanetsBinding>(R.layout.fragment_planets) {
 
     private val viewModel: PlanetsViewModel by viewModels()
-    private val planetsAdapter = PlanetsAdapter { clickOnPeople(it) }
+    private val planetsAdapter = PlanetsAdapter { clickOnPlanet(it) }
     private var currentPage: Int? = 1
     private var canCallToTheNextPage = true
     private var planetsList: ArrayList<ResultPlanet> = arrayListOf()
+    private var isFirstTimeOnTheView: Boolean = true
 
-    private fun clickOnPeople(clickOnPeople: ResultPlanet) {
-
+    private fun clickOnPlanet(planet: ResultPlanet) {
+        findNavController().navigate(
+            PlanetsFragmentDirections.actionPlanetsFragmentToPlanetDetailFragment(
+                planet.toJson()
+            )
+        )
     }
 
     override fun configureToolbar() = MainActivity.ToolbarConfiguration(
-        showToolbar = true,
-        toolbarTitle = getString(R.string.planets)
+        showToolbar = true, toolbarTitle = getString(R.string.planets)
     )
 
 
     override fun setUpUi() = with(binding) {
-        viewModel.getPlanets(currentPage.toString())
+        if (isFirstTimeOnTheView) {
+            isFirstTimeOnTheView = false
+            viewModel.getPlanets(currentPage.toString())
+        }
         binding.recycler.adapter = planetsAdapter
         recycler.myOnScrolled {
             if (!canCallToTheNextPage) {

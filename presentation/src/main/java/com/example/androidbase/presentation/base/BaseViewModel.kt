@@ -40,6 +40,10 @@ abstract class BaseViewModel constructor(
                     return@launch
                 }
                 apiToCall()
+                //this for online recibe notification of livedata on time
+                withContext(coroutineDispatchers.main) {
+                    result.value = null
+                }
             } catch (e: Exception) {
                 withContext(coroutineDispatchers.main) {
                     e.printStackTrace()

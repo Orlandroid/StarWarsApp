@@ -17,7 +17,6 @@ import dagger.hilt.android.AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
-    private var toolbarConfiguration = ToolbarConfiguration()
     private var navController: NavController? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -54,13 +53,6 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    /*
-    private fun clickOnBackButton(clickOnBack: () -> Unit) {
-        binding.toolbarLayout.imageBack.click {
-            clickOnBack()
-        }
-    }*/
-
     private fun changeTitleToolbar(title: String) {
         binding.toolbarLayout.toolbarTitle.text = title
     }
@@ -89,7 +81,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun setToolbarConfiguration(configuration: ToolbarConfiguration) {
-        toolbarConfiguration = configuration
         setOnBackButton(configuration.clickOnBack)
         changeTitleToolbar(configuration.toolbarTitle)
         showToolbar(configuration.showToolbar)

@@ -19,9 +19,10 @@ class StarshipsFragment : BaseFragment<FragmentStarshipsBinding>(R.layout.fragme
     private var currentPage: Int? = 1
     private var canCallToTheNextPage = true
     private var starshipList: ArrayList<ResultStarship> = arrayListOf()
+    private var isFirstTimeOnTheView: Boolean = true
 
-    private fun clickOnPeople(clickOnPeople: ResultStarship) {
-
+    private fun clickOnPeople(clickOnStarShip: ResultStarship) {
+        
     }
 
     override fun configureToolbar() = MainActivity.ToolbarConfiguration(
@@ -30,7 +31,10 @@ class StarshipsFragment : BaseFragment<FragmentStarshipsBinding>(R.layout.fragme
     )
 
     override fun setUpUi() = with(binding) {
-        viewModel.getStarships(currentPage.toString())
+        if (isFirstTimeOnTheView) {
+            isFirstTimeOnTheView = false
+            viewModel.getStarships(currentPage.toString())
+        }
         binding.recycler.adapter = starshipsAdapter
         recycler.myOnScrolled {
             if (!canCallToTheNextPage) {

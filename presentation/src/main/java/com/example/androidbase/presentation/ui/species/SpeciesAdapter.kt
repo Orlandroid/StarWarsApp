@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.androidbase.databinding.ItemPeopleBinding
 import com.example.androidbase.entities.remote.ResultSpecie
+import com.example.androidbase.presentation.extensions.click
 import com.example.androidbase.presentation.extensions.loadUrl
 import com.example.androidbase.presentation.util.getImageFromJson
 import com.example.androidbase.presentation.util.utilimages.data.getSpeciesImages
@@ -24,6 +25,9 @@ class SpeciesAdapter(private val clickOnSpecie: (ResultSpecie) -> Unit) :
     class ViewHolder(private val binding: ItemPeopleBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(specie: ResultSpecie, clickOnSpecie: (ResultSpecie) -> Unit) = with(binding) {
+            binding.root.click {
+                clickOnSpecie(specie)
+            }
             tvName.text = specie.name
             image.loadUrl(getImageFromJson(specie.name, getSpeciesImages()))
         }

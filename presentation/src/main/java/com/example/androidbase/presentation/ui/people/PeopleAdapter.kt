@@ -8,7 +8,6 @@ import com.example.androidbase.entities.remote.ResultPeople
 import com.example.androidbase.presentation.extensions.click
 import com.example.androidbase.presentation.extensions.loadUrl
 import com.example.androidbase.presentation.util.getImageFromJson
-import com.example.androidbase.presentation.util.utilimages.data.getFilmsImages
 import com.example.androidbase.presentation.util.utilimages.data.getPeopleImages
 
 

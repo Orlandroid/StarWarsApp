@@ -69,14 +69,4 @@ fun ImageView.loadUrl(url: String?) {
 }
 
 
-fun Fragment.configure(toolbar: ToolbarViewBinding, title: String = "") {
-    toolbar.apply {
-        toolbarBack.setOnClickListener {
-            findNavController().popBackStack()
-        }
-        toolbarTitle.text = title
-    }
-}
-
-
 

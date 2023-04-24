@@ -3,8 +3,6 @@ package com.example.androidbase.presentation.ui.vehicles
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.example.androidbase.entities.remote.FlimsResponse
-import com.example.androidbase.entities.remote.ResultResponse
 import com.example.androidbase.entities.remote.VehiclesResponse
 import com.example.androidbase.presentation.base.BaseViewModel
 import com.example.androidbase.presentation.helpers.NetworkHelper

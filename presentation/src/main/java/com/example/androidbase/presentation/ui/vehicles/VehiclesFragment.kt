@@ -20,18 +20,21 @@ class VehiclesFragment : BaseFragment<FragmentVehiclesBinding>(R.layout.fragment
     private var currentPage: Int? = 1
     private var canCallToTheNextPage = true
     private var vehiclesList: ArrayList<ResultVehicle> = arrayListOf()
+    private var isFirstTimeOnTheView: Boolean = true
 
     private fun clickOnVehicle(vehicle: ResultVehicle) {
 
     }
 
     override fun configureToolbar() = MainActivity.ToolbarConfiguration(
-        showToolbar = true,
-        toolbarTitle = getString(R.string.vehicles)
+        showToolbar = true, toolbarTitle = getString(R.string.vehicles)
     )
 
     override fun setUpUi() = with(binding) {
-        viewModel.getVehicles(currentPage.toString())
+        if (isFirstTimeOnTheView) {
+            isFirstTimeOnTheView = false
+            viewModel.getVehicles(currentPage.toString())
+        }
         binding.recycler.adapter = vehiclesAdapter
         recycler.myOnScrolled {
             if (!canCallToTheNextPage) {

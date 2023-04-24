@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.androidbase.databinding.ItemPlanetBinding
 import com.example.androidbase.entities.remote.ResultPlanet
+import com.example.androidbase.presentation.extensions.click
 import com.example.androidbase.presentation.extensions.loadUrl
 import com.example.androidbase.presentation.util.getImageFromJson
 import com.example.androidbase.presentation.util.utilimages.data.getPlanetsImages
@@ -26,6 +27,9 @@ class PlanetsAdapter(private val clickOnPlanet: (ResultPlanet) -> Unit) :
         RecyclerView.ViewHolder(binding.root) {
         @SuppressLint("SetTextI18n")
         fun bind(planet: ResultPlanet, clickOnPlanet: (ResultPlanet) -> Unit) = with(binding) {
+            binding.root.click {
+                clickOnPlanet(planet)
+            }
             tvName.text = planet.name
             tvPopulation.text = planet.population
             tvClimate.text = planet.climate

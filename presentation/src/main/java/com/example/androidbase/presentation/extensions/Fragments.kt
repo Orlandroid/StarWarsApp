@@ -1,15 +1,16 @@
 package com.example.androidbase.presentation.extensions
 
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LiveData
 import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
 import com.example.androidbase.R
-
-import com.example.androidbase.state.Result
+import com.example.androidbase.databinding.ToolbarViewBinding
 import com.example.androidbase.presentation.alerts.MainAlert
 import com.example.androidbase.presentation.alerts.MainAlert.Companion.ERROR_MESSAGE
 import com.example.androidbase.presentation.ui.MainActivity
+import com.example.androidbase.state.Result
 
 
 fun Fragment.showProgress() {
@@ -29,8 +30,8 @@ fun Fragment.hideKeyboard() {
 }
 
 
-fun Fragment.navigate(accion: NavDirections) {
-    findNavController().navigate(accion)
+fun Fragment.navigate(action: NavDirections) {
+    findNavController().navigate(action)
 }
 
 
@@ -57,8 +58,18 @@ fun Fragment.showErrorNetwork(shouldCloseTheViewOnApiError: Boolean = false) {
 }
 
 
+fun Fragment.configure(toolbar: ToolbarViewBinding, title: String = "") {
+    toolbar.apply {
+        toolbarBack.setOnClickListener {
+            findNavController().popBackStack()
+        }
+        toolbarTitle.text = title
+    }
+}
+
+
 fun <T> Fragment.observeApiResult(
-    liveData: LiveData<Result<T>>,
+    liveData: LiveData<Result<T>>?,
     onLoading: () -> Unit = { },
     onFinishLoading: () -> Unit = { },
     haveTheViewProgress: Boolean = true,
@@ -67,7 +78,7 @@ fun <T> Fragment.observeApiResult(
     noData: () -> Unit = {},
     onSuccess: (data: T) -> Unit,
 ) {
-    liveData.observe(viewLifecycleOwner) { apiState ->
+    liveData?.observe(viewLifecycleOwner) { apiState ->
         fun handleStatusOnLoading(isLoading: Boolean) {
             if (isLoading) {
                 onLoading()
