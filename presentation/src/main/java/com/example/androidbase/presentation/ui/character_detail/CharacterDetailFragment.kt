@@ -37,11 +37,11 @@ class CharacterDetailFragment :
     }
 
     private fun bind(people: ResultPeople) = with(binding) {
-        characterImage.loadUrl(getImageFromJson(people.name, getPeopleImages()))
-        tvHeight.text = people.height
+        imagePeople.loadUrl(getImageFromJson(people.name, getPeopleImages()))
+        tvHeigth.text = people.height
         tvHairColor.text = people.hair_color
-        tvHomeworld.text = getHomeWorkId(people.homeworld)
-        tvCharacterName.text = people.name
+        tvHomeworkid.text = getHomeWorkId(people.homeworld)
+        tvName.text = people.name
         tvGender.text = people.gender
         tvMass.text = people.mass
         tvSkinColor.text = people.skin_color
