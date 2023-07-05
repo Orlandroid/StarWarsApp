@@ -2,7 +2,9 @@ package com.example.androidbase.presentation.extensions
 
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.Observer
 import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
 import com.example.androidbase.R
@@ -66,6 +68,18 @@ fun Fragment.configure(toolbar: ToolbarViewBinding, title: String = "") {
         toolbarTitle.text = title
     }
 }
+
+fun <T> LiveData<T>.observeAsEvent(owner: LifecycleOwner, observer: Observer<in T>) {
+    var previousKey: Any? = value ?: NULL
+    observe(owner) { value ->
+        if (previousKey == NULL || previousKey != value) {
+            previousKey = value
+            observer.onChanged(value)
+        }
+    }
+}
+
+private const val NULL = "NULL"
 
 
 fun <T> Fragment.observeApiResult(

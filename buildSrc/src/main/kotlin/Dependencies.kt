@@ -5,7 +5,7 @@ object Versions {
     const val ANDROIDX_ACTIVITY = "1.2.1"
     const val ANDROIDX_APPCOMPAT_VERSION = "1.3.0-alpha02"
     const val ANDROIDX_CONSTRAINT_LAYOUT_VERSION = "2.0.4"
-    const val ANDROIDX_CORE_KTX_VERSION = "1.3.2"
+    const val ANDROIDX_CORE_KTX_VERSION = "1.9.0"
     const val ANDROIDX_FRAGMENT = "1.3.1"
     const val ANDROIDX_LIFECYCLE_VERSION = "2.2.0"
     const val CARDVIEW_VERSION = "1.0.0"

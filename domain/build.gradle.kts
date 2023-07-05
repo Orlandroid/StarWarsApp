@@ -1,6 +1,5 @@
-import com.example.androidbase.presentation.Dependencies
-import com.example.androidbase.presentation.BuildModules
 import com.example.androidbase.presentation.ConfigData
+import com.example.androidbase.presentation.Dependencies
 
 
 plugins {

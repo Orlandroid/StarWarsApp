@@ -40,7 +40,7 @@ android {
 
 dependencies {
     implementation(project(BuildModules.DOMAIN))
-    implementation("androidx.core:core-ktx:1.9.0")
+    implementation(Dependencies.ANDROIDX_CORE_KTX)
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation(Dependencies.ANDROID_MATERIAL)
     implementation("androidx.core:core-ktx:1.9.0")
