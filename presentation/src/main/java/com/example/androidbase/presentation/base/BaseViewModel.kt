@@ -40,7 +40,6 @@ abstract class BaseViewModel constructor(
                     return@launch
                 }
                 apiToCall()
-                //this for online recibe notification of livedata on time
                 withContext(coroutineDispatchers.main) {
                     result.value = null
                 }
@@ -59,8 +58,10 @@ abstract class BaseViewModel constructor(
                             )
                             Log.w("Call error :", "code:$errorCode")
                         }
+
                         is SocketTimeoutException -> result.value =
                             Result.Error(ErrorType.TIMEOUT.name)
+
                         is IOException -> result.value = Result.Error(ErrorType.NETWORK.name)
                         else -> result.value = Result.Error(ErrorType.UNKNOWN.name)
                     }

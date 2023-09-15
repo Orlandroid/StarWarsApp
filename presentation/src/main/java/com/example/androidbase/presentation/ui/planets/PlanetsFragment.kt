@@ -56,7 +56,7 @@ class PlanetsFragment : BaseFragment<FragmentPlanetsBinding>(R.layout.fragment_p
 
     override fun observerViewModel() {
         super.observerViewModel()
-        observeApiResult(viewModel.planetsResponse) {
+        observeApiResult(viewModel.planetsResponse, shouldCloseTheViewOnApiError = true) {
             planetsList.addAll(it.results)
             planetsAdapter.setData(planetsList)
             canCallToTheNextPage = true

@@ -55,7 +55,7 @@ class SpeciesFragment : BaseFragment<FragmentSpeciesBinding>(R.layout.fragment_s
 
     override fun observerViewModel() {
         super.observerViewModel()
-        observeApiResult(viewModel.speciesResponse) {
+        observeApiResult(viewModel.speciesResponse, shouldCloseTheViewOnApiError = true) {
             speciesList.addAll(it.results)
             speciesAdapter.setData(speciesList)
             canCallToTheNextPage = true

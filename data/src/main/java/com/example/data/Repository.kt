@@ -1,9 +1,13 @@
 package com.example.data
 
 
+import android.provider.ContactsContract.Directory.PACKAGE_NAME
+import android.util.Log
 import com.example.androidbase.LocalDataSource
 import com.example.androidbase.RemoteDataSource
 import com.example.androidbase.entities.remote.*
+import com.example.androidbase.mappers.toPeopleCache
+import com.example.androidbase.mappers.toPeopleResponseItemList
 import javax.inject.Inject
 
 
@@ -26,8 +30,7 @@ class Repository @Inject constructor(
 
 
     suspend fun getAllPeople(): List<PeopleResponseItem> {
-        return remoteDataSource.getAllPeople()
-        /*
+        //return remoteDataSource.getAllPeople()
         val peopleFromCache = localDataSource.getPeople()
         if (peopleFromCache.isNotEmpty()) {
             Log.w(PACKAGE_NAME, peopleFromCache.size.toString())
@@ -40,7 +43,7 @@ class Repository @Inject constructor(
                 Log.w(PACKAGE_NAME, insert.toString())
             }
         }
-        return peopleFromApi*/
+        return peopleFromApi
     }
 
     suspend fun getPeopleDetail(peopleId: Int) = remoteDataSource.getPeopleDetail(peopleId)

@@ -55,7 +55,7 @@ class FilmsFragment : BaseFragment<FragmentFlimsBinding>(R.layout.fragment_flims
 
     override fun observerViewModel() {
         super.observerViewModel()
-        observeApiResult(viewModel.filmsResponse) {
+        observeApiResult(viewModel.filmsResponse, shouldCloseTheViewOnApiError = true) {
             filmsList.addAll(it.results)
             filmsAdapter.setData(filmsList)
             canCallToTheNextPage = true

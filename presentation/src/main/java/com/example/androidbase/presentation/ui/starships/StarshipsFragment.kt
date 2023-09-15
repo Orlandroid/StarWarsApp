@@ -55,7 +55,7 @@ class StarshipsFragment : BaseFragment<FragmentStarshipsBinding>(R.layout.fragme
 
     override fun observerViewModel() {
         super.observerViewModel()
-        observeApiResult(viewModel.starshipsResponse) {
+        observeApiResult(viewModel.starshipsResponse, shouldCloseTheViewOnApiError = true) {
             starshipList.addAll(it.results)
             starshipsAdapter.setData(starshipList)
             canCallToTheNextPage = true

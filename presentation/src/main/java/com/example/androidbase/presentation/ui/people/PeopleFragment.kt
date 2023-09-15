@@ -50,7 +50,7 @@ class PeopleFragment : BaseFragment<FragmentPeopleBinding>(R.layout.fragment_peo
 
     override fun observerViewModel() {
         super.observerViewModel()
-        observeApiResult(viewModel.peopleResponse) {
+        observeApiResult(viewModel.peopleResponse, shouldCloseTheViewOnApiError = true) {
             peopleList.addAll(it.results)
             userAdapter.setData(peopleList)
             canCallToTheNextPage = true

@@ -55,7 +55,7 @@ class VehiclesFragment : BaseFragment<FragmentVehiclesBinding>(R.layout.fragment
 
     override fun observerViewModel() {
         super.observerViewModel()
-        observeApiResult(viewModel.vehiclesResponse) {
+        observeApiResult(viewModel.vehiclesResponse, shouldCloseTheViewOnApiError = true) {
             vehiclesList.addAll(it.results)
             vehiclesAdapter.setData(vehiclesList)
             canCallToTheNextPage = true
