@@ -20,9 +20,9 @@
      <td><strong>Films</strong></td>
   </tr>
   <tr>
-    <td><img src="https://raw.githubusercontent.com/Orlandroid/Resources_Repos/main/starwarsapp/menu.jpg" width="100%"></td>
-    <td><img src="https://raw.githubusercontent.com/Orlandroid/Resources_Repos/main/starwarsapp/people_list.jpg" width="100%"></td>
-    <td><img src="https://raw.githubusercontent.com/Orlandroid/Resources_Repos/main/starwarsapp/detalle.jpg" width="100%"></td>
+    <td><img src="https://raw.githubusercontent.com/Orlandroid/Resources_Repos/main/startwarsp/menu.jpg" width="100%"></td>
+    <td><img src="https://raw.githubusercontent.com/Orlandroid/Resources_Repos/main/startwarsp/people_list.jpg" width="100%"></td>
+    <td><img src="https://raw.githubusercontent.com/Orlandroid/Resources_Repos/main/startwarsp/detalle.jpg" width="100%"></td>
     <td><img src="https://raw.githubusercontent.com/Orlandroid/Resources_Repos/main/startwarsp/films.png" width="100%"></td>
   </tr>
   
