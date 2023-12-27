@@ -49,11 +49,10 @@ android {
 dependencies {
     implementation(project(BuildModules.DATA))
     implementation(project(BuildModules.DOMAIN))
-    implementation("androidx.core:core-ktx:1.9.0")
+    implementation("androidx.core:core-ktx:1.12.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation(Dependencies.ANDROID_MATERIAL)
     implementation(Dependencies.ANDROIDX_CONSTRAINT_LAYOUT)
-    implementation("androidx.core:core-ktx:1.9.0")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation(Dependencies.TEST_JUNIT)
     androidTestImplementation(Dependencies.TEST_EXPRESO)
@@ -63,7 +62,7 @@ dependencies {
     //Dagger - Hilt
     implementation(Dependencies.DAGGER_HILT)
     kapt(Dependencies.DAGGER_HILT_COMPILER)
-    kapt("androidx.hilt:hilt-compiler:1.0.0")
+    kapt("androidx.hilt:hilt-compiler:1.1.0")
     //Retrofit Dependecies
     implementation(Dependencies.RETROFIT)
     implementation(Dependencies.RETROFIT_CONVERTER_GSON)
