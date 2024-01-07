@@ -8,7 +8,8 @@ import com.example.androidbase.presentation.helpers.NetworkHelper
 import com.example.data.Repository
 import com.example.data.di.CoroutineDispatchers
 import com.example.androidbase.entities.remote.PeopleResponseItem
-import com.example.androidbase.entities.remote.ResultResponse
+import com.example.androidbase.entities.remote.ResultGeneric
+import com.example.androidbase.entities.remote.ResultPeople
 import com.example.androidbase.state.Result
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -32,8 +33,8 @@ class PeopleViewModel @Inject constructor(
     val peopleDetailResponse: LiveData<Result<PeopleResponseItem?>>
         get() = _peopleDetailResponse
 
-    private val _peopleResponse = MutableLiveData<Result<ResultResponse>>()
-    val peopleResponse: LiveData<Result<ResultResponse>>
+    private val _peopleResponse = MutableLiveData<Result<ResultGeneric<ResultPeople>>>()
+    val peopleResponse: LiveData<Result<ResultGeneric<ResultPeople>>>
         get() = _peopleResponse
 
     fun getAllPeople() {

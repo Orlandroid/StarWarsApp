@@ -3,7 +3,8 @@ package com.example.androidbase.presentation.ui.vehicles
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.example.androidbase.entities.remote.VehiclesResponse
+import com.example.androidbase.entities.remote.ResultGeneric
+import com.example.androidbase.entities.remote.ResultVehicle
 import com.example.androidbase.presentation.base.BaseViewModel
 import com.example.androidbase.presentation.helpers.NetworkHelper
 import com.example.androidbase.state.Result
@@ -23,8 +24,8 @@ class VehiclesViewModel @Inject constructor(
 ) : BaseViewModel(coroutineDispatchers, networkHelper) {
 
 
-    private val _vehiclesResponse = MutableLiveData<Result<VehiclesResponse>>()
-    val vehiclesResponse: LiveData<Result<VehiclesResponse>>
+    private val _vehiclesResponse = MutableLiveData<Result<ResultGeneric<ResultVehicle>>>()
+    val vehiclesResponse: LiveData<Result<ResultGeneric<ResultVehicle>>>
         get() = _vehiclesResponse
 
 

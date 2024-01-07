@@ -4,7 +4,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.androidbase.R
 import com.example.androidbase.databinding.FragmentFlimsBinding
-import com.example.androidbase.entities.remote.ResultX
+import com.example.androidbase.entities.remote.Film
 import com.example.androidbase.presentation.base.BaseFragment
 import com.example.androidbase.presentation.extensions.myOnScrolled
 import com.example.androidbase.presentation.extensions.observeApiResult
@@ -20,10 +20,10 @@ class FilmsFragment : BaseFragment<FragmentFlimsBinding>(R.layout.fragment_flims
     private val filmsAdapter = FlimsAdapter { clickOnFilm(it) }
     private var currentPage: Int? = 1
     private var canCallToTheNextPage = true
-    private var filmsList: ArrayList<ResultX> = arrayListOf()
+    private var filmsList: ArrayList<Film> = arrayListOf()
     private var firstTimeOnTheView: Boolean = true
 
-    private fun clickOnFilm(film: ResultX) {
+    private fun clickOnFilm(film: Film) {
         findNavController().navigate(
             FilmsFragmentDirections.actionFilmsFragmentToFilmDetailFragment(
                 film.toJson()

@@ -3,7 +3,8 @@ package com.example.androidbase.presentation.ui.starships
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.example.androidbase.entities.remote.StarshipsResponse
+import com.example.androidbase.entities.remote.ResultGeneric
+import com.example.androidbase.entities.remote.ResultStarship
 import com.example.androidbase.presentation.base.BaseViewModel
 import com.example.androidbase.presentation.helpers.NetworkHelper
 import com.example.androidbase.state.Result
@@ -23,8 +24,8 @@ class StarshipViewModel @Inject constructor(
 ) : BaseViewModel(coroutineDispatchers, networkHelper) {
 
 
-    private val _starshipsResponse = MutableLiveData<Result<StarshipsResponse>>()
-    val starshipsResponse: LiveData<Result<StarshipsResponse>>
+    private val _starshipsResponse = MutableLiveData<Result<ResultGeneric<ResultStarship>>>()
+    val starshipsResponse: LiveData<Result<ResultGeneric<ResultStarship>>>
         get() = _starshipsResponse
 
 

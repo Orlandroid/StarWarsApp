@@ -3,7 +3,8 @@ package com.example.androidbase.presentation.ui.flims
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.example.androidbase.entities.remote.FlimsResponse
+import com.example.androidbase.entities.remote.Film
+import com.example.androidbase.entities.remote.ResultGeneric
 import com.example.androidbase.presentation.base.BaseViewModel
 import com.example.androidbase.presentation.helpers.NetworkHelper
 import com.example.androidbase.state.Result
@@ -23,8 +24,8 @@ class FilmsViewModel @Inject constructor(
 ) : BaseViewModel(coroutineDispatchers, networkHelper) {
 
 
-    private val _filmsResponse = MutableLiveData<Result<FlimsResponse>>()
-    val filmsResponse: LiveData<Result<FlimsResponse>>
+    private val _filmsResponse = MutableLiveData<Result<ResultGeneric<Film>>>()
+    val filmsResponse: LiveData<Result<ResultGeneric<Film>>>
         get() = _filmsResponse
 
 

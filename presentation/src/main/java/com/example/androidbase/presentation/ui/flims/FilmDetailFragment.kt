@@ -4,7 +4,7 @@ import android.util.Log
 import androidx.navigation.fragment.navArgs
 import com.example.androidbase.R
 import com.example.androidbase.databinding.FragmentFilmDetailBinding
-import com.example.androidbase.entities.remote.ResultX
+import com.example.androidbase.entities.remote.Film
 import com.example.androidbase.presentation.base.BaseFragment
 import com.example.androidbase.presentation.extensions.fromJson
 import com.example.androidbase.presentation.extensions.loadUrl
@@ -28,7 +28,7 @@ class FilmDetailFragment : BaseFragment<FragmentFilmDetailBinding>(R.layout.frag
 
 
 
-    private fun bind(film: ResultX) = with(binding) {
+    private fun bind(film: Film) = with(binding) {
         tvTitulo.text = film.title
         tvEpisodeId.text = film.episode_id.toString()
         tvProducer.text = film.producer

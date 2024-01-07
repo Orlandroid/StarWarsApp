@@ -1,13 +1,7 @@
 package com.example.androidbase.entities.remote
 
-data class FlimsResponse(
-    val count: Int,
-    val next: String?,
-    val previous: String?,
-    val results: List<ResultX>
-)
 
-data class ResultX(
+data class Film(
     val characters: List<String>,
     val created: String,
     val director: String,

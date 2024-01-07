@@ -1,11 +1,5 @@
 package com.example.androidbase.entities.remote
 
-data class VehiclesResponse(
-    val count: Int,
-    val next: String,
-    val previous: Any,
-    val results: List<ResultVehicle>
-)
 
 data class ResultVehicle(
     val cargo_capacity: String,

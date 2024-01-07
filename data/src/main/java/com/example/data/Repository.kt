@@ -20,13 +20,13 @@ class Repository @Inject constructor(
 
     suspend fun getFilms(page: String) = remoteDataSource.getFilms(page)
 
-    suspend fun getPlanets(page: String): PlanetsResponse = remoteDataSource.getPlanets(page)
+    suspend fun getPlanets(page: String) = remoteDataSource.getPlanets(page)
 
-    suspend fun getSpecies(page: String): SpeciesResponse = remoteDataSource.getSpecies(page)
+    suspend fun getSpecies(page: String) = remoteDataSource.getSpecies(page)
 
-    suspend fun getStarships(page: String): StarshipsResponse = remoteDataSource.getStarships(page)
+    suspend fun getStarships(page: String) = remoteDataSource.getStarships(page)
 
-    suspend fun getVehicles(page: String): VehiclesResponse = remoteDataSource.getVehicles(page)
+    suspend fun getVehicles(page: String) = remoteDataSource.getVehicles(page)
 
 
     suspend fun getAllPeople(): List<PeopleResponseItem> {

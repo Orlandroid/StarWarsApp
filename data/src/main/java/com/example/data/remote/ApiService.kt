@@ -9,8 +9,6 @@ import retrofit2.http.Url
 
 interface ApiService {
 
-    @GET("people")
-    suspend fun getPeople(@Query("page") page: String): ResultResponse
 
     @GET
     suspend fun getPeopleDetail(@Url url: String): ResultPeople
@@ -18,20 +16,23 @@ interface ApiService {
     @GET("allpeople.json")
     suspend fun getAllPeople(): List<PeopleResponseItem>
 
+    @GET("people")
+    suspend fun getPeople(@Query("page") page: String): ResultGeneric<ResultPeople>
+
     @GET("films")
-    suspend fun getFilms(@Query("page") page: String): FlimsResponse
+    suspend fun getFilms(@Query("page") page: String): ResultGeneric<Film>
 
     @GET("planets")
-    suspend fun getPlanets(@Query("page") page: String): PlanetsResponse
+    suspend fun getPlanets(@Query("page") page: String): ResultGeneric<ResultPlanet>
 
     @GET("species")
-    suspend fun getSpecies(@Query("page") page: String): SpeciesResponse
+    suspend fun getSpecies(@Query("page") page: String): ResultGeneric<ResultSpecie>
 
     @GET("starships")
-    suspend fun getStarships(@Query("page") page: String): StarshipsResponse
+    suspend fun getStarships(@Query("page") page: String): ResultGeneric<ResultStarship>
 
     @GET("vehicles")
-    suspend fun getVehicles(@Query("page") page: String): VehiclesResponse
+    suspend fun getVehicles(@Query("page") page: String): ResultGeneric<ResultVehicle>
 
 
 }

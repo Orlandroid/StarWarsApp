@@ -3,7 +3,8 @@ package com.example.androidbase.presentation.ui.species
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.example.androidbase.entities.remote.SpeciesResponse
+import com.example.androidbase.entities.remote.ResultGeneric
+import com.example.androidbase.entities.remote.ResultSpecie
 import com.example.androidbase.presentation.base.BaseViewModel
 import com.example.androidbase.presentation.helpers.NetworkHelper
 import com.example.androidbase.state.Result
@@ -23,8 +24,8 @@ class SpeciesViewModel @Inject constructor(
 ) : BaseViewModel(coroutineDispatchers, networkHelper) {
 
 
-    private val _speciesResponse = MutableLiveData<Result<SpeciesResponse>>()
-    val speciesResponse: LiveData<Result<SpeciesResponse>>
+    private val _speciesResponse = MutableLiveData<Result<ResultGeneric<ResultSpecie>>>()
+    val speciesResponse: LiveData<Result<ResultGeneric<ResultSpecie>>>
         get() = _speciesResponse
 
 

@@ -3,7 +3,8 @@ package com.example.androidbase.presentation.ui.planets
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.example.androidbase.entities.remote.PlanetsResponse
+import com.example.androidbase.entities.remote.ResultGeneric
+import com.example.androidbase.entities.remote.ResultPlanet
 import com.example.androidbase.presentation.base.BaseViewModel
 import com.example.androidbase.presentation.helpers.NetworkHelper
 import com.example.androidbase.state.Result
@@ -23,8 +24,8 @@ class PlanetsViewModel @Inject constructor(
 ) : BaseViewModel(coroutineDispatchers, networkHelper) {
 
 
-    private val _planetsResponse = MutableLiveData<Result<PlanetsResponse>>()
-    val planetsResponse: LiveData<Result<PlanetsResponse>>
+    private val _planetsResponse = MutableLiveData<Result<ResultGeneric<ResultPlanet>>>()
+    val planetsResponse: LiveData<Result<ResultGeneric<ResultPlanet>>>
         get() = _planetsResponse
 
 

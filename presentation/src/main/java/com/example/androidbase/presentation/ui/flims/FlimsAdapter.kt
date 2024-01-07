@@ -4,19 +4,19 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.androidbase.databinding.ItemFilmBinding
-import com.example.androidbase.entities.remote.ResultX
+import com.example.androidbase.entities.remote.Film
 import com.example.androidbase.presentation.extensions.click
 import com.example.androidbase.presentation.extensions.loadUrl
 import com.example.androidbase.presentation.util.utilimages.data.getFilmsImages
 import com.example.androidbase.presentation.util.getImageFromJson
 
 
-class FlimsAdapter(private val clickOnFilm: (ResultX) -> Unit) :
+class FlimsAdapter(private val clickOnFilm: (Film) -> Unit) :
     RecyclerView.Adapter<FlimsAdapter.ViewHolder>() {
 
-    private var listOfCategories: List<ResultX> = arrayListOf()
+    private var listOfCategories: List<Film> = arrayListOf()
 
-    fun setData(lista: List<ResultX>) {
+    fun setData(lista: List<Film>) {
         listOfCategories = lista.sortedBy { it.release_date }
         notifyDataSetChanged()
     }
@@ -24,7 +24,7 @@ class FlimsAdapter(private val clickOnFilm: (ResultX) -> Unit) :
 
     class ViewHolder(private val binding: ItemFilmBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(film: ResultX, clickOnFilm: (ResultX) -> Unit) = with(binding) {
+        fun bind(film: Film, clickOnFilm: (Film) -> Unit) = with(binding) {
             tvTitle.text = film.title
             tvEpisode.text = film.episode_id.toString()
             tvPremiere.text = film.release_date

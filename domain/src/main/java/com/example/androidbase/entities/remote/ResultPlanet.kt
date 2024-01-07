@@ -1,12 +1,5 @@
 package com.example.androidbase.entities.remote
 
-data class PlanetsResponse(
-    val count: Int,
-    val next: String,
-    val previous: Any,
-    val results: List<ResultPlanet>
-)
-
 data class ResultPlanet(
     val climate: String,
     val created: String,
