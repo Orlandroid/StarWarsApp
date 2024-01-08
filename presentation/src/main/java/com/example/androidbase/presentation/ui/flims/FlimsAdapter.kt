@@ -2,29 +2,24 @@ package com.example.androidbase.presentation.ui.flims
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.paging.PagingDataAdapter
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.androidbase.databinding.ItemFilmBinding
 import com.example.androidbase.entities.remote.Film
 import com.example.androidbase.presentation.extensions.click
 import com.example.androidbase.presentation.extensions.loadUrl
-import com.example.androidbase.presentation.util.utilimages.data.getFilmsImages
 import com.example.androidbase.presentation.util.getImageFromJson
+import com.example.androidbase.presentation.util.utilimages.data.getFilmsImages
 
 
 class FlimsAdapter(private val clickOnFilm: (Film) -> Unit) :
-    RecyclerView.Adapter<FlimsAdapter.ViewHolder>() {
-
-    private var listOfCategories: List<Film> = arrayListOf()
-
-    fun setData(lista: List<Film>) {
-        listOfCategories = lista.sortedBy { it.release_date }
-        notifyDataSetChanged()
-    }
+    PagingDataAdapter<Film, FlimsAdapter.ViewHolder>(FilmComparator) {
 
 
-    class ViewHolder(private val binding: ItemFilmBinding) :
+    inner class ViewHolder(private val binding: ItemFilmBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(film: Film, clickOnFilm: (Film) -> Unit) = with(binding) {
+        fun bind(film: Film) = with(binding) {
             tvTitle.text = film.title
             tvEpisode.text = film.episode_id.toString()
             tvPremiere.text = film.release_date
@@ -42,12 +37,20 @@ class FlimsAdapter(private val clickOnFilm: (Film) -> Unit) :
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(listOfCategories[position], clickOnFilm)
+        val item = getItem(position)
+        item?.let {
+            holder.bind(it)
+        }
     }
 
-    override fun getItemCount(): Int {
-        return listOfCategories.size
-    }
+    object FilmComparator : DiffUtil.ItemCallback<Film>() {
+        override fun areItemsTheSame(oldItem: Film, newItem: Film): Boolean {
+            return oldItem.episode_id == newItem.episode_id
+        }
 
+        override fun areContentsTheSame(oldItem: Film, newItem: Film): Boolean {
+            return oldItem == newItem
+        }
+    }
 
 }

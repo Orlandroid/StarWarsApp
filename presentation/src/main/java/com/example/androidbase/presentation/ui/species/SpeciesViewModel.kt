@@ -1,43 +1,36 @@
 package com.example.androidbase.presentation.ui.species
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.example.androidbase.entities.remote.ResultGeneric
-import com.example.androidbase.entities.remote.ResultSpecie
+import androidx.paging.Pager
+import androidx.paging.cachedIn
 import com.example.androidbase.presentation.base.BaseViewModel
 import com.example.androidbase.presentation.helpers.NetworkHelper
-import com.example.androidbase.state.Result
-import com.example.data.Repository
 import com.example.data.di.CoroutineDispatchers
+import com.example.data.pagination.SpeciesPagingSource
+import com.example.data.remote.ApiService
+import com.example.data.utils.getPagingConfig
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 @HiltViewModel
 class SpeciesViewModel @Inject constructor(
-    private val repository: Repository,
+    private val apiService: ApiService,
     coroutineDispatchers: CoroutineDispatchers,
     networkHelper: NetworkHelper
 ) : BaseViewModel(coroutineDispatchers, networkHelper) {
 
 
-    private val _speciesResponse = MutableLiveData<Result<ResultGeneric<ResultSpecie>>>()
-    val speciesResponse: LiveData<Result<ResultGeneric<ResultSpecie>>>
-        get() = _speciesResponse
+    private lateinit var speciesPagingSource: SpeciesPagingSource
 
-
-    fun getSpecies(page: String) {
-        viewModelScope.launch {
-            safeApiCall(_speciesResponse, coroutineDispatchers) {
-                val response = repository.getSpecies(page)
-                withContext(Dispatchers.Main) {
-                    _speciesResponse.value = Result.Success(response)
-                }
+    val getSpeciesPagingSource =
+        Pager(
+            config = getPagingConfig(),
+            pagingSourceFactory = {
+                speciesPagingSource = SpeciesPagingSource(service = apiService)
+                speciesPagingSource
             }
-        }
-    }
+        ).flow.cachedIn(viewModelScope)
+
+    fun refreshCharactersPagingSource() = speciesPagingSource.invalidate()
 
 }

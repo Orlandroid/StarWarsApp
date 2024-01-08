@@ -1,17 +1,27 @@
 package com.example.androidbase.presentation.ui.vehicles
 
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
+import androidx.paging.LoadState
 import com.example.androidbase.R
 import com.example.androidbase.databinding.FragmentVehiclesBinding
+import com.example.androidbase.entities.remote.ResultPeople
 import com.example.androidbase.entities.remote.ResultVehicle
 import com.example.androidbase.presentation.base.BaseFragment
-import com.example.androidbase.presentation.extensions.myOnScrolled
-import com.example.androidbase.presentation.extensions.observeApiResult
+import com.example.androidbase.presentation.extensions.getError
+import com.example.androidbase.presentation.extensions.gone
+import com.example.androidbase.presentation.extensions.showError
+import com.example.androidbase.presentation.extensions.showErrorApi
 import com.example.androidbase.presentation.extensions.toJson
+import com.example.androidbase.presentation.extensions.visible
 import com.example.androidbase.presentation.ui.MainActivity
-import com.example.androidbase.presentation.util.getCurrentPage
+import com.example.androidbase.presentation.ui.people.PeopleFragmentDirections
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 
 
 @AndroidEntryPoint
@@ -19,10 +29,6 @@ class VehiclesFragment : BaseFragment<FragmentVehiclesBinding>(R.layout.fragment
 
     private val viewModel: VehiclesViewModel by viewModels()
     private val vehiclesAdapter = VehiclesAdapter { clickOnVehicle(it) }
-    private var currentPage: Int? = 1
-    private var canCallToTheNextPage = true
-    private var vehiclesList: ArrayList<ResultVehicle> = arrayListOf()
-    private var isFirstTimeOnTheView: Boolean = true
 
     private fun clickOnVehicle(vehicle: ResultVehicle) {
         findNavController().navigate(
@@ -37,29 +43,44 @@ class VehiclesFragment : BaseFragment<FragmentVehiclesBinding>(R.layout.fragment
     )
 
     override fun setUpUi() = with(binding) {
-        if (isFirstTimeOnTheView) {
-            isFirstTimeOnTheView = false
-            viewModel.getVehicles(currentPage.toString())
-        }
-        binding.recycler.adapter = vehiclesAdapter
-        recycler.myOnScrolled {
-            if (!canCallToTheNextPage) {
-                return@myOnScrolled
-            }
-            currentPage?.let {
-                canCallToTheNextPage = false
-                viewModel.getVehicles(page = currentPage.toString())
+        recycler.adapter = vehiclesAdapter
+        getCharacters()
+        listenerAdapter()
+    }
+
+    private fun clickOnPeople(result: ResultPeople) {
+        findNavController().navigate(
+            PeopleFragmentDirections.actionUsersFragmentToCharacterDetailFragment(
+                result.toJson()
+            )
+        )
+    }
+
+    private fun getCharacters() {
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.getVehiclesPagingSource.collectLatest { characters ->
+                    vehiclesAdapter.submitData(lifecycle, characters)
+                }
             }
         }
     }
 
-    override fun observerViewModel() {
-        super.observerViewModel()
-        observeApiResult(viewModel.vehiclesResponse, shouldCloseTheViewOnApiError = true) {
-            vehiclesList.addAll(it.results)
-            vehiclesAdapter.setData(vehiclesList)
-            canCallToTheNextPage = true
-            currentPage = getCurrentPage(it.next)
+    private fun listenerAdapter() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                vehiclesAdapter.addLoadStateListener { loadState ->
+                    if (loadState.source.append is LoadState.Loading || loadState.source.refresh is LoadState.Loading) {
+                        binding.progressBar.visible()
+                    } else {
+                        binding.progressBar.gone()
+                    }
+                    val errorState = loadState.getError()
+                    errorState?.showError {
+                        showErrorApi()
+                    }
+                }
+            }
         }
     }
 

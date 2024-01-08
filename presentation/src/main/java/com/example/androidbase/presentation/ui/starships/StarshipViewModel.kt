@@ -1,43 +1,43 @@
 package com.example.androidbase.presentation.ui.starships
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.example.androidbase.entities.remote.ResultGeneric
+import androidx.paging.Pager
+import androidx.paging.PagingData
+import androidx.paging.cachedIn
+import com.example.androidbase.entities.remote.ResultPeople
 import com.example.androidbase.entities.remote.ResultStarship
 import com.example.androidbase.presentation.base.BaseViewModel
 import com.example.androidbase.presentation.helpers.NetworkHelper
-import com.example.androidbase.state.Result
 import com.example.data.Repository
 import com.example.data.di.CoroutineDispatchers
+import com.example.data.pagination.CharactersPagingSource
+import com.example.data.pagination.StarshipsPagingSource
+import com.example.data.remote.ApiService
+import com.example.data.utils.getPagingConfig
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 @HiltViewModel
 class StarshipViewModel @Inject constructor(
     private val repository: Repository,
+    private val apiService: ApiService,
     coroutineDispatchers: CoroutineDispatchers,
     networkHelper: NetworkHelper
 ) : BaseViewModel(coroutineDispatchers, networkHelper) {
 
 
-    private val _starshipsResponse = MutableLiveData<Result<ResultGeneric<ResultStarship>>>()
-    val starshipsResponse: LiveData<Result<ResultGeneric<ResultStarship>>>
-        get() = _starshipsResponse
+    private lateinit var starshipsPagingSource: StarshipsPagingSource
 
-
-    fun getStarships(page: String) {
-        viewModelScope.launch {
-            safeApiCall(_starshipsResponse, coroutineDispatchers) {
-                val response = repository.getStarships(page)
-                withContext(Dispatchers.Main) {
-                    _starshipsResponse.value = Result.Success(response)
-                }
+    val getStarshipsPagingSource: Flow<PagingData<ResultStarship>> =
+        Pager(
+            config = getPagingConfig(),
+            pagingSourceFactory = {
+                starshipsPagingSource = StarshipsPagingSource(service = apiService)
+                starshipsPagingSource
             }
-        }
-    }
+        ).flow.cachedIn(viewModelScope)
+
+    fun refreshStarshipsPagingSource() = starshipsPagingSource.invalidate()
 
 }

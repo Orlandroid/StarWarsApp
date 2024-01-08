@@ -1,27 +1,33 @@
 package com.example.androidbase.presentation.ui.starships
 
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
+import androidx.paging.LoadState
 import com.example.androidbase.R
 import com.example.androidbase.databinding.FragmentStarshipsBinding
+import com.example.androidbase.entities.remote.ResultPeople
 import com.example.androidbase.entities.remote.ResultStarship
 import com.example.androidbase.presentation.base.BaseFragment
-import com.example.androidbase.presentation.extensions.myOnScrolled
-import com.example.androidbase.presentation.extensions.observeApiResult
+import com.example.androidbase.presentation.extensions.getError
+import com.example.androidbase.presentation.extensions.gone
+import com.example.androidbase.presentation.extensions.showError
+import com.example.androidbase.presentation.extensions.showErrorApi
 import com.example.androidbase.presentation.extensions.toJson
+import com.example.androidbase.presentation.extensions.visible
 import com.example.androidbase.presentation.ui.MainActivity
-import com.example.androidbase.presentation.util.getCurrentPage
+import com.example.androidbase.presentation.ui.people.PeopleFragmentDirections
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class StarshipsFragment : BaseFragment<FragmentStarshipsBinding>(R.layout.fragment_starships) {
 
     private val viewModel: StarshipViewModel by viewModels()
     private val starshipsAdapter = StarshipsAdapter { clickOnPeople(it) }
-    private var currentPage: Int? = 1
-    private var canCallToTheNextPage = true
-    private var starshipList: ArrayList<ResultStarship> = arrayListOf()
-    private var isFirstTimeOnTheView: Boolean = true
 
     private fun clickOnPeople(starShip: ResultStarship) {
         findNavController().navigate(
@@ -36,30 +42,46 @@ class StarshipsFragment : BaseFragment<FragmentStarshipsBinding>(R.layout.fragme
         toolbarTitle = getString(R.string.startships)
     )
 
+
     override fun setUpUi() = with(binding) {
-        if (isFirstTimeOnTheView) {
-            isFirstTimeOnTheView = false
-            viewModel.getStarships(currentPage.toString())
-        }
-        binding.recycler.adapter = starshipsAdapter
-        recycler.myOnScrolled {
-            if (!canCallToTheNextPage) {
-                return@myOnScrolled
-            }
-            currentPage?.let {
-                canCallToTheNextPage = false
-                viewModel.getStarships(page = currentPage.toString())
+        recycler.adapter = starshipsAdapter
+        getCharacters()
+        listenerAdapter()
+    }
+
+    private fun clickOnPeople(result: ResultPeople) {
+        findNavController().navigate(
+            PeopleFragmentDirections.actionUsersFragmentToCharacterDetailFragment(
+                result.toJson()
+            )
+        )
+    }
+
+    private fun getCharacters() {
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.getStarshipsPagingSource.collectLatest { characters ->
+                    starshipsAdapter.submitData(lifecycle, characters)
+                }
             }
         }
     }
 
-    override fun observerViewModel() {
-        super.observerViewModel()
-        observeApiResult(viewModel.starshipsResponse, shouldCloseTheViewOnApiError = true) {
-            starshipList.addAll(it.results)
-            starshipsAdapter.setData(starshipList)
-            canCallToTheNextPage = true
-            currentPage = getCurrentPage(it.next)
+    private fun listenerAdapter() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                starshipsAdapter.addLoadStateListener { loadState ->
+                    if (loadState.source.append is LoadState.Loading || loadState.source.refresh is LoadState.Loading) {
+                        binding.progressBar.visible()
+                    } else {
+                        binding.progressBar.gone()
+                    }
+                    val errorState = loadState.getError()
+                    errorState?.showError {
+                        showErrorApi()
+                    }
+                }
+            }
         }
     }
 }

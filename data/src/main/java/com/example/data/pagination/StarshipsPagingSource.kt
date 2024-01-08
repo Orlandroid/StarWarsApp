@@ -3,12 +3,13 @@ package com.example.data.pagination
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.example.androidbase.entities.remote.ResultPeople
+import com.example.androidbase.entities.remote.ResultStarship
 import com.example.data.remote.ApiService
 import retrofit2.HttpException
 
-class CharactersPagingSource(
+class StarshipsPagingSource(
     private val service: ApiService
-) : PagingSource<Int, ResultPeople>() {
+) : PagingSource<Int, ResultStarship>() {
 
     companion object {
         private const val START_PAGE = 1
@@ -16,10 +17,10 @@ class CharactersPagingSource(
 
     override suspend fun load(
         params: LoadParams<Int>
-    ): LoadResult<Int, ResultPeople> {
+    ): LoadResult<Int, ResultStarship> {
         return try {
             val currentPage = params.key ?: START_PAGE
-            val data = service.getPeople(currentPage.toString()).results
+            val data = service.getStarships(currentPage.toString()).results
             LoadResult.Page(
                 data = data,
                 prevKey = if (currentPage == START_PAGE) null else currentPage - 1,
@@ -36,7 +37,7 @@ class CharactersPagingSource(
         }
     }
 
-    override fun getRefreshKey(state: PagingState<Int, ResultPeople>): Int? {
+    override fun getRefreshKey(state: PagingState<Int, ResultStarship>): Int? {
         return state.anchorPosition?.let { anchorPosition ->
             val anchorPage = state.closestPageToPosition(anchorPosition)
             anchorPage?.prevKey?.plus(1) ?: anchorPage?.nextKey?.minus(1)

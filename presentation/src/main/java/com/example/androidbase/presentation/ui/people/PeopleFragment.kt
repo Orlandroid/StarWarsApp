@@ -13,10 +13,8 @@ import com.example.androidbase.entities.remote.ResultPeople
 import com.example.androidbase.presentation.base.BaseFragment
 import com.example.androidbase.presentation.extensions.getError
 import com.example.androidbase.presentation.extensions.gone
-import com.example.androidbase.presentation.extensions.hideProgress
 import com.example.androidbase.presentation.extensions.showError
 import com.example.androidbase.presentation.extensions.showErrorApi
-import com.example.androidbase.presentation.extensions.showProgress
 import com.example.androidbase.presentation.extensions.toJson
 import com.example.androidbase.presentation.extensions.visible
 import com.example.androidbase.presentation.ui.MainActivity
@@ -79,5 +77,6 @@ class PeopleFragment : BaseFragment<FragmentPeopleBinding>(R.layout.fragment_peo
             }
         }
     }
+
 
 }

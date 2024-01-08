@@ -3,30 +3,39 @@ package com.example.androidbase.presentation.ui.planets
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.paging.PagingDataAdapter
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.androidbase.databinding.ItemPlanetBinding
 import com.example.androidbase.entities.remote.ResultPlanet
 import com.example.androidbase.presentation.extensions.click
 import com.example.androidbase.presentation.extensions.loadUrl
+import com.example.androidbase.presentation.ui.people.PeopleAdapter
 import com.example.androidbase.presentation.util.getImageFromJson
 import com.example.androidbase.presentation.util.utilimages.data.getPlanetsImages
 
 
 class PlanetsAdapter(private val clickOnPlanet: (ResultPlanet) -> Unit) :
-    RecyclerView.Adapter<PlanetsAdapter.ViewHolder>() {
+    PagingDataAdapter<ResultPlanet, PlanetsAdapter.ViewHolder>(PlanetComparator) {
 
-    private var listOfPlanets: List<ResultPlanet> = arrayListOf()
 
-    fun setData(lista: List<ResultPlanet>) {
-        listOfPlanets = lista
-        notifyDataSetChanged()
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        val layoutInflater = LayoutInflater.from(parent.context)
+        val binding = ItemPlanetBinding.inflate(layoutInflater, parent, false)
+        return ViewHolder(binding)
     }
 
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        val item = getItem(position)
+        item?.let {
+            holder.bind(it)
+        }
+    }
 
-    class ViewHolder(private val binding: ItemPlanetBinding) :
+    inner class ViewHolder(private val binding: ItemPlanetBinding) :
         RecyclerView.ViewHolder(binding.root) {
         @SuppressLint("SetTextI18n")
-        fun bind(planet: ResultPlanet, clickOnPlanet: (ResultPlanet) -> Unit) = with(binding) {
+        fun bind(planet: ResultPlanet) = with(binding) {
             binding.root.click {
                 clickOnPlanet(planet)
             }
@@ -38,17 +47,16 @@ class PlanetsAdapter(private val clickOnPlanet: (ResultPlanet) -> Unit) :
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val layoutInflater = LayoutInflater.from(parent.context)
-        val binding = ItemPlanetBinding.inflate(layoutInflater, parent, false)
-        return ViewHolder(binding)
-    }
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(listOfPlanets[position], clickOnPlanet)
-    }
+    object PlanetComparator : DiffUtil.ItemCallback<ResultPlanet>() {
+        override fun areItemsTheSame(oldItem: ResultPlanet, newItem: ResultPlanet): Boolean {
+            return oldItem.name == newItem.name
+        }
 
-    override fun getItemCount() = listOfPlanets.size
+        override fun areContentsTheSame(oldItem: ResultPlanet, newItem: ResultPlanet): Boolean {
+            return oldItem == newItem
+        }
+    }
 
 
 }

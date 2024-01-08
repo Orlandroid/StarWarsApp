@@ -1,27 +1,31 @@
 package com.example.androidbase.presentation.ui.flims
 
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
+import androidx.paging.LoadState
 import com.example.androidbase.R
 import com.example.androidbase.databinding.FragmentFlimsBinding
 import com.example.androidbase.entities.remote.Film
 import com.example.androidbase.presentation.base.BaseFragment
-import com.example.androidbase.presentation.extensions.myOnScrolled
-import com.example.androidbase.presentation.extensions.observeApiResult
+import com.example.androidbase.presentation.extensions.getError
+import com.example.androidbase.presentation.extensions.gone
+import com.example.androidbase.presentation.extensions.showError
+import com.example.androidbase.presentation.extensions.showErrorApi
 import com.example.androidbase.presentation.extensions.toJson
+import com.example.androidbase.presentation.extensions.visible
 import com.example.androidbase.presentation.ui.MainActivity
-import com.example.androidbase.presentation.util.getCurrentPage
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class FilmsFragment : BaseFragment<FragmentFlimsBinding>(R.layout.fragment_flims) {
 
     private val viewModel: FilmsViewModel by viewModels()
     private val filmsAdapter = FlimsAdapter { clickOnFilm(it) }
-    private var currentPage: Int? = 1
-    private var canCallToTheNextPage = true
-    private var filmsList: ArrayList<Film> = arrayListOf()
-    private var firstTimeOnTheView: Boolean = true
 
     private fun clickOnFilm(film: Film) {
         findNavController().navigate(
@@ -37,29 +41,37 @@ class FilmsFragment : BaseFragment<FragmentFlimsBinding>(R.layout.fragment_flims
     )
 
     override fun setUpUi() = with(binding) {
-        if (firstTimeOnTheView) {
-            firstTimeOnTheView = false
-            viewModel.getFilms(currentPage.toString())
-        }
-        binding.recycler.adapter = filmsAdapter
-        recycler.myOnScrolled {
-            if (!canCallToTheNextPage) {
-                return@myOnScrolled
-            }
-            currentPage?.let {
-                canCallToTheNextPage = false
-                viewModel.getFilms(page = currentPage.toString())
+        recycler.adapter = filmsAdapter
+        getCharacters()
+        listenerAdapter()
+    }
+
+
+    private fun getCharacters() {
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.getFilmsPagingSource.collectLatest { characters ->
+                    filmsAdapter.submitData(lifecycle, characters)
+                }
             }
         }
     }
 
-    override fun observerViewModel() {
-        super.observerViewModel()
-        observeApiResult(viewModel.filmsResponse, shouldCloseTheViewOnApiError = true) {
-            filmsList.addAll(it.results)
-            filmsAdapter.setData(filmsList)
-            canCallToTheNextPage = true
-            currentPage = getCurrentPage(it.next)
+    private fun listenerAdapter() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                filmsAdapter.addLoadStateListener { loadState ->
+                    if (loadState.source.append is LoadState.Loading || loadState.source.refresh is LoadState.Loading) {
+                        binding.progressBar.visible()
+                    } else {
+                        binding.progressBar.gone()
+                    }
+                    val errorState = loadState.getError()
+                    errorState?.showError {
+                        showErrorApi()
+                    }
+                }
+            }
         }
     }
 

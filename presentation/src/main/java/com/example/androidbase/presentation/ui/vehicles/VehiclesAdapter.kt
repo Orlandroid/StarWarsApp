@@ -2,6 +2,8 @@ package com.example.androidbase.presentation.ui.vehicles
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.paging.PagingDataAdapter
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.androidbase.databinding.ItemVehicleBinding
 import com.example.androidbase.entities.remote.ResultVehicle
@@ -12,19 +14,25 @@ import com.example.androidbase.presentation.util.utilimages.data.getVehiclesImag
 
 
 class VehiclesAdapter(private val clickOnVehicle: (ResultVehicle) -> Unit) :
-    RecyclerView.Adapter<VehiclesAdapter.ViewHolder>() {
+    PagingDataAdapter<ResultVehicle, VehiclesAdapter.ViewHolder>(VehicleComparator) {
 
-    private var listOfCategories: List<ResultVehicle> = arrayListOf()
 
-    fun setData(lista: List<ResultVehicle>) {
-        listOfCategories = lista
-        notifyDataSetChanged()
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        val layoutInflater = LayoutInflater.from(parent.context)
+        val binding = ItemVehicleBinding.inflate(layoutInflater, parent, false)
+        return ViewHolder(binding)
     }
 
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        val item = getItem(position)
+        item?.let {
+            holder.bind(it)
+        }
+    }
 
-    class ViewHolder(private val binding: ItemVehicleBinding) :
+    inner class ViewHolder(private val binding: ItemVehicleBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(vehicle: ResultVehicle, clickOnVehicle: (ResultVehicle) -> Unit) = with(binding) {
+        fun bind(vehicle: ResultVehicle) = with(binding) {
             root.click {
                 clickOnVehicle(vehicle)
             }
@@ -35,19 +43,14 @@ class VehiclesAdapter(private val clickOnVehicle: (ResultVehicle) -> Unit) :
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val layoutInflater = LayoutInflater.from(parent.context)
-        val binding = ItemVehicleBinding.inflate(layoutInflater, parent, false)
-        return ViewHolder(binding)
+
+    object VehicleComparator : DiffUtil.ItemCallback<ResultVehicle>() {
+        override fun areItemsTheSame(oldItem: ResultVehicle, newItem: ResultVehicle): Boolean {
+            return oldItem.name == newItem.name
+        }
+
+        override fun areContentsTheSame(oldItem: ResultVehicle, newItem: ResultVehicle): Boolean {
+            return oldItem == newItem
+        }
     }
-
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(listOfCategories[position], clickOnVehicle)
-    }
-
-    override fun getItemCount(): Int {
-        return listOfCategories.size
-    }
-
-
 }
