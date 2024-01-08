@@ -60,5 +60,7 @@ dependencies {
     implementation(Dependencies.DAGGER_HILT)
     kapt(Dependencies.DAGGER_HILT_COMPILER)
     kapt("androidx.hilt:hilt-compiler:1.1.0")
+    val paging_version = "3.2.1"
+    implementation("androidx.paging:paging-runtime-ktx:$paging_version")
 
 }

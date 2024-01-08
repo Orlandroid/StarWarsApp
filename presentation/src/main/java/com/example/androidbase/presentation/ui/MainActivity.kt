@@ -32,6 +32,10 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    fun showProgressV2() {
+        binding.progressBar.visible()
+    }
+
     private fun setUpNavController() {
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.fragment) as NavHostFragment

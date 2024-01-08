@@ -2,6 +2,8 @@ package com.example.androidbase.presentation.ui.people
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.paging.PagingDataAdapter
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.androidbase.databinding.ItemPeopleBinding
 import com.example.androidbase.entities.remote.ResultPeople
@@ -12,19 +14,25 @@ import com.example.androidbase.presentation.util.utilimages.data.getPeopleImages
 
 
 class PeopleAdapter(private val clickOnPeople: (ResultPeople) -> Unit) :
-    RecyclerView.Adapter<PeopleAdapter.ViewHolder>() {
+    PagingDataAdapter<ResultPeople, PeopleAdapter.ViewHolder>(PeopleComparator) {
 
-    private var listOfCategories: List<ResultPeople> = arrayListOf()
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        val layoutInflater = LayoutInflater.from(parent.context)
+        val binding = ItemPeopleBinding.inflate(layoutInflater, parent, false)
+        return ViewHolder(binding)
+    }
 
-    fun setData(lista: List<ResultPeople>) {
-        listOfCategories = lista
-        notifyDataSetChanged()
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        val item = getItem(position)
+        item?.let {
+            holder.bind(it)
+        }
     }
 
 
-    class ViewHolder(private val binding: ItemPeopleBinding) :
+    inner class ViewHolder(private val binding: ItemPeopleBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(people: ResultPeople, clickOnPeople: (ResultPeople) -> Unit) = with(binding) {
+        fun bind(people: ResultPeople) = with(binding) {
             root.click {
                 clickOnPeople(people)
             }
@@ -34,18 +42,15 @@ class PeopleAdapter(private val clickOnPeople: (ResultPeople) -> Unit) :
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val layoutInflater = LayoutInflater.from(parent.context)
-        val binding = ItemPeopleBinding.inflate(layoutInflater, parent, false)
-        return ViewHolder(binding)
-    }
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(listOfCategories[position], clickOnPeople)
-    }
+    object PeopleComparator : DiffUtil.ItemCallback<ResultPeople>() {
+        override fun areItemsTheSame(oldItem: ResultPeople, newItem: ResultPeople): Boolean {
+            return oldItem.name == newItem.name
+        }
 
-    override fun getItemCount(): Int {
-        return listOfCategories.size
+        override fun areContentsTheSame(oldItem: ResultPeople, newItem: ResultPeople): Boolean {
+            return oldItem == newItem
+        }
     }
 
 

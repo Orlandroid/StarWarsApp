@@ -81,4 +81,6 @@ dependencies {
     annotationProcessor(Dependencies.GLIDE_COMPILER)
     implementation(Dependencies.SWIPE_REFRESH_LAYOUT)
     implementation(Dependencies.CIRCULAR_IMAGE_VIEW)
+    val paging_version = "3.2.1"
+    implementation("androidx.paging:paging-runtime-ktx:$paging_version")
 }

@@ -1,7 +1,7 @@
 package com.example.androidbase.presentation.extensions
 
+import android.util.Log
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
@@ -13,6 +13,11 @@ import com.example.androidbase.presentation.alerts.MainAlert
 import com.example.androidbase.presentation.alerts.MainAlert.Companion.ERROR_MESSAGE
 import com.example.androidbase.presentation.ui.MainActivity
 import com.example.androidbase.state.Result
+
+
+fun Fragment.showLog(message: String, tag: String = javaClass.name) {
+    Log.w(tag, message)
+}
 
 
 fun Fragment.showProgress() {
@@ -113,6 +118,7 @@ fun <T> Fragment.observeApiResult(
                     onSuccess(apiState.data)
                 }
             }
+
             is Result.Error -> {
                 if (onError == null) {
                     showErrorApi(shouldCloseTheViewOnApiError)
@@ -120,12 +126,15 @@ fun <T> Fragment.observeApiResult(
                     onError()
                 }
             }
+
             is Result.ErrorNetwork -> {
                 showErrorNetwork(shouldCloseTheViewOnApiError)
             }
+
             is Result.EmptyList -> {
                 noData()
             }
+
             else -> {}
         }
     }

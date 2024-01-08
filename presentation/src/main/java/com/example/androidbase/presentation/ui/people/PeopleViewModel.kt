@@ -3,84 +3,49 @@ package com.example.androidbase.presentation.ui.people
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.example.androidbase.presentation.base.BaseViewModel
-import com.example.androidbase.presentation.helpers.NetworkHelper
-import com.example.data.Repository
-import com.example.data.di.CoroutineDispatchers
-import com.example.androidbase.entities.remote.PeopleResponseItem
+import androidx.paging.Pager
+import androidx.paging.PagingData
+import androidx.paging.cachedIn
 import com.example.androidbase.entities.remote.ResultGeneric
 import com.example.androidbase.entities.remote.ResultPeople
+import com.example.androidbase.presentation.base.BaseViewModel
+import com.example.androidbase.presentation.helpers.NetworkHelper
 import com.example.androidbase.state.Result
+import com.example.data.Repository
+import com.example.data.di.CoroutineDispatchers
+import com.example.data.pagination.CharactersPagingSource
+import com.example.data.remote.ApiService
+import com.example.data.utils.getPagingConfig
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 @HiltViewModel
 class PeopleViewModel @Inject constructor(
     private val repository: Repository,
+    private val apiService: ApiService,
     coroutineDispatchers: CoroutineDispatchers,
     networkHelper: NetworkHelper
 ) : BaseViewModel(coroutineDispatchers, networkHelper) {
 
 
-    private val _allPeopleResponse = MutableLiveData<Result<List<PeopleResponseItem>>>()
-    val allPeopleResponse: LiveData<Result<List<PeopleResponseItem>>>
-        get() = _allPeopleResponse
-
-    private val _peopleDetailResponse = MutableLiveData<Result<PeopleResponseItem?>>()
-    val peopleDetailResponse: LiveData<Result<PeopleResponseItem?>>
-        get() = _peopleDetailResponse
-
     private val _peopleResponse = MutableLiveData<Result<ResultGeneric<ResultPeople>>>()
     val peopleResponse: LiveData<Result<ResultGeneric<ResultPeople>>>
         get() = _peopleResponse
 
-    fun getAllPeople() {
-        viewModelScope.launch {
-            safeApiCall(_allPeopleResponse, coroutineDispatchers) {
-                val response = repository.getAllPeople()
-                withContext(Dispatchers.Main) {
-                    _allPeopleResponse.value = Result.Success(response)
-                }
-            }
-        }
-    }
 
-    fun getPeopleDetail(peopleId: Int) {
-        viewModelScope.launch {
-            safeApiCall(_peopleDetailResponse, coroutineDispatchers) {
-                val response = getPeopleById(repository.getAllPeople(), peopleId)
-                withContext(Dispatchers.Main) {
-                    _peopleDetailResponse.value = Result.Success(response)
-                }
-            }
-        }
-    }
+    private lateinit var charactersPagingSource: CharactersPagingSource
 
-    fun getPeople(page: String) {
-        viewModelScope.launch {
-            safeApiCall(_peopleResponse, coroutineDispatchers) {
-                val response = repository.getPeople(page)
-                withContext(Dispatchers.Main) {
-                    _peopleResponse.value = Result.Success(response)
-                }
+    val getCharactersPagingSource: Flow<PagingData<ResultPeople>> =
+        Pager(
+            config = getPagingConfig(),
+            pagingSourceFactory = {
+                charactersPagingSource = CharactersPagingSource(service = apiService)
+                charactersPagingSource
             }
-        }
-    }
+        ).flow.cachedIn(viewModelScope)
 
-    private fun getPeopleById(
-        peopleList: List<PeopleResponseItem>,
-        peopleId: Int
-    ): PeopleResponseItem? {
-        peopleList.forEach {
-            if (it.id == peopleId) {
-                return it
-            }
-        }
-        return null
-    }
+    fun refreshCharactersPagingSource() = charactersPagingSource.invalidate()
 
 
 }

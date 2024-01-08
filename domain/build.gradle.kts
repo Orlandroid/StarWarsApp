@@ -49,4 +49,5 @@ dependencies {
     implementation(Dependencies.ROOM)
     implementation(Dependencies.ROOM_KOTLIN_EXTENSION)
     kapt(Dependencies.ROOM_COMPILER)
+    implementation(Dependencies.RETROFIT_CONVERTER_GSON)
 }
