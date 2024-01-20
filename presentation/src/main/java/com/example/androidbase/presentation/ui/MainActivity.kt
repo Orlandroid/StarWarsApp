@@ -1,7 +1,9 @@
 package com.example.androidbase.presentation.ui
 
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.SearchView
 import androidx.core.view.isVisible
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
@@ -18,6 +20,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private var navController: NavController? = null
+    private var searchViewConfig = SearchViewConfig()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -84,6 +87,27 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    fun showSearchView(config: SearchViewConfig) {
+        searchViewConfig = config
+        setUpSearchView()
+    }
+
+    private fun setUpSearchView() = with(binding) {
+        searchView.isVisible = searchViewConfig.showSearchView
+        searchView.gravity = View.TEXT_ALIGNMENT_CENTER
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String): Boolean {
+                searchViewConfig.onQueryTextSubmit(query)
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String): Boolean {
+                searchViewConfig.onQueryTextChange(newText)
+                return false
+            }
+        })
+    }
+
     fun setToolbarConfiguration(configuration: ToolbarConfiguration) {
         setOnBackButton(configuration.clickOnBack)
         changeTitleToolbar(configuration.toolbarTitle)
@@ -94,6 +118,18 @@ class MainActivity : AppCompatActivity() {
         val showToolbar: Boolean = false,
         val clickOnBack: (() -> Unit)? = null,
         val toolbarTitle: String = ""
+    )
+
+    data class SearchViewConfig(
+        val hintText: String = "Search",
+        val showSearchView: Boolean = false,
+        val showConfigIcon: Boolean = false,
+        val onMenuItemActionExpand: () -> Unit = {},
+        val onMenuItemActionCollapse: () -> Unit = {},
+        val onQueryTextSubmit: (query: String) -> Unit = {},
+        val onQueryTextChange: (newText: String) -> Unit = {},
+        val clickOnSearchIcon: () -> Unit = {},
+        val clickOnConfigIcon: () -> Unit = {}
     )
 
 }

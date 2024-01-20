@@ -7,7 +7,8 @@ import com.example.data.remote.ApiService
 import retrofit2.HttpException
 
 class CharactersPagingSource(
-    private val service: ApiService
+    private val service: ApiService,
+    private val name: String? = null
 ) : PagingSource<Int, ResultPeople>() {
 
     companion object {
@@ -19,7 +20,7 @@ class CharactersPagingSource(
     ): LoadResult<Int, ResultPeople> {
         return try {
             val currentPage = params.key ?: START_PAGE
-            val data = service.getPeople(currentPage.toString()).results
+            val data = service.getPeople(page = currentPage.toString(), name = name).results
             LoadResult.Page(
                 data = data,
                 prevKey = if (currentPage == START_PAGE) null else currentPage - 1,

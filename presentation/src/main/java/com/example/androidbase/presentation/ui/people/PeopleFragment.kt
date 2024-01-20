@@ -7,6 +7,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
+import androidx.paging.PagingData
 import com.example.androidbase.R
 import com.example.androidbase.databinding.FragmentPeopleBinding
 import com.example.androidbase.entities.remote.ResultPeople

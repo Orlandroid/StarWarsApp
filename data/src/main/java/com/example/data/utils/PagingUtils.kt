@@ -1,7 +1,6 @@
 package com.example.data.utils
 
 import androidx.paging.PagingConfig
-import com.example.data.Repository
 
 
 const val NETWORK_PAGE_SIZE = 20

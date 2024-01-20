@@ -17,7 +17,10 @@ interface ApiService {
     suspend fun getAllPeople(): List<PeopleResponseItem>
 
     @GET("people")
-    suspend fun getPeople(@Query("page") page: String): ResultGeneric<ResultPeople>
+    suspend fun getPeople(
+        @Query("page") page: String,
+        @Query("name") name: String? = null
+    ): ResultGeneric<ResultPeople>
 
     @GET("films")
     suspend fun getFilms(@Query("page") page: String): ResultGeneric<Film>
