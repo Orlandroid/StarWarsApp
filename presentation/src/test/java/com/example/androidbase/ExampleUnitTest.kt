@@ -1,6 +1,5 @@
 package com.example.androidbase
 
-import com.example.androidbase.presentation.util.getImageFromJson
 import org.junit.Assert.*
 import org.junit.Test
 

@@ -9,7 +9,7 @@ plugins {
 }
 
 android {
-    namespace = "com.example.data"
+    namespace = "com.orlando.data"
     compileSdk = ConfigData.COMPILE_SDK_VERSION
 
     defaultConfig {
