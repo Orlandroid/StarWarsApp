@@ -14,7 +14,7 @@ import com.orlando.data.di.CoroutineDispatchers
 import com.orlando.androidbase.state.Result
 
 
-abstract class BaseViewModel constructor(
+abstract class BaseViewModel(
     protected val coroutineDispatchers: CoroutineDispatchers,
     val networkHelper: NetworkHelper
 ) : ViewModel() {
