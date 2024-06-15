@@ -1,4 +1,4 @@
-package com.example.androidbase.presentation.event
+package com.orlando.androidbase.presentation.event
 
 open class Event<out T>(private val content: T) {
 
