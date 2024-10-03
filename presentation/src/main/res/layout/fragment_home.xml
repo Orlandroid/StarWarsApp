@@ -7,7 +7,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/stars_bg_full"
-        tools:context=".presentation.ui.home.HomeFragment">
+        tools:context=".presentation.features.home.HomeFragment">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler"

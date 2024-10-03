@@ -9,7 +9,7 @@ import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
 import com.orlando.androidbase.presentation.alerts.MainAlert
 import com.orlando.androidbase.presentation.alerts.MainAlert.Companion.ERROR_MESSAGE
-import com.orlando.androidbase.presentation.ui.MainActivity
+import com.orlando.androidbase.presentation.features.MainActivity
 import com.orlando.androidbase.state.Result
 import com.orlando.androidbase.R
 import com.orlando.androidbase.databinding.ToolbarViewBinding
