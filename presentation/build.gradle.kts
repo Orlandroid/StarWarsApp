@@ -62,7 +62,7 @@ dependencies {
     //Dagger - Hilt
     implementation(Dependencies.DAGGER_HILT)
     kapt(Dependencies.DAGGER_HILT_COMPILER)
-    kapt("androidx.hilt:hilt-compiler:1.1.0")
+    kapt("androidx.hilt:hilt-compiler:1.2.0")
     //Retrofit Dependecies
     implementation(Dependencies.RETROFIT)
     implementation(Dependencies.RETROFIT_CONVERTER_GSON)
@@ -81,6 +81,6 @@ dependencies {
     annotationProcessor(Dependencies.GLIDE_COMPILER)
     implementation(Dependencies.SWIPE_REFRESH_LAYOUT)
     implementation(Dependencies.CIRCULAR_IMAGE_VIEW)
-    val paging_version = "3.2.1"
+    val paging_version = "3.3.2"
     implementation("androidx.paging:paging-runtime-ktx:$paging_version")
 }

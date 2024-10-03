@@ -24,7 +24,7 @@ object Versions {
     const val ROOM_VERSION = "2.6.1"
     const val VIEW_MODEL_VERSION = "2.2.0"
     const val LIVE_DATA_VERSION = "2.2.0"
-    const val NAVIGATION_VERSION = "2.7.6"
+    const val NAVIGATION_VERSION = "2.8.2"
 }
 
 object Dependencies {
@@ -38,8 +38,8 @@ object Dependencies {
     const val ANDROIDX_LIFECYCLE_EXTENSIONS = "androidx.lifecycle:lifecycle-extensions:${Versions.ANDROIDX_LIFECYCLE_VERSION}"
     const val CARDVIEW = "androidx.cardview:cardview${Versions.CARDVIEW_VERSION}"
     const val DRAWER_LAYOUT = "androidx.drawerlayout:drawerlayout:${Versions.DRAWER_VERSION}"
-    const val DAGGER_HILT = "com.google.dagger:hilt-android:2.46.1"
-    const val DAGGER_HILT_COMPILER = "com.google.dagger:hilt-android-compiler:2.46.1"
+    const val DAGGER_HILT = "com.google.dagger:hilt-android:2.49"
+    const val DAGGER_HILT_COMPILER = "com.google.dagger:hilt-android-compiler:2.49"
     const val GLIDE = "com.github.bumptech.glide:glide:${Versions.GLIDE_VERSION}"
     const val GLIDE_COMPILER = "com.github.bumptech.glide:compiler:${Versions.GLIDE_VERSION}"
     const val KOIN = "org.koin:koin-core:${Versions.KOIN_VERSION}"
