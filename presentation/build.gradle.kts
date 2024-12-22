@@ -49,7 +49,7 @@ android {
 dependencies {
     implementation(project(BuildModules.DATA))
     implementation(project(BuildModules.DOMAIN))
-    implementation("androidx.core:core-ktx:1.13.1")
+    implementation("androidx.core:core-ktx:1.15.0")
     implementation("androidx.appcompat:appcompat:1.7.0")
     implementation(Dependencies.ANDROID_MATERIAL)
     implementation(Dependencies.ANDROIDX_CONSTRAINT_LAYOUT)
@@ -81,6 +81,6 @@ dependencies {
     annotationProcessor(Dependencies.GLIDE_COMPILER)
     implementation(Dependencies.SWIPE_REFRESH_LAYOUT)
     implementation(Dependencies.CIRCULAR_IMAGE_VIEW)
-    val paging_version = "3.3.2"
+    val paging_version = "3.3.5"
     implementation("androidx.paging:paging-runtime-ktx:$paging_version")
 }
