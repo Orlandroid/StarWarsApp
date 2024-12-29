@@ -1,5 +1,5 @@
 buildscript {
-    val kotlinVersion by extra("2.0.20")
+    val kotlinVersion by extra("1.9.25")
     repositories {
         google()
         mavenCentral()
@@ -17,8 +17,8 @@ buildscript {
 plugins {
     id("com.android.application") version "8.7.3" apply false
     id("com.android.library") version "8.7.3" apply false
-    id("org.jetbrains.kotlin.android") version "2.0.20" apply false
-    id("org.jetbrains.kotlin.jvm") version "2.0.20" apply false
+    id("org.jetbrains.kotlin.android") version "1.9.25" apply false
+    id("org.jetbrains.kotlin.jvm") version "1.9.25" apply false
 }
 
 tasks.register("clean", Delete::class) {

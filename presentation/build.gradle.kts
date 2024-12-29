@@ -27,6 +27,10 @@ android {
     buildFeatures {
         viewBinding = true
         dataBinding = true
+        compose = true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.5.15"
     }
     buildTypes {
         getByName("release") {
@@ -83,4 +87,16 @@ dependencies {
     implementation(Dependencies.CIRCULAR_IMAGE_VIEW)
     val paging_version = "3.3.5"
     implementation("androidx.paging:paging-runtime-ktx:$paging_version")
+
+    val  composeBom = platform("androidx.compose:compose-bom:2024.09.02")
+    implementation(composeBom)
+    androidTestImplementation(composeBom)
+
+    implementation("androidx.compose.runtime:runtime")
+    implementation("androidx.compose.ui:ui")
+    implementation("androidx.compose.foundation:foundation")
+    implementation("androidx.compose.foundation:foundation-layout")
+    implementation("androidx.compose.material3:material3")
+    implementation("androidx.compose.runtime:runtime-livedata")
+    implementation("androidx.compose.ui:ui-tooling")
 }
