@@ -7,7 +7,6 @@ import androidx.paging.cachedIn
 import com.orlando.androidbase.entities.remote.ResultPlanet
 import com.orlando.androidbase.presentation.base.BaseViewModel
 import com.orlando.androidbase.presentation.helpers.NetworkHelper
-import com.orlando.data.Repository
 import com.orlando.data.di.CoroutineDispatchers
 import com.orlando.data.pagination.PlanetsPagingSource
 import com.orlando.data.remote.ApiService
@@ -18,7 +17,6 @@ import javax.inject.Inject
 
 @HiltViewModel
 class PlanetsViewModel @Inject constructor(
-    private val repository: Repository,
     private val apiService: ApiService,
     coroutineDispatchers: CoroutineDispatchers,
     networkHelper: NetworkHelper
@@ -35,7 +33,5 @@ class PlanetsViewModel @Inject constructor(
                 planetsPagingSource
             }
         ).flow.cachedIn(viewModelScope)
-
-    fun refreshPlanetsPagingSource() = planetsPagingSource.invalidate()
 
 }

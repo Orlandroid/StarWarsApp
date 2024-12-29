@@ -6,7 +6,8 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
-import com.orlando.androidbase.entities.remote.ResultPeople
+import com.orlando.androidbase.R
+import com.orlando.androidbase.databinding.FragmentVehiclesBinding
 import com.orlando.androidbase.entities.remote.ResultVehicle
 import com.orlando.androidbase.presentation.base.BaseFragment
 import com.orlando.androidbase.presentation.extensions.getError
@@ -16,8 +17,6 @@ import com.orlando.androidbase.presentation.extensions.showErrorApi
 import com.orlando.androidbase.presentation.extensions.toJson
 import com.orlando.androidbase.presentation.extensions.visible
 import com.orlando.androidbase.presentation.features.MainActivity
-import com.orlando.androidbase.R
-import com.orlando.androidbase.databinding.FragmentVehiclesBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch

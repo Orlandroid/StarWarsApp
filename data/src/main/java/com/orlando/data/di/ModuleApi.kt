@@ -36,7 +36,7 @@ abstract class DataModule {
 object ModuleApi {
 
 
-    private const val BASE_URL = "https://swapi.dev/api/"
+    private const val BASE_URL = "https://swapi.py4e.com/api/"
 
     @Singleton
     @Provides

@@ -7,7 +7,6 @@ import androidx.paging.cachedIn
 import com.orlando.androidbase.entities.remote.ResultVehicle
 import com.orlando.androidbase.presentation.base.BaseViewModel
 import com.orlando.androidbase.presentation.helpers.NetworkHelper
-import com.orlando.data.Repository
 import com.orlando.data.di.CoroutineDispatchers
 import com.orlando.data.pagination.VehiclesPagingSource
 import com.orlando.data.remote.ApiService
@@ -18,7 +17,6 @@ import javax.inject.Inject
 
 @HiltViewModel
 class VehiclesViewModel @Inject constructor(
-    private val repository: Repository,
     private val apiService: ApiService,
     coroutineDispatchers: CoroutineDispatchers,
     networkHelper: NetworkHelper
@@ -36,6 +34,5 @@ class VehiclesViewModel @Inject constructor(
             }
         ).flow.cachedIn(viewModelScope)
 
-    fun refreshVehiclesPagingSource() = vehiclesPagingSource.invalidate()
 
 }

@@ -7,7 +7,6 @@ import androidx.paging.cachedIn
 import com.orlando.androidbase.entities.remote.ResultStarship
 import com.orlando.androidbase.presentation.base.BaseViewModel
 import com.orlando.androidbase.presentation.helpers.NetworkHelper
-import com.orlando.data.Repository
 import com.orlando.data.di.CoroutineDispatchers
 import com.orlando.data.pagination.StarshipsPagingSource
 import com.orlando.data.remote.ApiService
@@ -18,7 +17,6 @@ import javax.inject.Inject
 
 @HiltViewModel
 class StarshipViewModel @Inject constructor(
-    private val repository: Repository,
     private val apiService: ApiService,
     coroutineDispatchers: CoroutineDispatchers,
     networkHelper: NetworkHelper
