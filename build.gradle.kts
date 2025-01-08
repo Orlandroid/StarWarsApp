@@ -11,6 +11,7 @@ buildscript {
         val daggerHiltVersion = "2.49"
         classpath("androidx.navigation:navigation-safe-args-gradle-plugin:$navigationVersion")
         classpath("com.google.dagger:hilt-android-gradle-plugin:$daggerHiltVersion")
+        classpath("org.jetbrains.kotlin:kotlin-serialization:$kotlinVersion")
     }
 }
 // Top-level build file where you can add configuration options common to all sub-projects/modules.

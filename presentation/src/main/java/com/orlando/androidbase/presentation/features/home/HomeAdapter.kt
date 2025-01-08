@@ -24,7 +24,7 @@ class HomeAdapter(private val clickOnMenu: (ItemMenu) -> Unit) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(item: ItemMenu) = with(binding) {
             imageMenu.setImageResource(item.image)
-            txtNombreMenu.text = item.title
+            txtNombreMenu.text = binding.root.context.getString(item.title)
         }
     }
 
@@ -49,7 +49,7 @@ class HomeAdapter(private val clickOnMenu: (ItemMenu) -> Unit) :
     data class ItemMenu(
         @DrawableRes
         val image: Int,
-        val title: String
+        val title: Int
     )
 
 
