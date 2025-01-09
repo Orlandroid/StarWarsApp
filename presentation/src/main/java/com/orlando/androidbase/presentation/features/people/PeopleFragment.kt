@@ -32,7 +32,7 @@ class PeopleFragment : BaseFragment<FragmentPeopleBinding>(R.layout.fragment_peo
 
     override fun configureToolbar() = MainActivity.ToolbarConfiguration(
         showToolbar = true,
-        toolbarTitle = getString(R.string.personajes)
+        toolbarTitle = getString(R.string.character)
     )
 
     override fun setUpUi() = with(binding) {

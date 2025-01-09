@@ -30,11 +30,11 @@ import com.orlando.androidbase.presentation.features.components.ImageBackgroundS
 @Composable
 fun HomeScreen(
     modifier: Modifier = Modifier,
-    menus: List<HomeAdapter.ItemMenu>
+    menus: List<HomeAdapter.ItemMenu>,
+    onEvents: (HomeScreenEvents) -> Unit
 ) {
     ImageBackgroundScreen(
-        imageBackgroundScreenConfig =
-        ImageBackgroundScreenConfig(image = R.drawable.stars_bg_full)
+        imageBackgroundScreenConfig = ImageBackgroundScreenConfig(image = R.drawable.stars_bg_full)
     ) {
         Column(modifier.fillMaxWidth()) {
             Image(
@@ -51,6 +51,9 @@ fun HomeScreen(
                 menus.forEach { menu ->
                     item {
                         ItemMenu(menu = menu) {
+                            onMenuClicked(
+                                menu = menu, onEvents = onEvents
+                            )
                         }
                     }
                 }
@@ -59,9 +62,41 @@ fun HomeScreen(
     }
 }
 
+private fun onMenuClicked(
+    menu: HomeAdapter.ItemMenu,
+    onEvents: (HomeScreenEvents) -> Unit
+) {
+    when (menu.menuName) {
+        HomeAdapter.MenuName.CHARACTERS -> {
+            onEvents(HomeScreenEvents.OnClickOnCharacters)
+        }
+
+        HomeAdapter.MenuName.MOVIES -> {
+            onEvents(HomeScreenEvents.OnClickOnMovies)
+        }
+
+        HomeAdapter.MenuName.PLANETS -> {
+            onEvents(HomeScreenEvents.OnClickOnPlanets)
+        }
+
+        HomeAdapter.MenuName.SPECIES -> {
+            onEvents(HomeScreenEvents.OnClickOnSpecies)
+        }
+
+        HomeAdapter.MenuName.STARSHIPS -> {
+            onEvents(HomeScreenEvents.OnClickOnStarShips)
+        }
+
+        HomeAdapter.MenuName.VEHICLES -> {
+            onEvents(HomeScreenEvents.OnClickOnVehicles)
+        }
+    }
+}
+
 @Composable
 private fun ItemMenu(
-    modifier: Modifier = Modifier, menu: HomeAdapter.ItemMenu, clickOnItem: () -> Unit
+    modifier: Modifier = Modifier,
+    menu: HomeAdapter.ItemMenu, clickOnItem: () -> Unit
 ) {
     Card(
         modifier = modifier
@@ -96,20 +131,30 @@ private fun ItemMenu(
 @Preview(showBackground = true)
 fun HomeScreenPreview(modifier: Modifier = Modifier) {
     HomeScreen(
+        modifier = Modifier,
         menus = listOf(
             HomeAdapter.ItemMenu(
                 image = R.drawable.films,
-                title = R.string.unknown
-            ), HomeAdapter.ItemMenu(
+                title = R.string.unknown,
+                menuName = HomeAdapter.MenuName.VEHICLES
+            ),
+            HomeAdapter.ItemMenu(
                 image = R.drawable.films,
-                title = R.string.unknown
-            ), HomeAdapter.ItemMenu(
+                title = R.string.unknown,
+                menuName = HomeAdapter.MenuName.VEHICLES
+            ),
+            HomeAdapter.ItemMenu(
                 image = R.drawable.films,
-                title = R.string.unknown
-            ), HomeAdapter.ItemMenu(
+                title = R.string.unknown,
+                menuName = HomeAdapter.MenuName.VEHICLES
+            ),
+            HomeAdapter.ItemMenu(
                 image = R.drawable.films,
-                title = R.string.unknown
+                title = R.string.unknown,
+                menuName = HomeAdapter.MenuName.VEHICLES
             )
-        )
+        ),
+        onEvents = {}
     )
+
 }

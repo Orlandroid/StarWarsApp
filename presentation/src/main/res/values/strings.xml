@@ -36,7 +36,7 @@
     <string name="_4">4</string>
     <string name="estreno_1977_05_25">Estreno: 1977-05-25</string>
     <string name="detalle">Detalle</string>
-    <string name="personajes">Personajes</string>
+    <string name="characters">Characters</string>
     <string name="climate_arid">climate:  arid</string>
     <string name="terrain_grasslands_mountains">terrain:  grasslands, mountains</string>
     <string name="population">Population:</string>

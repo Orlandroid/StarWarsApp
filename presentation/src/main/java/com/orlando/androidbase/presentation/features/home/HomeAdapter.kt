@@ -49,8 +49,18 @@ class HomeAdapter(private val clickOnMenu: (ItemMenu) -> Unit) :
     data class ItemMenu(
         @DrawableRes
         val image: Int,
-        val title: Int
+        val title: Int,
+        val menuName: MenuName
     )
+
+    enum class MenuName {
+        CHARACTERS,
+        MOVIES,
+        PLANETS,
+        SPECIES,
+        STARSHIPS,
+        VEHICLES
+    }
 
 
 }
