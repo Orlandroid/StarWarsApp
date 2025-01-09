@@ -27,6 +27,8 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setUpNavController()
+        //to to open compose activity
+//        startActivity( Intent(this, ComponentActivity::class.java))
     }
 
     fun showProgress() {
