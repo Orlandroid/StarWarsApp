@@ -91,4 +91,5 @@
     <string name="fair">fair</string>
     <string name="retry">Reintentar</string>
     <string name="detail">Detail</string>
+    <string name="strFetchingDataFromServer">Fetching data from server</string>
 </resources>

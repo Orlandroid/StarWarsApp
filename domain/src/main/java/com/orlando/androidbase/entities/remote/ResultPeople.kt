@@ -18,3 +18,10 @@ data class ResultPeople(
     val url: String,
     val vehicles: List<String>
 )
+
+data class People(
+    val name: String,
+    val gender: String
+)
+
+fun ResultPeople.toPeople() = People(name = name, gender = gender)

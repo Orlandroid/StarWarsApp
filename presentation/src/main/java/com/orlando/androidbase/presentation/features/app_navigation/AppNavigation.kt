@@ -17,7 +17,7 @@ import com.orlando.androidbase.presentation.features.home.HomeScreen
 import com.orlando.androidbase.presentation.features.home.HomeScreenSideEffects
 import com.orlando.androidbase.presentation.features.home.HomeViewModel
 import com.orlando.androidbase.presentation.features.planets.PlanetsScreen
-import com.orlando.androidbase.presentation.features.species.CharacterScreen
+import com.orlando.androidbase.presentation.features.people.CharacterScreen
 import com.orlando.androidbase.presentation.features.species.SpeciesScreen
 import com.orlando.androidbase.presentation.features.starships.StarShipScreen
 import com.orlando.androidbase.presentation.features.vehicles.VehiclesScreen
