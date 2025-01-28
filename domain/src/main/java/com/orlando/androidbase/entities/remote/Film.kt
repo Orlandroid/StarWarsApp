@@ -17,3 +17,11 @@ data class Film(
     val url: String,
     val vehicles: List<String>
 )
+
+data class Movie(
+    val title: String,
+    val episodeId: String,
+    val release: String
+)
+
+fun Film.toMovie() = Movie(title = title, episodeId = episode_id.toString(), release = release_date)

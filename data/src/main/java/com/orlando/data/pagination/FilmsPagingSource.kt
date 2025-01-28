@@ -19,11 +19,11 @@ class FilmsPagingSource(
     ): LoadResult<Int, Film> {
         return try {
             val currentPage = params.key ?: START_PAGE
-            val data = service.getFilms(currentPage.toString()).results
+            val data = service.getFilms(currentPage.toString())
             LoadResult.Page(
-                data = data,
+                data = data.results,
                 prevKey = if (currentPage == START_PAGE) null else currentPage - 1,
-                nextKey = if (data.isEmpty()) null else currentPage.plus(1)
+                nextKey = if (data.next == null) null else currentPage.plus(1)
             )
         } catch (e: Exception) {
             if (e is HttpException) {

@@ -1,6 +1,5 @@
 package com.orlando.data.pagination
 
-import android.util.Log
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.orlando.androidbase.entities.remote.ResultPeople
@@ -25,7 +24,7 @@ class CharactersPagingSource(
             LoadResult.Page(
                 data = data.results,
                 prevKey = if (currentPage == START_PAGE) null else currentPage - 1,
-                nextKey = if (data.results.isEmpty()) null else currentPage.plus(1)
+                nextKey = if (data.next == null) null else currentPage.plus(1)
             )
         } catch (e: Exception) {
             if (e is HttpException) {
