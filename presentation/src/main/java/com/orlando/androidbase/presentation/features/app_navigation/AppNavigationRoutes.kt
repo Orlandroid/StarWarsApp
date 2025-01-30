@@ -1,5 +1,6 @@
 package com.orlando.androidbase.presentation.features.app_navigation
 
+import com.orlando.androidbase.entities.remote.People
 import kotlinx.serialization.Serializable
 
 sealed class AppNavigationRoutes {
@@ -8,6 +9,9 @@ sealed class AppNavigationRoutes {
 
     @Serializable
     data object CharactersScreenRoute
+
+    @Serializable
+    data class CharactersScreenDetailRoute(val people: People)
 
     @Serializable
     data object MoviesScreenRoute

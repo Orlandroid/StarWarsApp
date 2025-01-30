@@ -9,18 +9,23 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.toRoute
 import com.orlando.androidbase.R
+import com.orlando.androidbase.entities.remote.CustomNavType
+import com.orlando.androidbase.entities.remote.People
 import com.orlando.androidbase.presentation.base.BaseComposeScreen
+import com.orlando.androidbase.presentation.features.character_detail.CharacterDetailScreen
 import com.orlando.androidbase.presentation.features.components.ToolbarConfiguration
 import com.orlando.androidbase.presentation.features.flims.MoviesScreen
 import com.orlando.androidbase.presentation.features.home.HomeScreen
 import com.orlando.androidbase.presentation.features.home.HomeScreenSideEffects
 import com.orlando.androidbase.presentation.features.home.HomeViewModel
-import com.orlando.androidbase.presentation.features.planets.PlanetsScreen
 import com.orlando.androidbase.presentation.features.people.CharacterScreen
+import com.orlando.androidbase.presentation.features.planets.PlanetsScreen
 import com.orlando.androidbase.presentation.features.species.SpeciesScreen
 import com.orlando.androidbase.presentation.features.starships.StarShipScreen
 import com.orlando.androidbase.presentation.features.vehicles.VehiclesScreen
+import kotlin.reflect.typeOf
 
 @Composable
 fun AppNavigation() {
@@ -78,7 +83,17 @@ fun AppNavigation() {
                 navController = navController,
                 toolbarConfiguration = ToolbarConfiguration(title = stringResource(R.string.characters))
             ) {
-                CharacterScreen()
+                CharacterScreen {
+                    navController.navigate(AppNavigationRoutes.CharactersScreenDetailRoute(it))
+                }
+            }
+        }
+        composable<AppNavigationRoutes.CharactersScreenDetailRoute>(
+            typeMap = mapOf(typeOf<People>() to CustomNavType.peopleType)
+        ) {
+            val arguments = it.toRoute<AppNavigationRoutes.CharactersScreenDetailRoute>()
+            BaseComposeScreen(navController = navController) {
+                CharacterDetailScreen(people = arguments.people)
             }
         }
         composable<AppNavigationRoutes.MoviesScreenRoute> {

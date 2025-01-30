@@ -34,7 +34,8 @@ import com.orlando.androidbase.presentation.util.utilimages.data.getPeopleImages
 
 @Composable
 fun CharacterScreen(
-    viewModel: PeopleViewModel = hiltViewModel()
+    viewModel: PeopleViewModel = hiltViewModel(),
+    clickOnItem: (people: People) -> Unit = {}
 ) {
     val characters = viewModel.getCharactersPagingSource.collectAsLazyPagingItems()
     LazyColumn(modifier = Modifier.fillMaxWidth()) {
@@ -45,7 +46,8 @@ fun CharacterScreen(
             characters[index]?.let { character ->
                 ItemCharacter(
                     modifier = Modifier.fillMaxWidth(),
-                    character = character.toPeople()
+                    character = character.toPeople(),
+                    clickOnItem = clickOnItem
                 )
             }
         }
@@ -77,12 +79,15 @@ fun CharacterScreen(
 
 @Composable
 fun ItemCharacter(
-    modifier: Modifier = Modifier, character: People
+    modifier: Modifier = Modifier,
+    character: People,
+    clickOnItem: (people: People) -> Unit
 ) {
     Card(
         modifier = modifier.padding(8.dp),
         shape = RoundedCornerShape(16.dp),
-        border = BorderStroke(1.dp, color = Color.Black)
+        border = BorderStroke(1.dp, color = Color.Black),
+        onClick = { clickOnItem(character) }
     ) {
         val image = getImageFromJson(character.name, getPeopleImages())
         Row(Modifier.fillMaxWidth()) {
@@ -117,5 +122,15 @@ fun ItemCharacter(
 @Composable
 @Preview(showBackground = true)
 fun ItemCharacterPreview(modifier: Modifier = Modifier) {
-    ItemCharacter(character = People(name = "Luke Skywalker", gender = "Male"))
+    ItemCharacter(
+        character = People(
+            name = "Luke Skywalker",
+            gender = "Male",
+            height = "188",
+            hairColor = "blond",
+            mass = "84",
+            skinColor = "fair"
+        ),
+        clickOnItem = {}
+    )
 }
