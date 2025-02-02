@@ -63,7 +63,7 @@ fun MovieDetailScreen(movie: Movie) {
 
 
 @Composable
-fun RowItem(
+private fun RowItem(
     key: String,
     value: String
 ) {

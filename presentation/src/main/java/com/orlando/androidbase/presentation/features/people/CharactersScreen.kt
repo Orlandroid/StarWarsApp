@@ -20,15 +20,13 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.paging.LoadState
 import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.itemKey
 import coil.compose.AsyncImage
 import com.orlando.androidbase.R
 import com.orlando.androidbase.entities.remote.People
 import com.orlando.androidbase.entities.remote.toPeople
-import com.orlando.androidbase.presentation.features.components.LoadingNextPageItem
-import com.orlando.androidbase.presentation.features.components.PageLoader
+import com.orlando.androidbase.presentation.extensions.LoadState
 import com.orlando.androidbase.presentation.util.getImageFromJson
 import com.orlando.androidbase.presentation.util.utilimages.data.getPeopleImages
 
@@ -51,28 +49,8 @@ fun CharacterScreen(
                 )
             }
         }
-        /// Todo Make one like extension functions because this is gonna be the same code in all the screens
-        when {
-            characters.loadState.refresh is LoadState.Loading -> {
-                item { PageLoader(modifier = Modifier.fillParentMaxSize()) }
-            }
-
-            characters.loadState.refresh is LoadState.Error -> {
-                item { androidx.compose.material.Text("Error") }
-            }
-
-            characters.loadState.append is LoadState.Loading -> {
-                item {
-                    Spacer(Modifier.height(16.dp))
-                    LoadingNextPageItem(modifier = Modifier)
-                }
-            }
-
-            characters.loadState.append is LoadState.Error -> {
-                item {
-                    androidx.compose.material.Text("Error")
-                }
-            }
+        item {
+            characters.LoadState(Modifier.fillParentMaxSize())
         }
     }
 }
