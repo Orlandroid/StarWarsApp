@@ -1,5 +1,7 @@
 package com.orlando.androidbase.entities.remote
 
+import kotlinx.serialization.Serializable
+
 
 data class Film(
     val characters: List<String>,
@@ -18,10 +20,15 @@ data class Film(
     val vehicles: List<String>
 )
 
+@Serializable
 data class Movie(
     val title: String,
-    val episodeId: String,
+    val producer: String,
     val release: String
 )
 
-fun Film.toMovie() = Movie(title = title, episodeId = episode_id.toString(), release = release_date)
+fun Film.toMovie() = Movie(
+    title = title,
+    producer = producer,
+    release = release_date
+)

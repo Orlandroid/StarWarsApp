@@ -12,10 +12,12 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.toRoute
 import com.orlando.androidbase.R
 import com.orlando.androidbase.entities.remote.CustomNavType
+import com.orlando.androidbase.entities.remote.Movie
 import com.orlando.androidbase.entities.remote.People
 import com.orlando.androidbase.presentation.base.BaseComposeScreen
 import com.orlando.androidbase.presentation.features.character_detail.CharacterDetailScreen
 import com.orlando.androidbase.presentation.features.components.ToolbarConfiguration
+import com.orlando.androidbase.presentation.features.flims.MovieDetailScreen
 import com.orlando.androidbase.presentation.features.flims.MoviesScreen
 import com.orlando.androidbase.presentation.features.home.HomeScreen
 import com.orlando.androidbase.presentation.features.home.HomeScreenSideEffects
@@ -101,7 +103,20 @@ fun AppNavigation() {
                 navController = navController,
                 toolbarConfiguration = ToolbarConfiguration(title = stringResource(R.string.flims))
             ) {
-                MoviesScreen()
+                MoviesScreen {
+                    navController.navigate(AppNavigationRoutes.MovieDetailScreenRoute(it))
+                }
+            }
+        }
+        composable<AppNavigationRoutes.MovieDetailScreenRoute>(
+            typeMap = mapOf(typeOf<Movie>() to CustomNavType.movieType)
+        ) {
+            val arguments = it.toRoute<AppNavigationRoutes.MovieDetailScreenRoute>()
+            BaseComposeScreen(
+                navController = navController,
+                toolbarConfiguration = ToolbarConfiguration(title = stringResource(R.string.flims))
+            ) {
+                MovieDetailScreen(movie = arguments.movie)
             }
         }
         composable<AppNavigationRoutes.PlanetsScreenRoute> {

@@ -39,7 +39,10 @@ import com.orlando.androidbase.presentation.util.utilimages.data.getFilmsImages
 
 
 @Composable
-fun MoviesScreen(viewModel: FilmsViewModel = hiltViewModel()) {
+fun MoviesScreen(
+    viewModel: FilmsViewModel = hiltViewModel(),
+    clickOnItem: (Movie) -> Unit
+) {
     val movies = viewModel.getFilmsPagingSource.collectAsLazyPagingItems()
     LazyColumn(modifier = Modifier.fillMaxWidth()) {
         items(
@@ -49,7 +52,8 @@ fun MoviesScreen(viewModel: FilmsViewModel = hiltViewModel()) {
             movies[index]?.let { movie ->
                 ItemMovie(
                     modifier = Modifier.fillMaxWidth(),
-                    movie = movie.toMovie()
+                    movie = movie.toMovie(),
+                    onClick = clickOnItem
                 )
             }
         }
@@ -83,12 +87,14 @@ fun MoviesScreen(viewModel: FilmsViewModel = hiltViewModel()) {
 @Composable
 fun ItemMovie(
     modifier: Modifier = Modifier,
-    movie: Movie
+    movie: Movie,
+    onClick: ((Movie)) -> Unit
 ) {
     Card(
         modifier = modifier.padding(8.dp),
         shape = RoundedCornerShape(16.dp),
-        border = BorderStroke(1.dp, color = Color.Black)
+        border = BorderStroke(1.dp, color = Color.Black),
+        onClick = { onClick(movie) }
     ) {
         val image = getImageFromJson(movie.title, getFilmsImages())
         Row(
@@ -124,7 +130,7 @@ fun ItemMovie(
                     Row(modifier = Modifier.fillMaxWidth()) {
                         Text(text = stringResource(R.string.episode))
                         Spacer(Modifier.width(16.dp))
-                        Text(text = movie.episodeId)
+                        Text(text = movie.producer)
                     }
                     Row(modifier = Modifier.fillMaxWidth()) {
                         Text(text = stringResource(R.string.episode))
@@ -140,5 +146,12 @@ fun ItemMovie(
 @Composable
 @Preview(showBackground = true)
 fun ItemMoviePreview(modifier: Modifier = Modifier) {
-    ItemMovie(movie = Movie(title = "Android", episodeId = "Episode", release = "release"))
+    ItemMovie(
+        movie = Movie(
+            title = "Android",
+            producer = "Episode",
+            release = "release"
+        ),
+        onClick = {}
+    )
 }
