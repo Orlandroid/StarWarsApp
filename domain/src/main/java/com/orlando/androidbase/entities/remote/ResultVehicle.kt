@@ -19,3 +19,10 @@ data class ResultVehicle(
     val url: String,
     val vehicle_class: String
 )
+
+data class Vehicle(
+    val name: String, val model: String, val manufacturer: String
+)
+
+
+fun ResultVehicle.toVehicle() = Vehicle(name = name, model = model, manufacturer = manufacturer)

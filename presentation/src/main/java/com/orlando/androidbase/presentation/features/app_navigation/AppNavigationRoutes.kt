@@ -2,6 +2,7 @@ package com.orlando.androidbase.presentation.features.app_navigation
 
 import com.orlando.androidbase.entities.remote.Movie
 import com.orlando.androidbase.entities.remote.People
+import com.orlando.androidbase.entities.remote.Planet
 import kotlinx.serialization.Serializable
 
 sealed class AppNavigationRoutes {
@@ -22,6 +23,9 @@ sealed class AppNavigationRoutes {
 
     @Serializable
     data object PlanetsScreenRoute
+
+    @Serializable
+    data class PlanetDetailScreen(val planet: Planet)
 
     @Serializable
     data object SpeciesScreenRoute

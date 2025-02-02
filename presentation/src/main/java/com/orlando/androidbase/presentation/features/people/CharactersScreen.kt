@@ -36,7 +36,9 @@ fun CharacterScreen(
     clickOnItem: (people: People) -> Unit = {}
 ) {
     val characters = viewModel.getCharactersPagingSource.collectAsLazyPagingItems()
-    LazyColumn(modifier = Modifier.fillMaxWidth()) {
+    LazyColumn(
+        modifier = Modifier.fillMaxWidth()
+    ) {
         items(
             count = characters.itemCount,
             key = characters.itemKey { it.name }

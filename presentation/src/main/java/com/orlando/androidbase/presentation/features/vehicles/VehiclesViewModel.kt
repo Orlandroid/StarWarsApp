@@ -33,6 +33,4 @@ class VehiclesViewModel @Inject constructor(
                 vehiclesPagingSource
             }
         ).flow.cachedIn(viewModelScope)
-
-
 }

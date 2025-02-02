@@ -18,6 +18,7 @@ class VehiclesPagingSource(
         params: LoadParams<Int>
     ): LoadResult<Int, ResultVehicle> {
         return try {
+            /// Todo add mapping for data to domain class
             val currentPage = params.key ?: START_PAGE
             val data = service.getVehicles(currentPage.toString()).results
             LoadResult.Page(

@@ -1,5 +1,7 @@
 package com.orlando.androidbase.entities.remote
 
+import kotlinx.serialization.Serializable
+
 data class ResultPlanet(
     val climate: String,
     val created: String,
@@ -16,3 +18,15 @@ data class ResultPlanet(
     val terrain: String,
     val url: String
 )
+
+@Serializable
+data class Planet(
+    val name: String,
+    val population: String,
+    val climate: String,
+    val terrain: String
+)
+
+fun ResultPlanet.toPlanet() =
+    Planet(name = name, population = population, climate = climate, terrain = terrain)
+

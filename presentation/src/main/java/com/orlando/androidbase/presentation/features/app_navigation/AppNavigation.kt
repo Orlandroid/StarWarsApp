@@ -10,11 +10,12 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.toRoute
+import androidx.paging.compose.collectAsLazyPagingItems
 import com.orlando.androidbase.R
-import com.orlando.androidbase.entities.remote.CustomNavType
 import com.orlando.androidbase.entities.remote.Movie
 import com.orlando.androidbase.entities.remote.People
 import com.orlando.androidbase.presentation.base.BaseComposeScreen
+import com.orlando.androidbase.presentation.extensions.navigationCustomArgument
 import com.orlando.androidbase.presentation.features.character_detail.CharacterDetailScreen
 import com.orlando.androidbase.presentation.features.components.ToolbarConfiguration
 import com.orlando.androidbase.presentation.features.flims.MovieDetailScreen
@@ -24,10 +25,13 @@ import com.orlando.androidbase.presentation.features.home.HomeScreenSideEffects
 import com.orlando.androidbase.presentation.features.home.HomeViewModel
 import com.orlando.androidbase.presentation.features.people.CharacterScreen
 import com.orlando.androidbase.presentation.features.planets.PlanetsScreen
+import com.orlando.androidbase.presentation.features.planets.PlanetsViewModel
 import com.orlando.androidbase.presentation.features.species.SpeciesScreen
+import com.orlando.androidbase.presentation.features.species.SpeciesViewModel
 import com.orlando.androidbase.presentation.features.starships.StarShipScreen
+import com.orlando.androidbase.presentation.features.starships.StarshipViewModel
 import com.orlando.androidbase.presentation.features.vehicles.VehiclesScreen
-import kotlin.reflect.typeOf
+import com.orlando.androidbase.presentation.features.vehicles.VehiclesViewModel
 
 @Composable
 fun AppNavigation() {
@@ -91,7 +95,9 @@ fun AppNavigation() {
             }
         }
         composable<AppNavigationRoutes.CharactersScreenDetailRoute>(
-            typeMap = mapOf(typeOf<People>() to CustomNavType.peopleType)
+            typeMap = mapOf(
+                navigationCustomArgument<People>()
+            )
         ) {
             val arguments = it.toRoute<AppNavigationRoutes.CharactersScreenDetailRoute>()
             BaseComposeScreen(navController = navController) {
@@ -109,7 +115,9 @@ fun AppNavigation() {
             }
         }
         composable<AppNavigationRoutes.MovieDetailScreenRoute>(
-            typeMap = mapOf(typeOf<Movie>() to CustomNavType.movieType)
+            typeMap = mapOf(
+                navigationCustomArgument<Movie>()
+            )
         ) {
             val arguments = it.toRoute<AppNavigationRoutes.MovieDetailScreenRoute>()
             BaseComposeScreen(
@@ -120,35 +128,57 @@ fun AppNavigation() {
             }
         }
         composable<AppNavigationRoutes.PlanetsScreenRoute> {
+            val viewModel: PlanetsViewModel = hiltViewModel()
+            val planets = viewModel.getPlanetsPagingSource.collectAsLazyPagingItems()
             BaseComposeScreen(
                 navController = navController,
                 toolbarConfiguration = ToolbarConfiguration(title = stringResource(R.string.planets))
             ) {
-                PlanetsScreen()
+                PlanetsScreen(
+                    planets = planets,
+                    clickOnItem = {
+                        navController.navigate(AppNavigationRoutes.PlanetsScreenRoute)
+                    }
+                )
             }
         }
         composable<AppNavigationRoutes.SpeciesScreenRoute> {
+            val viewModel: SpeciesViewModel = hiltViewModel()
+            val species = viewModel.getSpeciesPagingSource.collectAsLazyPagingItems()
             BaseComposeScreen(
                 navController = navController,
                 toolbarConfiguration = ToolbarConfiguration(title = stringResource(R.string.species))
             ) {
-                SpeciesScreen()
+                SpeciesScreen(
+                    species = species,
+                    clickOnItem = {}
+                )
             }
         }
         composable<AppNavigationRoutes.StarShipScreenRoute> {
+            val viewModel: StarshipViewModel = hiltViewModel()
+            val starShips = viewModel.getStarshipsPagingSource.collectAsLazyPagingItems()
             BaseComposeScreen(
                 navController = navController,
                 toolbarConfiguration = ToolbarConfiguration(title = stringResource(R.string.startships))
             ) {
-                StarShipScreen()
+                StarShipScreen(
+                    starShips = starShips,
+                    clickOnItem = {}
+                )
             }
         }
         composable<AppNavigationRoutes.VehiclesScreenRoute> {
+            val viewModel: VehiclesViewModel = hiltViewModel()
+            val vehicles = viewModel.getVehiclesPagingSource.collectAsLazyPagingItems()
             BaseComposeScreen(
                 navController = navController,
                 toolbarConfiguration = ToolbarConfiguration(title = stringResource(R.string.vehicles))
             ) {
-                VehiclesScreen()
+                VehiclesScreen(
+                    vehicles = vehicles,
+                    clickOnItem = {}
+                )
             }
         }
     }

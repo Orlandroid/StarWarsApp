@@ -45,45 +45,4 @@ fun ResultPeople.toPeople() = People(
     skinColor = skin_color
 )
 
-object CustomNavType {
-
-    val peopleType = object : NavType<People>(
-        isNullableAllowed = false
-    ) {
-        override fun get(bundle: Bundle, key: String): People? {
-            return Json.decodeFromString(bundle.getString(key) ?: return null)
-        }
-
-        override fun parseValue(value: String): People {
-            return Json.decodeFromString(Uri.decode(value))
-        }
-
-        override fun serializeAsValue(value: People): String {
-            return Uri.encode(Json.encodeToString(value))
-        }
-
-        override fun put(bundle: Bundle, key: String, value: People) {
-            bundle.putString(key, Json.encodeToString(value))
-        }
-    }
-
-    val movieType = object : NavType<Movie>(isNullableAllowed = false) {
-        override fun get(bundle: Bundle, key: String): Movie? {
-            return Json.decodeFromString(bundle.getString(key) ?: return null)
-        }
-
-        override fun parseValue(value: String): Movie {
-            return Json.decodeFromString(Uri.decode(value))
-        }
-
-        override fun put(bundle: Bundle, key: String, value: Movie) {
-            bundle.putString(key, Json.encodeToString(value))
-        }
-
-        override fun serializeAsValue(value: Movie): String {
-            return Uri.encode(Json.encodeToString(value))
-        }
-
-    }
-}
 

@@ -21,3 +21,11 @@ data class ResultStarship(
     val starship_class: String,
     val url: String
 )
+
+data class Starship(
+    val name: String,
+    val manufacturer: String,
+    val model: String
+)
+
+fun ResultStarship.toStarship() = Starship(name = name, manufacturer = manufacturer, model = model)

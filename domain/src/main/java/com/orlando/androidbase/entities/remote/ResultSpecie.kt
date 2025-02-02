@@ -18,3 +18,7 @@ data class ResultSpecie(
     val skin_colors: String,
     val url: String
 )
+
+data class Specie(val name: String)
+
+fun ResultSpecie.toSpecie() = Specie(name = name)
