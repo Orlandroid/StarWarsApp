@@ -4,7 +4,7 @@ import androidx.lifecycle.viewModelScope
 import androidx.paging.Pager
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
-import com.orlando.androidbase.entities.remote.ResultPlanet
+import com.orlando.androidbase.entities.remote.Planet
 import com.orlando.androidbase.presentation.base.BaseViewModel
 import com.orlando.androidbase.presentation.helpers.NetworkHelper
 import com.orlando.data.di.CoroutineDispatchers
@@ -25,7 +25,7 @@ class PlanetsViewModel @Inject constructor(
 
     private lateinit var planetsPagingSource: PlanetsPagingSource
 
-    val getPlanetsPagingSource: Flow<PagingData<ResultPlanet>> =
+    val getPlanetsPagingSource: Flow<PagingData<Planet>> =
         Pager(
             config = getPagingConfig(),
             pagingSourceFactory = {

@@ -2,13 +2,14 @@ package com.orlando.data.pagination
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import com.orlando.androidbase.entities.remote.ResultPlanet
+import com.orlando.androidbase.entities.remote.Planet
+import com.orlando.androidbase.entities.remote.toPlanet
 import com.orlando.data.remote.ApiService
 import retrofit2.HttpException
 
 class PlanetsPagingSource(
     private val service: ApiService
-) : PagingSource<Int, ResultPlanet>() {
+) : PagingSource<Int, Planet>() {
 
     companion object {
         private const val START_PAGE = 1
@@ -16,10 +17,10 @@ class PlanetsPagingSource(
 
     override suspend fun load(
         params: LoadParams<Int>
-    ): LoadResult<Int, ResultPlanet> {
+    ): LoadResult<Int, Planet> {
         return try {
             val currentPage = params.key ?: START_PAGE
-            val data = service.getPlanets(currentPage.toString()).results
+            val data = service.getPlanets(currentPage.toString()).results.map { it.toPlanet() }
             LoadResult.Page(
                 data = data,
                 prevKey = if (currentPage == START_PAGE) null else currentPage - 1,
@@ -36,7 +37,7 @@ class PlanetsPagingSource(
         }
     }
 
-    override fun getRefreshKey(state: PagingState<Int, ResultPlanet>): Int? {
+    override fun getRefreshKey(state: PagingState<Int, Planet>): Int? {
         return state.anchorPosition?.let { anchorPosition ->
             val anchorPage = state.closestPageToPosition(anchorPosition)
             anchorPage?.prevKey?.plus(1) ?: anchorPage?.nextKey?.minus(1)

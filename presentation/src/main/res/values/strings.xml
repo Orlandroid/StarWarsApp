@@ -39,9 +39,9 @@
     <string name="characters">Characters</string>
     <string name="climate_arid">climate:  arid</string>
     <string name="terrain_grasslands_mountains">terrain:  grasslands, mountains</string>
-    <string name="population">Population:</string>
-    <string name="climate">Climate:</string>
-    <string name="terrain">Terrain:</string>
+    <string name="population">Population</string>
+    <string name="climate">Climate</string>
+    <string name="terrain">Terrain</string>
     <string name="_200000">200000</string>
     <string name="arid">arid</string>
     <string name="desert">desert</string>

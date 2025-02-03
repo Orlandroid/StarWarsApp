@@ -24,6 +24,7 @@ import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import com.orlando.androidbase.R
 import com.orlando.androidbase.entities.remote.Movie
+import com.orlando.androidbase.presentation.extensions.debugPlaceholder
 import com.orlando.androidbase.presentation.util.getImageFromJson
 import com.orlando.androidbase.presentation.util.utilimages.data.getFilmsImages
 
@@ -43,6 +44,7 @@ fun MovieDetailScreen(movie: Movie) {
                 .height(300.dp)
                 .padding(16.dp),
             model = image,
+            placeholder = debugPlaceholder(R.drawable.films),
             error = painterResource(R.drawable.films),
             contentDescription = null
         )

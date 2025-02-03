@@ -27,6 +27,7 @@ import com.orlando.androidbase.R
 import com.orlando.androidbase.entities.remote.People
 import com.orlando.androidbase.entities.remote.toPeople
 import com.orlando.androidbase.presentation.extensions.LoadState
+import com.orlando.androidbase.presentation.extensions.debugPlaceholder
 import com.orlando.androidbase.presentation.util.getImageFromJson
 import com.orlando.androidbase.presentation.util.utilimages.data.getPeopleImages
 
@@ -76,6 +77,7 @@ fun ItemCharacter(
                 model = image.ifEmpty {
                     R.drawable.startwars
                 },
+                placeholder = debugPlaceholder(R.drawable.startwars),
                 contentDescription = null
             )
             Column(

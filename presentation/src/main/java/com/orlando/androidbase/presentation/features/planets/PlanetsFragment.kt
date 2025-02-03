@@ -52,7 +52,7 @@ class PlanetsFragment : BaseFragment<FragmentPlanetsBinding>(R.layout.fragment_p
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.getPlanetsPagingSource.collectLatest { characters ->
-                    planetsAdapter.submitData(lifecycle, characters)
+//                    planetsAdapter.submitData(lifecycle, characters)
                 }
             }
         }

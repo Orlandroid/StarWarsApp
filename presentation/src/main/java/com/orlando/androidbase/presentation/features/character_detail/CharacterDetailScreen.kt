@@ -25,6 +25,7 @@ import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import com.orlando.androidbase.R
 import com.orlando.androidbase.entities.remote.People
+import com.orlando.androidbase.presentation.extensions.debugPlaceholder
 import com.orlando.androidbase.presentation.util.getImageFromJson
 import com.orlando.androidbase.presentation.util.utilimages.data.getPeopleImages
 
@@ -44,6 +45,7 @@ fun CharacterDetailScreen(people: People) {
                 .height(300.dp)
                 .padding(16.dp),
             model = image,
+            placeholder = debugPlaceholder(R.drawable.character),
             error = painterResource(R.drawable.character),
             contentDescription = null
         )

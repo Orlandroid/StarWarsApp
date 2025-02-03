@@ -32,6 +32,7 @@ import com.orlando.androidbase.R
 import com.orlando.androidbase.entities.remote.Movie
 import com.orlando.androidbase.entities.remote.toMovie
 import com.orlando.androidbase.presentation.extensions.LoadState
+import com.orlando.androidbase.presentation.extensions.debugPlaceholder
 import com.orlando.androidbase.presentation.util.getImageFromJson
 import com.orlando.androidbase.presentation.util.utilimages.data.getFilmsImages
 
@@ -88,6 +89,7 @@ fun ItemMovie(
                 model = image.ifEmpty {
                     R.drawable.startwars
                 },
+                placeholder = debugPlaceholder(R.drawable.startwars),
                 contentDescription = null
             )
             Column(

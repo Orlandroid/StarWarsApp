@@ -1,6 +1,7 @@
 package com.orlando.androidbase.presentation.features.app_navigation
 
 
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
@@ -14,6 +15,7 @@ import androidx.paging.compose.collectAsLazyPagingItems
 import com.orlando.androidbase.R
 import com.orlando.androidbase.entities.remote.Movie
 import com.orlando.androidbase.entities.remote.People
+import com.orlando.androidbase.entities.remote.Planet
 import com.orlando.androidbase.presentation.base.BaseComposeScreen
 import com.orlando.androidbase.presentation.extensions.navigationCustomArgument
 import com.orlando.androidbase.presentation.features.character_detail.CharacterDetailScreen
@@ -137,10 +139,17 @@ fun AppNavigation() {
                 PlanetsScreen(
                     planets = planets,
                     clickOnItem = {
-                        navController.navigate(AppNavigationRoutes.PlanetsScreenRoute)
+                        navController.navigate(AppNavigationRoutes.PlanetDetailScreen(planet = it))
                     }
                 )
             }
+        }
+        composable<AppNavigationRoutes.PlanetDetailScreen>(
+            typeMap = mapOf(
+                navigationCustomArgument<Planet>()
+            )
+        ) {
+            Text("Planet Detail")
         }
         composable<AppNavigationRoutes.SpeciesScreenRoute> {
             val viewModel: SpeciesViewModel = hiltViewModel()
