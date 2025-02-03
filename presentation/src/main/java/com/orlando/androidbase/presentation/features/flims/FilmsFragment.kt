@@ -52,7 +52,7 @@ class FilmsFragment : BaseFragment<FragmentFlimsBinding>(R.layout.fragment_flims
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.getFilmsPagingSource.collectLatest { characters ->
-                    filmsAdapter.submitData(lifecycle, characters)
+//                    filmsAdapter.submitData(lifecycle, characters)
                 }
             }
         }

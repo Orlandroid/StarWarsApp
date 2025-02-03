@@ -4,7 +4,7 @@ import androidx.lifecycle.viewModelScope
 import androidx.paging.Pager
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
-import com.orlando.androidbase.entities.remote.Film
+import com.orlando.androidbase.entities.remote.Movie
 import com.orlando.androidbase.presentation.base.BaseViewModel
 import com.orlando.androidbase.presentation.helpers.NetworkHelper
 import com.orlando.data.di.CoroutineDispatchers
@@ -25,7 +25,7 @@ class FilmsViewModel @Inject constructor(
 
     private lateinit var filmsPagingSource: FilmsPagingSource
 
-    val getFilmsPagingSource: Flow<PagingData<Film>> =
+    val getFilmsPagingSource: Flow<PagingData<Movie>> =
         Pager(
             config = getPagingConfig(),
             pagingSourceFactory = {

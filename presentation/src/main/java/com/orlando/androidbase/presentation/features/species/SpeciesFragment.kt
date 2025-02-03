@@ -52,7 +52,7 @@ class SpeciesFragment : BaseFragment<FragmentSpeciesBinding>(R.layout.fragment_s
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.getSpeciesPagingSource.collectLatest { characters ->
-                    speciesAdapter.submitData(lifecycle, characters)
+//                    speciesAdapter.submitData(lifecycle, characters)
                 }
             }
         }

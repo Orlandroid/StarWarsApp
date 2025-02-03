@@ -20,11 +20,12 @@ class PlanetsPagingSource(
     ): LoadResult<Int, Planet> {
         return try {
             val currentPage = params.key ?: START_PAGE
-            val data = service.getPlanets(currentPage.toString()).results.map { it.toPlanet() }
+            val result = service.getPlanets(currentPage.toString())
+            val data = result.results.map { it.toPlanet() }
             LoadResult.Page(
                 data = data,
                 prevKey = if (currentPage == START_PAGE) null else currentPage - 1,
-                nextKey = if (data.isEmpty()) null else currentPage.plus(1)
+                nextKey = if (result.next == null) null else currentPage.plus(1)
             )
         } catch (e: Exception) {
             if (e is HttpException) {

@@ -52,7 +52,7 @@ class StarshipsFragment : BaseFragment<FragmentStarshipsBinding>(R.layout.fragme
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.getStarshipsPagingSource.collectLatest { characters ->
-                    starshipsAdapter.submitData(lifecycle, characters)
+//                    starshipsAdapter.submitData(lifecycle, characters)
                 }
             }
         }

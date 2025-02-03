@@ -51,7 +51,7 @@ class VehiclesFragment : BaseFragment<FragmentVehiclesBinding>(R.layout.fragment
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.getVehiclesPagingSource.collectLatest { characters ->
-                    vehiclesAdapter.submitData(lifecycle, characters)
+//                    vehiclesAdapter.submitData(lifecycle, characters)
                 }
             }
         }

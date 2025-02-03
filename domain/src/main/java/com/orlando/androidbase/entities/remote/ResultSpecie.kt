@@ -19,6 +19,16 @@ data class ResultSpecie(
     val url: String
 )
 
-data class Specie(val name: String)
+data class Specie(
+    val name: String,
+    val classification: String,
+    val skinColor: String,
+    val averageLifespan: String
+)
 
-fun ResultSpecie.toSpecie() = Specie(name = name)
+fun ResultSpecie.toSpecie() = Specie(
+    name = name,
+    classification = classification,
+    skinColor = skin_colors,
+    averageLifespan = average_lifespan
+)

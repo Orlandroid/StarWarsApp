@@ -54,7 +54,7 @@ class PeopleFragment : BaseFragment<FragmentPeopleBinding>(R.layout.fragment_peo
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.getCharactersPagingSource.collectLatest { characters ->
-                    peopleAdapter.submitData(lifecycle, characters)
+//                    peopleAdapter.submitData(lifecycle, characters)
                 }
             }
         }

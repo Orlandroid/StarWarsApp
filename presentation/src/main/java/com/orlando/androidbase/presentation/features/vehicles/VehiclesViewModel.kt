@@ -4,7 +4,7 @@ import androidx.lifecycle.viewModelScope
 import androidx.paging.Pager
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
-import com.orlando.androidbase.entities.remote.ResultVehicle
+import com.orlando.androidbase.entities.remote.Vehicle
 import com.orlando.androidbase.presentation.base.BaseViewModel
 import com.orlando.androidbase.presentation.helpers.NetworkHelper
 import com.orlando.data.di.CoroutineDispatchers
@@ -25,7 +25,7 @@ class VehiclesViewModel @Inject constructor(
 
     private lateinit var vehiclesPagingSource: VehiclesPagingSource
 
-    val getVehiclesPagingSource: Flow<PagingData<ResultVehicle>> =
+    val getVehiclesPagingSource: Flow<PagingData<Vehicle>> =
         Pager(
             config = getPagingConfig(),
             pagingSourceFactory = {

@@ -1,11 +1,6 @@
 package com.orlando.androidbase.entities.remote
 
-import android.net.Uri
-import android.os.Bundle
-import androidx.navigation.NavType
 import kotlinx.serialization.Serializable
-import kotlinx.serialization.encodeToString
-import kotlinx.serialization.json.Json
 
 data class ResultPeople(
     val birth_year: String,

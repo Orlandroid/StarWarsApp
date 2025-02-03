@@ -25,7 +25,6 @@ import androidx.paging.compose.itemKey
 import coil.compose.AsyncImage
 import com.orlando.androidbase.R
 import com.orlando.androidbase.entities.remote.People
-import com.orlando.androidbase.entities.remote.toPeople
 import com.orlando.androidbase.presentation.extensions.LoadState
 import com.orlando.androidbase.presentation.extensions.debugPlaceholder
 import com.orlando.androidbase.presentation.util.getImageFromJson
@@ -47,7 +46,7 @@ fun CharacterScreen(
             characters[index]?.let { character ->
                 ItemCharacter(
                     modifier = Modifier.fillMaxWidth(),
-                    character = character.toPeople(),
+                    character = character,
                     clickOnItem = clickOnItem
                 )
             }

@@ -4,7 +4,7 @@ import androidx.lifecycle.viewModelScope
 import androidx.paging.Pager
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
-import com.orlando.androidbase.entities.remote.ResultPeople
+import com.orlando.androidbase.entities.remote.People
 import com.orlando.androidbase.presentation.base.BaseViewModel
 import com.orlando.androidbase.presentation.helpers.NetworkHelper
 import com.orlando.data.di.CoroutineDispatchers
@@ -30,7 +30,7 @@ class PeopleViewModel @Inject constructor(
 
     private lateinit var charactersPagingSource: CharactersPagingSource
 
-    val getCharactersPagingSource: Flow<PagingData<ResultPeople>> =
+    val getCharactersPagingSource: Flow<PagingData<People>> =
         Pager(
             config = getPagingConfig(),
             pagingSourceFactory = {

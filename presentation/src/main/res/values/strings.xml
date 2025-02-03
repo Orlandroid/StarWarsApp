@@ -49,9 +49,9 @@
     <string name="episode">Episode</string>
     <string name="premiere">Premiere</string>
     <string name="_1977_05_25">1977-05-25</string>
-    <string name="model">Model:</string>
+    <string name="model">Model</string>
     <string name="cr90_corvette">CR90 corvette</string>
-    <string name="manufacturer">Manufacturer:</string>
+    <string name="manufacturer">Manufacturer</string>
     <string name="cost">Cost:</string>
     <string name="_3500000">3500000</string>
     <string name="corellian_engineering_corporation">Corellian Engineering Corporation</string>
@@ -62,7 +62,7 @@
     <string name="gary_kurtz_rick_mccallum">Gary Kurtz, Rick McCallum</string>
     <string name="geonosis">Geonosis</string>
     <string name="temperate_arid">temperate, arid</string>
-    <string name="name">Name:</string>
+    <string name="name">Name</string>
     <string name="_0_9_standard">0.9 standard</string>
     <string name="_100000000000">100000000000</string>
     <string name="gravity">Gravity:</string>

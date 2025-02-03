@@ -30,7 +30,6 @@ import androidx.paging.compose.itemKey
 import coil.compose.AsyncImage
 import com.orlando.androidbase.R
 import com.orlando.androidbase.entities.remote.Movie
-import com.orlando.androidbase.entities.remote.toMovie
 import com.orlando.androidbase.presentation.extensions.LoadState
 import com.orlando.androidbase.presentation.extensions.debugPlaceholder
 import com.orlando.androidbase.presentation.util.getImageFromJson
@@ -48,12 +47,12 @@ fun MoviesScreen(
     ) {
         items(
             count = movies.itemCount,
-            key = movies.itemKey { it.episode_id }
+            key = movies.itemKey { it.title }
         ) { index ->
             movies[index]?.let { movie ->
                 ItemMovie(
                     modifier = Modifier.fillMaxWidth(),
-                    movie = movie.toMovie(),
+                    movie = movie,
                     onClick = clickOnItem
                 )
             }
@@ -85,11 +84,13 @@ fun ItemMovie(
 
             ) {
             AsyncImage(
-                modifier = Modifier.size(100.dp),
+                modifier = Modifier
+                    .padding(horizontal = 8.dp)
+                    .size(100.dp),
                 model = image.ifEmpty {
-                    R.drawable.startwars
+                    R.drawable.films
                 },
-                placeholder = debugPlaceholder(R.drawable.startwars),
+                placeholder = debugPlaceholder(R.drawable.films),
                 contentDescription = null
             )
             Column(
