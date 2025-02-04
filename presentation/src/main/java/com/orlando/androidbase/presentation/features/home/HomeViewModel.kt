@@ -44,37 +44,37 @@ class HomeViewModel : ViewModel() {
         _homeScreenSideEffects.send(effect)
     }
 
-    fun getMenus(): List<HomeAdapter.ItemMenu> {
-        val characters = HomeAdapter.ItemMenu(
+    fun getMenus(): List<ItemMenu> {
+        val characters = ItemMenu(
             image = R.drawable.character,
             title = R.string.character,
-            menuName = HomeAdapter.MenuName.CHARACTERS
+            menuName = MenuName.CHARACTERS
         )
-        val films = HomeAdapter.ItemMenu(
+        val films = ItemMenu(
             image = R.drawable.films,
             title = R.string.flims,
-            menuName = HomeAdapter.MenuName.MOVIES
+            menuName = MenuName.MOVIES
         )
-        val planets = HomeAdapter.ItemMenu(
+        val planets = ItemMenu(
             image = R.drawable.planets,
             title = R.string.planets,
-            menuName = HomeAdapter.MenuName.PLANETS
+            menuName = MenuName.PLANETS
         )
-        val species = HomeAdapter.ItemMenu(
+        val species = ItemMenu(
             image = R.drawable.species,
             title = R.string.species,
-            menuName = HomeAdapter.MenuName.SPECIES
+            menuName = MenuName.SPECIES
         )
         val starships =
-            HomeAdapter.ItemMenu(
+            ItemMenu(
                 image = R.drawable.starships,
                 title = R.string.startships,
-                menuName = HomeAdapter.MenuName.STARSHIPS
+                menuName = MenuName.STARSHIPS
             )
-        val vehicles = HomeAdapter.ItemMenu(
+        val vehicles = ItemMenu(
             image = R.drawable.vehicles,
             title = R.string.vehicles,
-            menuName = HomeAdapter.MenuName.VEHICLES
+            menuName = MenuName.VEHICLES
         )
         return listOf(characters, films, planets, species, starships, vehicles)
     }

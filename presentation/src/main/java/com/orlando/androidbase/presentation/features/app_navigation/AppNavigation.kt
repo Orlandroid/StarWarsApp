@@ -22,12 +22,12 @@ import com.orlando.androidbase.presentation.base.BaseComposeScreen
 import com.orlando.androidbase.presentation.extensions.navigationCustomArgument
 import com.orlando.androidbase.presentation.features.character_detail.CharacterDetailScreen
 import com.orlando.androidbase.presentation.features.components.ToolbarConfiguration
-import com.orlando.androidbase.presentation.features.flims.MovieDetailScreen
-import com.orlando.androidbase.presentation.features.flims.MoviesScreen
+import com.orlando.androidbase.presentation.features.movies.MovieDetailScreen
+import com.orlando.androidbase.presentation.features.movies.MoviesScreen
 import com.orlando.androidbase.presentation.features.home.HomeScreen
 import com.orlando.androidbase.presentation.features.home.HomeScreenSideEffects
 import com.orlando.androidbase.presentation.features.home.HomeViewModel
-import com.orlando.androidbase.presentation.features.people.CharacterScreen
+import com.orlando.androidbase.presentation.features.characters.CharacterScreen
 import com.orlando.androidbase.presentation.features.planets.PlanetDetailScreen
 import com.orlando.androidbase.presentation.features.planets.PlanetsScreen
 import com.orlando.androidbase.presentation.features.planets.PlanetsViewModel

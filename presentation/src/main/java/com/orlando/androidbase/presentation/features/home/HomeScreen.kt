@@ -1,5 +1,6 @@
 package com.orlando.androidbase.presentation.features.home
 
+import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -30,7 +31,7 @@ import com.orlando.androidbase.presentation.features.components.ImageBackgroundS
 @Composable
 fun HomeScreen(
     modifier: Modifier = Modifier,
-    menus: List<HomeAdapter.ItemMenu>,
+    menus: List<ItemMenu>,
     onEvents: (HomeScreenEvents) -> Unit
 ) {
     ImageBackgroundScreen(
@@ -63,31 +64,31 @@ fun HomeScreen(
 }
 
 private fun onMenuClicked(
-    menu: HomeAdapter.ItemMenu,
+    menu: ItemMenu,
     onEvents: (HomeScreenEvents) -> Unit
 ) {
     when (menu.menuName) {
-        HomeAdapter.MenuName.CHARACTERS -> {
+        MenuName.CHARACTERS -> {
             onEvents(HomeScreenEvents.OnClickOnCharacters)
         }
 
-        HomeAdapter.MenuName.MOVIES -> {
+        MenuName.MOVIES -> {
             onEvents(HomeScreenEvents.OnClickOnMovies)
         }
 
-        HomeAdapter.MenuName.PLANETS -> {
+        MenuName.PLANETS -> {
             onEvents(HomeScreenEvents.OnClickOnPlanets)
         }
 
-        HomeAdapter.MenuName.SPECIES -> {
+        MenuName.SPECIES -> {
             onEvents(HomeScreenEvents.OnClickOnSpecies)
         }
 
-        HomeAdapter.MenuName.STARSHIPS -> {
+        MenuName.STARSHIPS -> {
             onEvents(HomeScreenEvents.OnClickOnStarShips)
         }
 
-        HomeAdapter.MenuName.VEHICLES -> {
+        MenuName.VEHICLES -> {
             onEvents(HomeScreenEvents.OnClickOnVehicles)
         }
     }
@@ -96,7 +97,7 @@ private fun onMenuClicked(
 @Composable
 private fun ItemMenu(
     modifier: Modifier = Modifier,
-    menu: HomeAdapter.ItemMenu, clickOnItem: () -> Unit
+    menu: ItemMenu, clickOnItem: () -> Unit
 ) {
     Card(
         modifier = modifier
@@ -133,28 +134,43 @@ fun HomeScreenPreview(modifier: Modifier = Modifier) {
     HomeScreen(
         modifier = Modifier,
         menus = listOf(
-            HomeAdapter.ItemMenu(
+            ItemMenu(
                 image = R.drawable.films,
                 title = R.string.unknown,
-                menuName = HomeAdapter.MenuName.VEHICLES
+                menuName = MenuName.VEHICLES
             ),
-            HomeAdapter.ItemMenu(
+            ItemMenu(
                 image = R.drawable.films,
                 title = R.string.unknown,
-                menuName = HomeAdapter.MenuName.VEHICLES
+                menuName = MenuName.VEHICLES
             ),
-            HomeAdapter.ItemMenu(
+            ItemMenu(
                 image = R.drawable.films,
                 title = R.string.unknown,
-                menuName = HomeAdapter.MenuName.VEHICLES
+                menuName = MenuName.VEHICLES
             ),
-            HomeAdapter.ItemMenu(
+            ItemMenu(
                 image = R.drawable.films,
                 title = R.string.unknown,
-                menuName = HomeAdapter.MenuName.VEHICLES
+                menuName = MenuName.VEHICLES
             )
         ),
         onEvents = {}
     )
+}
 
+data class ItemMenu(
+    @DrawableRes
+    val image: Int,
+    val title: Int,
+    val menuName: MenuName
+)
+
+enum class MenuName {
+    CHARACTERS,
+    MOVIES,
+    PLANETS,
+    SPECIES,
+    STARSHIPS,
+    VEHICLES
 }

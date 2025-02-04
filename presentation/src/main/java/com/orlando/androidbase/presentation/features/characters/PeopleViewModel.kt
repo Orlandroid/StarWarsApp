@@ -1,14 +1,14 @@
-package com.orlando.androidbase.presentation.features.flims
+package com.orlando.androidbase.presentation.features.characters
 
 import androidx.lifecycle.viewModelScope
 import androidx.paging.Pager
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
-import com.orlando.androidbase.entities.remote.Movie
+import com.orlando.androidbase.entities.remote.People
 import com.orlando.androidbase.presentation.base.BaseViewModel
 import com.orlando.androidbase.presentation.helpers.NetworkHelper
 import com.orlando.data.di.CoroutineDispatchers
-import com.orlando.data.pagination.FilmsPagingSource
+import com.orlando.data.pagination.CharactersPagingSource
 import com.orlando.data.remote.ApiService
 import com.orlando.data.utils.getPagingConfig
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -16,23 +16,31 @@ import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 @HiltViewModel
-class FilmsViewModel @Inject constructor(
+class PeopleViewModel @Inject constructor(
     private val apiService: ApiService,
     coroutineDispatchers: CoroutineDispatchers,
     networkHelper: NetworkHelper
 ) : BaseViewModel(coroutineDispatchers, networkHelper) {
 
+    private var characterName: String? = null
 
-    private lateinit var filmsPagingSource: FilmsPagingSource
+    init {
+        characterName = null
+    }
 
-    val getFilmsPagingSource: Flow<PagingData<Movie>> =
+    private lateinit var charactersPagingSource: CharactersPagingSource
+
+    val getCharactersPagingSource: Flow<PagingData<People>> =
         Pager(
             config = getPagingConfig(),
             pagingSourceFactory = {
-                filmsPagingSource = FilmsPagingSource(service = apiService)
-                filmsPagingSource
+                charactersPagingSource =
+                    CharactersPagingSource(service = apiService, name = characterName)
+                charactersPagingSource
             }
         ).flow.cachedIn(viewModelScope)
+
+    fun refreshCharactersPagingSource() = charactersPagingSource.invalidate()
 
 
 }

@@ -1,4 +1,4 @@
-package com.orlando.androidbase.presentation.features.flims
+package com.orlando.androidbase.presentation.features.movies
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Arrangement
@@ -111,12 +111,12 @@ fun ItemMovie(
                         .fillMaxWidth(), verticalArrangement = Arrangement.SpaceAround
                 ) {
                     Row(modifier = Modifier.fillMaxWidth()) {
-                        Text(text = stringResource(R.string.producer))
+                        Text(text = stringResource(R.string.producer), fontWeight = FontWeight.Bold)
                         Spacer(Modifier.width(16.dp))
                         Text(text = movie.producer)
                     }
                     Row(modifier = Modifier.fillMaxWidth()) {
-                        Text(text = stringResource(R.string.episode))
+                        Text(text = stringResource(R.string.premiere), fontWeight = FontWeight.Bold)
                         Spacer(Modifier.width(16.dp))
                         Text(text = movie.release)
                     }

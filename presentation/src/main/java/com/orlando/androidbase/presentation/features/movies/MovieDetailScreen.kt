@@ -1,4 +1,4 @@
-package com.orlando.androidbase.presentation.features.flims
+package com.orlando.androidbase.presentation.features.movies
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier

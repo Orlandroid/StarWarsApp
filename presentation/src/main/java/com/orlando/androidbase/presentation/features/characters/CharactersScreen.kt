@@ -1,4 +1,4 @@
-package com.orlando.androidbase.presentation.features.people
+package com.orlando.androidbase.presentation.features.characters
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Column
