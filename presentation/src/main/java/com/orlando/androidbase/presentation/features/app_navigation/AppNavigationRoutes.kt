@@ -25,7 +25,7 @@ sealed class AppNavigationRoutes {
     data object PlanetsScreenRoute
 
     @Serializable
-    data class PlanetDetailScreen(val planet: Planet)
+    data class PlanetDetailScreenRoute(val planet: Planet)
 
     @Serializable
     data object SpeciesScreenRoute

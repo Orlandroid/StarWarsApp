@@ -1,7 +1,6 @@
 package com.orlando.androidbase.presentation.features.app_navigation
 
 
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
@@ -26,6 +25,7 @@ import com.orlando.androidbase.presentation.features.home.HomeScreen
 import com.orlando.androidbase.presentation.features.home.HomeScreenSideEffects
 import com.orlando.androidbase.presentation.features.home.HomeViewModel
 import com.orlando.androidbase.presentation.features.people.CharacterScreen
+import com.orlando.androidbase.presentation.features.planets.PlanetDetailScreen
 import com.orlando.androidbase.presentation.features.planets.PlanetsScreen
 import com.orlando.androidbase.presentation.features.planets.PlanetsViewModel
 import com.orlando.androidbase.presentation.features.species.SpeciesScreen
@@ -102,7 +102,10 @@ fun AppNavigation() {
             )
         ) {
             val arguments = it.toRoute<AppNavigationRoutes.CharactersScreenDetailRoute>()
-            BaseComposeScreen(navController = navController) {
+            BaseComposeScreen(
+                navController = navController,
+                toolbarConfiguration = ToolbarConfiguration(title = arguments.people.name)
+            ) {
                 CharacterDetailScreen(people = arguments.people)
             }
         }
@@ -124,7 +127,7 @@ fun AppNavigation() {
             val arguments = it.toRoute<AppNavigationRoutes.MovieDetailScreenRoute>()
             BaseComposeScreen(
                 navController = navController,
-                toolbarConfiguration = ToolbarConfiguration(title = stringResource(R.string.flims))
+                toolbarConfiguration = ToolbarConfiguration(title = arguments.movie.title)
             ) {
                 MovieDetailScreen(movie = arguments.movie)
             }
@@ -139,17 +142,23 @@ fun AppNavigation() {
                 PlanetsScreen(
                     planets = planets,
                     clickOnItem = {
-                        navController.navigate(AppNavigationRoutes.PlanetDetailScreen(planet = it))
+                        navController.navigate(AppNavigationRoutes.PlanetDetailScreenRoute(planet = it))
                     }
                 )
             }
         }
-        composable<AppNavigationRoutes.PlanetDetailScreen>(
+        composable<AppNavigationRoutes.PlanetDetailScreenRoute>(
             typeMap = mapOf(
                 navigationCustomArgument<Planet>()
             )
         ) {
-            Text("Planet Detail")
+            val arguments = it.toRoute<AppNavigationRoutes.PlanetDetailScreenRoute>()
+            BaseComposeScreen(
+                navController = navController,
+                toolbarConfiguration = ToolbarConfiguration(title = arguments.planet.name)
+            ) {
+                PlanetDetailScreen(planet = arguments.planet)
+            }
         }
         composable<AppNavigationRoutes.SpeciesScreenRoute> {
             val viewModel: SpeciesViewModel = hiltViewModel()
