@@ -115,20 +115,6 @@ fun VehicleItem(
                         text = vehicle.manufacturer
                     )
                 }
-                Spacer(Modifier.height(16.dp))
-                Row(
-                    modifier = Modifier.fillMaxWidth()
-                ) {
-                    Text(
-                        modifier = Modifier.weight(1f),
-                        text = stringResource(R.string.model)
-                    )
-                    Spacer(Modifier.width(16.dp))
-                    Text(
-                        modifier = Modifier.weight(1f),
-                        text = vehicle.model
-                    )
-                }
             }
         }
     }

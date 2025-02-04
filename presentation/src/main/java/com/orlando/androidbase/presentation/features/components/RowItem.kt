@@ -40,7 +40,7 @@ fun RowItem(
             style = style.copy(fontWeight = null),
             modifier = Modifier
                 .weight(1f)
-                .padding(top = 16.dp),
+                .padding(top = 16.dp, end = 8.dp),
             text = value,
             textAlign = TextAlign.Center,
         )

@@ -15,6 +15,9 @@ import com.orlando.androidbase.R
 import com.orlando.androidbase.entities.remote.Movie
 import com.orlando.androidbase.entities.remote.People
 import com.orlando.androidbase.entities.remote.Planet
+import com.orlando.androidbase.entities.remote.Specie
+import com.orlando.androidbase.entities.remote.Starship
+import com.orlando.androidbase.entities.remote.Vehicle
 import com.orlando.androidbase.presentation.base.BaseComposeScreen
 import com.orlando.androidbase.presentation.extensions.navigationCustomArgument
 import com.orlando.androidbase.presentation.features.character_detail.CharacterDetailScreen
@@ -28,10 +31,13 @@ import com.orlando.androidbase.presentation.features.people.CharacterScreen
 import com.orlando.androidbase.presentation.features.planets.PlanetDetailScreen
 import com.orlando.androidbase.presentation.features.planets.PlanetsScreen
 import com.orlando.androidbase.presentation.features.planets.PlanetsViewModel
+import com.orlando.androidbase.presentation.features.species.SpeciesDetailScreenScreen
 import com.orlando.androidbase.presentation.features.species.SpeciesScreen
 import com.orlando.androidbase.presentation.features.species.SpeciesViewModel
+import com.orlando.androidbase.presentation.features.starships.StarShipDetailScreenScreen
 import com.orlando.androidbase.presentation.features.starships.StarShipScreen
 import com.orlando.androidbase.presentation.features.starships.StarshipViewModel
+import com.orlando.androidbase.presentation.features.vehicles.VehicleDetailScreen
 import com.orlando.androidbase.presentation.features.vehicles.VehiclesScreen
 import com.orlando.androidbase.presentation.features.vehicles.VehiclesViewModel
 
@@ -169,8 +175,23 @@ fun AppNavigation() {
             ) {
                 SpeciesScreen(
                     species = species,
-                    clickOnItem = {}
+                    clickOnItem = {
+                        navController.navigate(AppNavigationRoutes.SpeciesDetailScreenRoute(specie = it))
+                    }
                 )
+            }
+        }
+        composable<AppNavigationRoutes.SpeciesDetailScreenRoute>(
+            typeMap = mapOf(
+                navigationCustomArgument<Specie>()
+            )
+        ) {
+            val arguments = it.toRoute<AppNavigationRoutes.SpeciesDetailScreenRoute>()
+            BaseComposeScreen(
+                navController = navController,
+                toolbarConfiguration = ToolbarConfiguration()
+            ) {
+                SpeciesDetailScreenScreen(specie = arguments.specie)
             }
         }
         composable<AppNavigationRoutes.StarShipScreenRoute> {
@@ -182,8 +203,27 @@ fun AppNavigation() {
             ) {
                 StarShipScreen(
                     starShips = starShips,
-                    clickOnItem = {}
+                    clickOnItem = {
+                        navController.navigate(
+                            AppNavigationRoutes.StarShipDetailScreenRoute(
+                                starship = it
+                            )
+                        )
+                    }
                 )
+            }
+        }
+        composable<AppNavigationRoutes.StarShipDetailScreenRoute>(
+            typeMap = mapOf(
+                navigationCustomArgument<Starship>()
+            )
+        ) {
+            val arguments = it.toRoute<AppNavigationRoutes.StarShipDetailScreenRoute>()
+            BaseComposeScreen(
+                navController = navController,
+                toolbarConfiguration = ToolbarConfiguration(title = arguments.starship.name)
+            ) {
+                StarShipDetailScreenScreen(starship = arguments.starship)
             }
         }
         composable<AppNavigationRoutes.VehiclesScreenRoute> {
@@ -195,8 +235,23 @@ fun AppNavigation() {
             ) {
                 VehiclesScreen(
                     vehicles = vehicles,
-                    clickOnItem = {}
+                    clickOnItem = {
+                        navController.navigate(AppNavigationRoutes.VehiclesScreenDetailRoute(vehicle = it))
+                    }
                 )
+            }
+        }
+        composable<AppNavigationRoutes.VehiclesScreenDetailRoute>(
+            typeMap = mapOf(
+                navigationCustomArgument<Vehicle>()
+            )
+        ) {
+            val arguments = it.toRoute<AppNavigationRoutes.VehiclesScreenDetailRoute>()
+            BaseComposeScreen(
+                navController = navController,
+                toolbarConfiguration = ToolbarConfiguration(title = arguments.vehicle.name)
+            ) {
+                VehicleDetailScreen(vehicle = arguments.vehicle)
             }
         }
     }

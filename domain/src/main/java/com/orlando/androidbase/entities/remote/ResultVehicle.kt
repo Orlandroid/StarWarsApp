@@ -1,5 +1,7 @@
 package com.orlando.androidbase.entities.remote
 
+import kotlinx.serialization.Serializable
+
 
 data class ResultVehicle(
     val cargo_capacity: String,
@@ -20,9 +22,18 @@ data class ResultVehicle(
     val vehicle_class: String
 )
 
+@Serializable
 data class Vehicle(
-    val name: String, val model: String, val manufacturer: String
+    val name: String,
+    val manufacturer: String,
+    val maxAtmospheringSpeed: String,
+    val consumables: String
 )
 
 
-fun ResultVehicle.toVehicle() = Vehicle(name = name, model = model, manufacturer = manufacturer)
+fun ResultVehicle.toVehicle() = Vehicle(
+    name = name,
+    manufacturer = manufacturer,
+    maxAtmospheringSpeed = max_atmosphering_speed,
+    consumables = consumables
+)

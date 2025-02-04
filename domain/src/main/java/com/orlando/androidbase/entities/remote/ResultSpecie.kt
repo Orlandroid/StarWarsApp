@@ -1,5 +1,7 @@
 package com.orlando.androidbase.entities.remote
 
+import kotlinx.serialization.Serializable
+
 
 data class ResultSpecie(
     val average_height: String,
@@ -19,6 +21,7 @@ data class ResultSpecie(
     val url: String
 )
 
+@Serializable
 data class Specie(
     val name: String,
     val classification: String,

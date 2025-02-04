@@ -143,7 +143,9 @@ fun StarShipItemPreview(modifier: Modifier = Modifier) {
         starship = Starship(
             name = stringResource(R.string.name),
             manufacturer = stringResource(R.string.name),
-            model = stringResource(R.string.name)
-        ), onClick = {})
+            model = stringResource(R.string.name),
+            maxAtmosphericSpeed = stringResource(R.string.detail)
+        ),
+        onClick = {})
 }
 
