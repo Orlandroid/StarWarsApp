@@ -1,5 +1,7 @@
 package com.orlando.androidbase.entities.remote
 
+import kotlinx.serialization.Serializable
+
 
 data class ResultSpecie(
     val average_height: String,
@@ -17,4 +19,19 @@ data class ResultSpecie(
     val people: List<String>,
     val skin_colors: String,
     val url: String
+)
+
+@Serializable
+data class Specie(
+    val name: String,
+    val classification: String,
+    val skinColor: String,
+    val averageLifespan: String
+)
+
+fun ResultSpecie.toSpecie() = Specie(
+    name = name,
+    classification = classification,
+    skinColor = skin_colors,
+    averageLifespan = average_lifespan
 )

@@ -1,5 +1,7 @@
 package com.orlando.androidbase.entities.remote
 
+import kotlinx.serialization.Serializable
+
 
 data class ResultStarship(
     val MGLT: String,
@@ -20,4 +22,19 @@ data class ResultStarship(
     val pilots: List<String>,
     val starship_class: String,
     val url: String
+)
+
+@Serializable
+data class Starship(
+    val name: String,
+    val manufacturer: String,
+    val model: String,
+    val maxAtmosphericSpeed: String
+)
+
+fun ResultStarship.toStarship() = Starship(
+    name = name,
+    manufacturer = manufacturer,
+    model = model,
+    maxAtmosphericSpeed = manufacturer
 )

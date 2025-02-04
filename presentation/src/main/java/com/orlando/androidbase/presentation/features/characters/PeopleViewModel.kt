@@ -1,14 +1,14 @@
-package com.orlando.androidbase.presentation.features.planets
+package com.orlando.androidbase.presentation.features.characters
 
 import androidx.lifecycle.viewModelScope
 import androidx.paging.Pager
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
-import com.orlando.androidbase.entities.remote.Planet
+import com.orlando.androidbase.entities.remote.People
 import com.orlando.androidbase.presentation.base.BaseViewModel
 import com.orlando.androidbase.presentation.helpers.NetworkHelper
 import com.orlando.data.di.CoroutineDispatchers
-import com.orlando.data.pagination.PlanetsPagingSource
+import com.orlando.data.pagination.CharactersPagingSource
 import com.orlando.data.remote.ApiService
 import com.orlando.data.utils.getPagingConfig
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -16,22 +16,31 @@ import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 @HiltViewModel
-class PlanetsViewModel @Inject constructor(
+class PeopleViewModel @Inject constructor(
     private val apiService: ApiService,
     coroutineDispatchers: CoroutineDispatchers,
     networkHelper: NetworkHelper
 ) : BaseViewModel(coroutineDispatchers, networkHelper) {
 
+    private var characterName: String? = null
 
-    private lateinit var planetsPagingSource: PlanetsPagingSource
+    init {
+        characterName = null
+    }
 
-    val getPlanetsPagingSource: Flow<PagingData<Planet>> =
+    private lateinit var charactersPagingSource: CharactersPagingSource
+
+    val getCharactersPagingSource: Flow<PagingData<People>> =
         Pager(
             config = getPagingConfig(),
             pagingSourceFactory = {
-                planetsPagingSource = PlanetsPagingSource(service = apiService)
-                planetsPagingSource
+                charactersPagingSource =
+                    CharactersPagingSource(service = apiService, name = characterName)
+                charactersPagingSource
             }
         ).flow.cachedIn(viewModelScope)
+
+    fun refreshCharactersPagingSource() = charactersPagingSource.invalidate()
+
 
 }

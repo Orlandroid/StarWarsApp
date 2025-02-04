@@ -4,7 +4,7 @@ import androidx.lifecycle.viewModelScope
 import androidx.paging.Pager
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
-import com.orlando.androidbase.entities.remote.ResultStarship
+import com.orlando.androidbase.entities.remote.Starship
 import com.orlando.androidbase.presentation.base.BaseViewModel
 import com.orlando.androidbase.presentation.helpers.NetworkHelper
 import com.orlando.data.di.CoroutineDispatchers
@@ -25,7 +25,7 @@ class StarshipViewModel @Inject constructor(
 
     private lateinit var starshipsPagingSource: StarshipsPagingSource
 
-    val getStarshipsPagingSource: Flow<PagingData<ResultStarship>> =
+    val getStarshipsPagingSource: Flow<PagingData<Starship>> =
         Pager(
             config = getPagingConfig(),
             pagingSourceFactory = {

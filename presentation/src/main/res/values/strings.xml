@@ -36,12 +36,12 @@
     <string name="_4">4</string>
     <string name="estreno_1977_05_25">Estreno: 1977-05-25</string>
     <string name="detalle">Detalle</string>
-    <string name="personajes">Personajes</string>
+    <string name="characters">Characters</string>
     <string name="climate_arid">climate:  arid</string>
     <string name="terrain_grasslands_mountains">terrain:  grasslands, mountains</string>
-    <string name="population">Population:</string>
-    <string name="climate">Climate:</string>
-    <string name="terrain">Terrain:</string>
+    <string name="population">Population</string>
+    <string name="climate">Climate</string>
+    <string name="terrain">Terrain</string>
     <string name="_200000">200000</string>
     <string name="arid">arid</string>
     <string name="desert">desert</string>
@@ -49,20 +49,20 @@
     <string name="episode">Episode</string>
     <string name="premiere">Premiere</string>
     <string name="_1977_05_25">1977-05-25</string>
-    <string name="model">Model:</string>
+    <string name="model">Model</string>
     <string name="cr90_corvette">CR90 corvette</string>
-    <string name="manufacturer">Manufacturer:</string>
+    <string name="manufacturer">Manufacturer</string>
     <string name="cost">Cost:</string>
     <string name="_3500000">3500000</string>
     <string name="corellian_engineering_corporation">Corellian Engineering Corporation</string>
-    <string name="title">Title:</string>
+    <string name="title">Title</string>
     <string name="episode_">Episode:</string>
     <string name="producer">Producer</string>
     <string name="release_date">Release date</string>
     <string name="gary_kurtz_rick_mccallum">Gary Kurtz, Rick McCallum</string>
     <string name="geonosis">Geonosis</string>
     <string name="temperate_arid">temperate, arid</string>
-    <string name="name">Name:</string>
+    <string name="name">Name</string>
     <string name="_0_9_standard">0.9 standard</string>
     <string name="_100000000000">100000000000</string>
     <string name="gravity">Gravity:</string>
@@ -91,4 +91,5 @@
     <string name="fair">fair</string>
     <string name="retry">Reintentar</string>
     <string name="detail">Detail</string>
+    <string name="strFetchingDataFromServer">Fetching data from server</string>
 </resources>

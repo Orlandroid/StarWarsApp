@@ -1,5 +1,7 @@
 package com.orlando.androidbase.entities.remote
 
+import kotlinx.serialization.Serializable
+
 data class ResultPeople(
     val birth_year: String,
     val created: String,
@@ -18,3 +20,24 @@ data class ResultPeople(
     val url: String,
     val vehicles: List<String>
 )
+
+@Serializable
+data class People(
+    val name: String,
+    val height: String,
+    val gender: String,
+    val hairColor: String,
+    val mass: String,
+    val skinColor: String
+)
+
+fun ResultPeople.toPeople() = People(
+    name = name,
+    height = height,
+    gender = gender,
+    hairColor = hair_color,
+    mass = mass,
+    skinColor = skin_color
+)
+
+

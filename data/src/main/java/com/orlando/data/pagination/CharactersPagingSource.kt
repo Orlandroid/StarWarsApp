@@ -2,14 +2,15 @@ package com.orlando.data.pagination
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import com.orlando.androidbase.entities.remote.ResultPeople
+import com.orlando.androidbase.entities.remote.People
+import com.orlando.androidbase.entities.remote.toPeople
 import com.orlando.data.remote.ApiService
 import retrofit2.HttpException
 
 class CharactersPagingSource(
     private val service: ApiService,
     private val name: String? = null
-) : PagingSource<Int, ResultPeople>() {
+) : PagingSource<Int, People>() {
 
     companion object {
         private const val START_PAGE = 1
@@ -17,14 +18,15 @@ class CharactersPagingSource(
 
     override suspend fun load(
         params: LoadParams<Int>
-    ): LoadResult<Int, ResultPeople> {
+    ): LoadResult<Int, People> {
         return try {
             val currentPage = params.key ?: START_PAGE
-            val data = service.getPeople(page = currentPage.toString(), name = name).results
+            val result = service.getPeople(page = currentPage.toString(), name = name)
+            val data = result.results.map { it.toPeople() }
             LoadResult.Page(
                 data = data,
                 prevKey = if (currentPage == START_PAGE) null else currentPage - 1,
-                nextKey = if (data.isEmpty()) null else currentPage.plus(1)
+                nextKey = if (result.next == null) null else currentPage.plus(1)
             )
         } catch (e: Exception) {
             if (e is HttpException) {
@@ -37,7 +39,7 @@ class CharactersPagingSource(
         }
     }
 
-    override fun getRefreshKey(state: PagingState<Int, ResultPeople>): Int? {
+    override fun getRefreshKey(state: PagingState<Int, People>): Int? {
         return state.anchorPosition?.let { anchorPosition ->
             val anchorPage = state.closestPageToPosition(anchorPosition)
             anchorPage?.prevKey?.plus(1) ?: anchorPage?.nextKey?.minus(1)
