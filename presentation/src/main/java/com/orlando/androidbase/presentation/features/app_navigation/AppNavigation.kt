@@ -1,6 +1,7 @@
 package com.orlando.androidbase.presentation.features.app_navigation
 
 
+import android.util.Log
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
@@ -25,9 +26,10 @@ import com.orlando.androidbase.presentation.features.components.ToolbarConfigura
 import com.orlando.androidbase.presentation.features.movies.MovieDetailScreen
 import com.orlando.androidbase.presentation.features.movies.MoviesScreen
 import com.orlando.androidbase.presentation.features.home.HomeScreen
-import com.orlando.androidbase.presentation.features.home.HomeScreenSideEffects
-import com.orlando.androidbase.presentation.features.home.HomeViewModel
 import com.orlando.androidbase.presentation.features.characters.CharacterScreen
+import com.orlando.androidbase.presentation.features.home.HomeScreenEvents
+import com.orlando.androidbase.presentation.features.home.getMenus
+import com.orlando.androidbase.presentation.features.home.homeScreenNavigate
 import com.orlando.androidbase.presentation.features.planets.PlanetDetailScreen
 import com.orlando.androidbase.presentation.features.planets.PlanetsScreen
 import com.orlando.androidbase.presentation.features.planets.PlanetsViewModel
@@ -49,45 +51,15 @@ fun AppNavigation() {
         startDestination = AppNavigationRoutes.HomeScreenRoute
     ) {
         composable<AppNavigationRoutes.HomeScreenRoute> {
-            val homeViewModel: HomeViewModel = hiltViewModel()
-            LaunchedEffect(homeViewModel) {
-                homeViewModel.homeScreenSideEffects.collect { effect ->
-                    when (effect) {
-                        HomeScreenSideEffects.GoToMovies -> {
-                            navController.navigate(AppNavigationRoutes.MoviesScreenRoute)
-                        }
-
-                        HomeScreenSideEffects.GoToPlanets -> {
-                            navController.navigate(AppNavigationRoutes.PlanetsScreenRoute)
-                        }
-
-                        HomeScreenSideEffects.GoToSpecies -> {
-                            navController.navigate(AppNavigationRoutes.SpeciesScreenRoute)
-                        }
-
-                        HomeScreenSideEffects.GoToStarShips -> {
-                            navController.navigate(AppNavigationRoutes.StarShipScreenRoute)
-                        }
-
-                        HomeScreenSideEffects.GoToVehicles -> {
-                            navController.navigate(AppNavigationRoutes.VehiclesScreenRoute)
-                        }
-
-                        HomeScreenSideEffects.GotoCharacters -> {
-                            navController.navigate(AppNavigationRoutes.CharactersScreenRoute)
-                        }
-                    }
-                }
-            }
             BaseComposeScreen(
                 navController = navController,
                 toolbarConfiguration = ToolbarConfiguration(showToolbar = false)
             ) {
                 HomeScreen(
                     modifier = Modifier,
-                    menus = homeViewModel.getMenus(),
+                    menus = getMenus(),
                     onEvents = { event ->
-                        homeViewModel.onEvents(event)
+                        navController.homeScreenNavigate(event)
                     }
                 )
             }
@@ -98,6 +70,7 @@ fun AppNavigation() {
                 toolbarConfiguration = ToolbarConfiguration(title = stringResource(R.string.characters))
             ) {
                 CharacterScreen {
+                    Log.w("com.example.androidbase", "NavigateToHomeScreen")
                     navController.navigate(AppNavigationRoutes.CharactersScreenDetailRoute(it))
                 }
             }

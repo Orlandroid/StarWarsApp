@@ -39,7 +39,7 @@ fun Toolbar(
         },
         navigationIcon = {
             if (toolbarConfiguration.isWithBackIcon) {
-                IconButton(onClick = { navController.popBackStack() }) {
+                IconButton(onClick = { navController.navigateUp() }) {
                     Icon(
                         tint = Color.White,
                         imageVector = Icons.AutoMirrored.Filled.ArrowBack,

@@ -32,7 +32,7 @@ import com.orlando.androidbase.presentation.util.utilimages.data.getPeopleImages
 
 @Composable
 fun CharacterScreen(
-    viewModel: PeopleViewModel = hiltViewModel(),
+    viewModel: CharacterViewModel = hiltViewModel(),
     clickOnItem: (people: People) -> Unit = {}
 ) {
     val characters = viewModel.getCharactersPagingSource.collectAsLazyPagingItems()
@@ -67,7 +67,10 @@ fun ItemCharacter(
         modifier = modifier.padding(8.dp),
         shape = RoundedCornerShape(16.dp),
         border = BorderStroke(1.dp, color = Color.Black),
-        onClick = { clickOnItem(character) }
+        onClick = {
+            println("com.example.androidbase ---> OnClick")
+            clickOnItem(character)
+        }
     ) {
         val image = getImageFromJson(character.name, getPeopleImages())
         Row(Modifier.fillMaxWidth()) {

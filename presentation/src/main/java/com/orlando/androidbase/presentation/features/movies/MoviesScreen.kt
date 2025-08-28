@@ -38,7 +38,7 @@ import com.orlando.androidbase.presentation.util.utilimages.data.getFilmsImages
 
 @Composable
 fun MoviesScreen(
-    viewModel: FilmsViewModel = hiltViewModel(),
+    viewModel: MoviesViewModel = hiltViewModel(),
     clickOnItem: (Movie) -> Unit
 ) {
     val movies = viewModel.getFilmsPagingSource.collectAsLazyPagingItems()

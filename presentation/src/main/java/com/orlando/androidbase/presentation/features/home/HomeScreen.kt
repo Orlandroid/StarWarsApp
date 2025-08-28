@@ -51,11 +51,15 @@ fun HomeScreen(
             ) {
                 menus.forEach { menu ->
                     item {
-                        ItemMenu(menu = menu) {
-                            onMenuClicked(
-                                menu = menu, onEvents = onEvents
-                            )
-                        }
+                        ItemMenu(
+                            menu = menu,
+                            clickOnItem = {
+                                onMenuClicked(
+                                    menu = menu,
+                                    onEvents = onEvents
+                                )
+                            }
+                        )
                     }
                 }
             }
@@ -97,7 +101,8 @@ private fun onMenuClicked(
 @Composable
 private fun ItemMenu(
     modifier: Modifier = Modifier,
-    menu: ItemMenu, clickOnItem: () -> Unit
+    menu: ItemMenu,
+    clickOnItem: () -> Unit
 ) {
     Card(
         modifier = modifier
