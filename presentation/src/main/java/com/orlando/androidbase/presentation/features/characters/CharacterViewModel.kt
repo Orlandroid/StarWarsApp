@@ -1,5 +1,6 @@
 package com.orlando.androidbase.presentation.features.characters
 
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.Pager
 import androidx.paging.PagingData
@@ -17,10 +18,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class CharacterViewModel @Inject constructor(
-    private val apiService: ApiService,
-    coroutineDispatchers: CoroutineDispatchers,
-    networkHelper: NetworkHelper
-) : BaseViewModel(coroutineDispatchers, networkHelper) {
+    private val apiService: ApiService
+) : ViewModel() {
 
     private var characterName: String? = null
 

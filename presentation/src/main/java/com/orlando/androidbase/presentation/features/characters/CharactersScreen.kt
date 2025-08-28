@@ -58,7 +58,7 @@ fun CharacterScreen(
 }
 
 @Composable
-fun ItemCharacter(
+private fun ItemCharacter(
     modifier: Modifier = Modifier,
     character: People,
     clickOnItem: (people: People) -> Unit
@@ -68,7 +68,6 @@ fun ItemCharacter(
         shape = RoundedCornerShape(16.dp),
         border = BorderStroke(1.dp, color = Color.Black),
         onClick = {
-            println("com.example.androidbase ---> OnClick")
             clickOnItem(character)
         }
     ) {
@@ -105,7 +104,7 @@ fun ItemCharacter(
 
 @Composable
 @Preview(showBackground = true)
-fun ItemCharacterPreview(modifier: Modifier = Modifier) {
+private fun ItemCharacterPreview() {
     ItemCharacter(
         character = People(
             name = "Luke Skywalker",

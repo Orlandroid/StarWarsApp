@@ -44,7 +44,7 @@ fun SpeciesDetailScreenScreen(specie: Specie) {
 
 @Preview(showBackground = true)
 @Composable
-fun SpeciesDetailScreenScreenPreview() {
+private fun SpeciesDetailScreenScreenPreview() {
     SpeciesDetailScreenScreen(
         specie = Specie(
             name = stringResource(R.string.neimodian),

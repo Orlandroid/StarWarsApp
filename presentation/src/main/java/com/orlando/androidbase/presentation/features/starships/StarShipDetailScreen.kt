@@ -36,7 +36,7 @@ fun StarShipDetailScreenScreen(starship: Starship) {
 
 @Preview(showBackground = true)
 @Composable
-fun StarShipDetailScreenScreenPreview() {
+private fun StarShipDetailScreenScreenPreview() {
     StarShipDetailScreenScreen(
         starship = Starship(
             name = stringResource(R.string.death_star),

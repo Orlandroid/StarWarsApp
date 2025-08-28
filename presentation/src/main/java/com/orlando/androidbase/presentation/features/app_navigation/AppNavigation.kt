@@ -3,7 +3,6 @@ package com.orlando.androidbase.presentation.features.app_navigation
 
 import android.util.Log
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -22,14 +21,13 @@ import com.orlando.androidbase.entities.remote.Vehicle
 import com.orlando.androidbase.presentation.base.BaseComposeScreen
 import com.orlando.androidbase.presentation.extensions.navigationCustomArgument
 import com.orlando.androidbase.presentation.features.character_detail.CharacterDetailScreen
-import com.orlando.androidbase.presentation.features.components.ToolbarConfiguration
-import com.orlando.androidbase.presentation.features.movies.MovieDetailScreen
-import com.orlando.androidbase.presentation.features.movies.MoviesScreen
-import com.orlando.androidbase.presentation.features.home.HomeScreen
 import com.orlando.androidbase.presentation.features.characters.CharacterScreen
-import com.orlando.androidbase.presentation.features.home.HomeScreenEvents
+import com.orlando.androidbase.presentation.features.components.ToolbarConfiguration
+import com.orlando.androidbase.presentation.features.home.HomeScreen
 import com.orlando.androidbase.presentation.features.home.getMenus
 import com.orlando.androidbase.presentation.features.home.homeScreenNavigate
+import com.orlando.androidbase.presentation.features.movies.MovieDetailScreen
+import com.orlando.androidbase.presentation.features.movies.MoviesScreen
 import com.orlando.androidbase.presentation.features.planets.PlanetDetailScreen
 import com.orlando.androidbase.presentation.features.planets.PlanetsScreen
 import com.orlando.androidbase.presentation.features.planets.PlanetsViewModel
@@ -70,7 +68,6 @@ fun AppNavigation() {
                 toolbarConfiguration = ToolbarConfiguration(title = stringResource(R.string.characters))
             ) {
                 CharacterScreen {
-                    Log.w("com.example.androidbase", "NavigateToHomeScreen")
                     navController.navigate(AppNavigationRoutes.CharactersScreenDetailRoute(it))
                 }
             }

@@ -65,7 +65,7 @@ fun MoviesScreen(
 
 
 @Composable
-fun ItemMovie(
+private fun ItemMovie(
     modifier: Modifier = Modifier,
     movie: Movie,
     onClick: ((Movie)) -> Unit
@@ -128,7 +128,7 @@ fun ItemMovie(
 
 @Composable
 @Preview(showBackground = true)
-fun ItemMoviePreview(modifier: Modifier = Modifier) {
+private fun ItemMoviePreview() {
     ItemMovie(
         movie = Movie(
             title = "Android",

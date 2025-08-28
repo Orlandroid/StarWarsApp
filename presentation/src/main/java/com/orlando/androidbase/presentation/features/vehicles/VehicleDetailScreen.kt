@@ -35,7 +35,7 @@ fun VehicleDetailScreen(vehicle: Vehicle) {
 
 @Preview(showBackground = true)
 @Composable
-fun VehicleDetailScreenPreview() {
+private fun VehicleDetailScreenPreview() {
     VehicleDetailScreen(
         vehicle = Vehicle(
             name = stringResource(R.string.sand_crawler),

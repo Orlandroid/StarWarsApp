@@ -42,7 +42,7 @@ fun PlanetDetailScreen(planet: Planet) {
 
 @Composable
 @Preview(showBackground = true)
-fun PlanetDetailScreenPreview(modifier: Modifier = Modifier) {
+private fun PlanetDetailScreenPreview() {
     val mockPlanet = Planet(
         name = stringResource(R.string.geonosis),
         population = stringResource(R.string._100000000000),

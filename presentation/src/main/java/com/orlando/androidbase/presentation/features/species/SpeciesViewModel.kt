@@ -1,5 +1,6 @@
 package com.orlando.androidbase.presentation.features.species
 
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.Pager
 import androidx.paging.cachedIn
@@ -17,7 +18,7 @@ class SpeciesViewModel @Inject constructor(
     private val apiService: ApiService,
     coroutineDispatchers: CoroutineDispatchers,
     networkHelper: NetworkHelper
-) : BaseViewModel(coroutineDispatchers, networkHelper) {
+) : ViewModel(coroutineDispatchers, networkHelper) {
 
 
     private lateinit var speciesPagingSource: SpeciesPagingSource

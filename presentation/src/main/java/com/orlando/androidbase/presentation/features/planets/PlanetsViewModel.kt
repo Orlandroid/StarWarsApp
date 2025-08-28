@@ -1,13 +1,11 @@
 package com.orlando.androidbase.presentation.features.planets
 
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.Pager
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import com.orlando.androidbase.entities.remote.Planet
-import com.orlando.androidbase.presentation.base.BaseViewModel
-import com.orlando.androidbase.presentation.helpers.NetworkHelper
-import com.orlando.data.di.CoroutineDispatchers
 import com.orlando.data.pagination.PlanetsPagingSource
 import com.orlando.data.remote.ApiService
 import com.orlando.data.utils.getPagingConfig
@@ -17,10 +15,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class PlanetsViewModel @Inject constructor(
-    private val apiService: ApiService,
-    coroutineDispatchers: CoroutineDispatchers,
-    networkHelper: NetworkHelper
-) : BaseViewModel(coroutineDispatchers, networkHelper) {
+    private val apiService: ApiService
+) : ViewModel() {
 
 
     private lateinit var planetsPagingSource: PlanetsPagingSource

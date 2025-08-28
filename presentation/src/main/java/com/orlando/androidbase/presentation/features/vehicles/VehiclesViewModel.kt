@@ -1,5 +1,6 @@
 package com.orlando.androidbase.presentation.features.vehicles
 
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.Pager
 import androidx.paging.PagingData
@@ -17,10 +18,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class VehiclesViewModel @Inject constructor(
-    private val apiService: ApiService,
-    coroutineDispatchers: CoroutineDispatchers,
-    networkHelper: NetworkHelper
-) : BaseViewModel(coroutineDispatchers, networkHelper) {
+    private val apiService: ApiService
+) : ViewModel() {
 
 
     private lateinit var vehiclesPagingSource: VehiclesPagingSource

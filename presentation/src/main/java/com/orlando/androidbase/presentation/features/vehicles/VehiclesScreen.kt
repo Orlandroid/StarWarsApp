@@ -61,7 +61,7 @@ fun VehiclesScreen(
 }
 
 @Composable
-fun VehicleItem(
+private fun VehicleItem(
     modifier: Modifier = Modifier,
     vehicle: Vehicle,
     onClick: (Vehicle) -> Unit
