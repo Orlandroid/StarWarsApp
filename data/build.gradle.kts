@@ -1,4 +1,3 @@
-import com.example.androidbase.presentation.Dependencies
 import com.example.androidbase.presentation.BuildModules
 import com.example.androidbase.presentation.ConfigData
 
@@ -40,27 +39,36 @@ android {
 
 dependencies {
     implementation(project(BuildModules.DOMAIN))
-    implementation(Dependencies.ANDROIDX_CORE_KTX)
-    implementation("androidx.appcompat:appcompat:1.6.1")
-    implementation(Dependencies.ANDROID_MATERIAL)
-    implementation("androidx.core:core-ktx:1.12.0")
-    testImplementation("junit:junit:4.13.2")
-    androidTestImplementation(Dependencies.TEST_JUNIT)
-    androidTestImplementation(Dependencies.TEST_EXPRESO)
-    //Retrofit Dependecies
-    implementation(Dependencies.RETROFIT)
-    implementation(Dependencies.RETROFIT_CONVERTER_GSON)
-    implementation(Dependencies.RETROFIT_CONVERTER_MOSHI)
-    implementation(Dependencies.RETROFIT_INTERCEPTOR)
-    //Room
-    implementation(Dependencies.ROOM)
-    implementation(Dependencies.ROOM_KOTLIN_EXTENSION)
-    kapt(Dependencies.ROOM_COMPILER)
-    //Dagger - Hilt
-    implementation(Dependencies.DAGGER_HILT)
-    kapt(Dependencies.DAGGER_HILT_COMPILER)
-    kapt("androidx.hilt:hilt-compiler:1.1.0")
-    val paging_version = "3.2.1"
-    implementation("androidx.paging:paging-runtime-ktx:$paging_version")
+
+    // Core & UI
+    implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.appcompat)
+    implementation(libs.android.material)
+
+    // Tests
+    testImplementation(libs.test.junit)
+    androidTestImplementation(libs.androidx.test.junit)
+    androidTestImplementation(libs.androidx.test.espresso)
+
+    // Retrofit + OkHttp
+    implementation(libs.retrofit)
+    implementation(libs.retrofit.converter.gson)
+    implementation(libs.retrofit.converter.moshi)
+    implementation(libs.retrofit.logging)
+
+    // Room
+    implementation(libs.room.runtime)
+    implementation(libs.room.ktx)
+    kapt(libs.room.compiler)
+
+    // Dagger - Hilt
+    implementation(libs.hilt.android)
+    kapt(libs.hilt.compiler)
+    kapt(libs.androidx.hilt.compiler)
+
+    // Paging
+    implementation(libs.paging.runtime)
+    implementation(libs.paging.compose)
+
 
 }

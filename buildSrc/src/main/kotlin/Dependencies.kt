@@ -10,6 +10,7 @@ object Versions {
     const val VIEW_MODEL_VERSION = "2.2.0"
     const val LIVE_DATA_VERSION = "2.2.0"
     const val NAVIGATION_VERSION = "2.8.2"
+    const val KOTLIN_VERSION = "2.0.0"
 }
 
 object Dependencies {

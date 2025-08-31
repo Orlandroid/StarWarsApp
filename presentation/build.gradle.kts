@@ -1,6 +1,5 @@
 import com.example.androidbase.presentation.BuildModules
 import com.example.androidbase.presentation.ConfigData
-import com.example.androidbase.presentation.Dependencies
 
 plugins {
     id("com.android.application")
@@ -9,6 +8,7 @@ plugins {
     id("kotlin-parcelize")
     id("androidx.navigation.safeargs.kotlin")
     id("dagger.hilt.android.plugin")
+    id("org.jetbrains.kotlin.plugin.compose")
     kotlin("plugin.serialization")
 }
 
@@ -29,9 +29,6 @@ android {
         viewBinding = true
         dataBinding = true
         compose = true
-    }
-    composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.15"
     }
     buildTypes {
         getByName("release") {
@@ -54,71 +51,78 @@ android {
 dependencies {
     implementation(project(BuildModules.DATA))
     implementation(project(BuildModules.DOMAIN))
-    implementation("androidx.core:core-ktx:1.15.0")
-    implementation("androidx.appcompat:appcompat:1.7.0")
-    implementation(Dependencies.ANDROID_MATERIAL)
-    implementation(Dependencies.ANDROIDX_CONSTRAINT_LAYOUT)
-    testImplementation("junit:junit:4.13.2")
-    androidTestImplementation(Dependencies.TEST_JUNIT)
-    androidTestImplementation(Dependencies.TEST_EXPRESO)
-    //Navigation component
-    implementation(Dependencies.NAVIGATION_FRAGMENT)
-    implementation(Dependencies.NAVIGATION_UI)
-    //Dagger - Hilt
-    implementation(Dependencies.DAGGER_HILT)
-    kapt(Dependencies.DAGGER_HILT_COMPILER)
-    kapt("androidx.hilt:hilt-compiler:1.2.0")
-    //Retrofit Dependecies
-    implementation(Dependencies.RETROFIT)
-    implementation(Dependencies.RETROFIT_CONVERTER_GSON)
-    implementation(Dependencies.RETROFIT_CONVERTER_MOSHI)
-    implementation(Dependencies.RETROFIT_INTERCEPTOR)
-    //lifecycle
-    implementation(Dependencies.VIEW_MODEL)
-    implementation(Dependencies.LIVE_DATA)
-    implementation(Dependencies.FRAGMENT_KTS)
-    //Room
-    implementation(Dependencies.ROOM)
-    implementation(Dependencies.ROOM_KOTLIN_EXTENSION)
-    kapt(Dependencies.ROOM_COMPILER)
-    //Glide
-    implementation(Dependencies.GLIDE)
-    annotationProcessor(Dependencies.GLIDE_COMPILER)
-    implementation(Dependencies.SWIPE_REFRESH_LAYOUT)
-    implementation(Dependencies.CIRCULAR_IMAGE_VIEW)
-    val paging_version = "3.3.5"
-    implementation("androidx.paging:paging-runtime-ktx:$paging_version")
-    implementation("androidx.paging:paging-compose:$paging_version")
 
-    val  composeBom = platform("androidx.compose:compose-bom:2024.09.02")
-    implementation(composeBom)
-    androidTestImplementation(composeBom)
+    // Core & UI
+    implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.appcompat)
+    implementation(libs.android.material)
+    implementation(libs.androidx.constraintlayout)
 
-    implementation("androidx.compose.runtime:runtime")
-    implementation("androidx.compose.ui:ui")
-    implementation("androidx.compose.foundation:foundation")
-    implementation("androidx.compose.foundation:foundation-layout")
-    implementation("androidx.compose.material3:material3")
-    implementation("androidx.compose.runtime:runtime-livedata")
-    implementation("androidx.compose.ui:ui-tooling")
-    implementation("androidx.activity:activity-compose:1.9.3")
-    implementation("androidx.compose.ui:ui")
-    implementation("androidx.compose.material:material")
-    implementation("androidx.compose.runtime:runtime")
-    implementation(platform("androidx.compose:compose-bom:2024.12.01"))
-    implementation("androidx.compose.ui:ui-graphics")
-    implementation("androidx.compose.ui:ui-tooling-preview")
-    implementation("androidx.constraintlayout:constraintlayout-compose:1.1.0")
-    implementation("com.airbnb.android:lottie-compose:4.0.0")
-    implementation("androidx.compose.runtime:runtime-livedata:1.7.6")
-    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.8.7")
-    implementation("androidx.compose.material:material-icons-extended:1.7.6")
-    implementation("androidx.hilt:hilt-navigation-compose:1.2.0")
-    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.8.7")
-    implementation("androidx.compose.material3:material3:1.3.1")
-    implementation("io.coil-kt:coil-compose:2.7.0")
-    implementation("androidx.compose.ui:ui-tooling:1.7.6")
-    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.8.7")
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.3")
-    implementation("androidx.navigation:navigation-compose:2.8.5")
+    // Tests
+    testImplementation(libs.test.junit)
+    androidTestImplementation(libs.androidx.test.junit)
+    androidTestImplementation(libs.androidx.test.espresso)
+
+    // Navigation
+    implementation(libs.navigation.fragment)
+    implementation(libs.navigation.ui)
+    implementation(libs.navigation.common)
+    implementation(libs.navigation.compose)
+
+    // Dagger - Hilt
+    implementation(libs.hilt.android)
+    kapt(libs.hilt.compiler)
+    kapt(libs.androidx.hilt.compiler)
+    implementation(libs.hilt.navigation.compose)
+
+    // Retrofit + OkHttp
+    implementation(libs.retrofit)
+    implementation(libs.retrofit.converter.gson)
+    implementation(libs.retrofit.converter.moshi)
+    implementation(libs.retrofit.logging)
+
+    // Lifecycle
+    implementation(libs.lifecycle.viewmodel)
+    implementation(libs.lifecycle.livedata)
+    implementation(libs.fragment.ktx)
+    implementation(libs.lifecycle.viewmodel.compose)
+
+    // Room
+    implementation(libs.room.runtime)
+    implementation(libs.room.ktx)
+    kapt(libs.room.compiler)
+
+    // Glide
+    implementation(libs.glide)
+    annotationProcessor(libs.glide.compiler)
+
+    // Utilities
+    implementation(libs.swipe.refresh.layout)
+    implementation(libs.circular.image.view)
+
+    // Paging
+    implementation(libs.paging.runtime)
+    implementation(libs.paging.compose)
+
+    // Compose BOM
+    implementation(platform(libs.compose.bom))
+    androidTestImplementation(platform(libs.compose.bom))
+
+    // Compose UI
+    implementation(libs.compose.ui)
+    implementation(libs.compose.foundation)
+    implementation(libs.compose.foundation.layout)
+    implementation(libs.compose.material)
+    implementation(libs.compose.material3)
+    implementation(libs.compose.runtime)
+    implementation(libs.compose.runtime.livedata)
+    implementation(libs.compose.ui.tooling)
+    implementation(libs.compose.ui.graphics)
+    implementation(libs.compose.ui.preview)
+    implementation(libs.activity.compose)
+    implementation(libs.constraintlayout.compose)
+    implementation(libs.lottie.compose)
+    implementation(libs.compose.material.icons)
+    implementation(libs.coil.compose)
+    implementation(libs.serialization.json)
 }
