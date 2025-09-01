@@ -61,7 +61,7 @@ fun SpeciesScreen(
 }
 
 @Composable
-fun SpecieItem(
+private fun SpecieItem(
     modifier: Modifier = Modifier,
     specie: Specie,
     onClick: (Specie) -> Unit

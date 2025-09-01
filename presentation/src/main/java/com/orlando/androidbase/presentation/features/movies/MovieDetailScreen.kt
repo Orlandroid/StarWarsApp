@@ -40,7 +40,7 @@ fun MovieDetailScreen(movie: Movie) {
 
 @Composable
 @Preview(showBackground = true)
-fun MovieDetailScreenPreview(modifier: Modifier = Modifier) {
+private fun MovieDetailScreenPreview() {
     MovieDetailScreen(
         movie = Movie(
             title = stringResource(R.string.a_new_hope),

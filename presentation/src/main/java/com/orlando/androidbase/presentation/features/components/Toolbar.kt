@@ -26,10 +26,10 @@ fun Toolbar(
 ) {
     TopAppBar(
         colors =
-        topAppBarColors(
-            containerColor = toolbarConfiguration.toolbarBackgroundColor,
-            titleContentColor = toolbarConfiguration.toolbarTextColor,
-        ),
+            topAppBarColors(
+                containerColor = toolbarConfiguration.toolbarBackgroundColor,
+                titleContentColor = toolbarConfiguration.toolbarTextColor,
+            ),
         title = {
             Text(
                 toolbarConfiguration.title,
@@ -39,7 +39,7 @@ fun Toolbar(
         },
         navigationIcon = {
             if (toolbarConfiguration.isWithBackIcon) {
-                IconButton(onClick = { navController.popBackStack() }) {
+                IconButton(onClick = { navController.navigateUp() }) {
                     Icon(
                         tint = Color.White,
                         imageVector = Icons.AutoMirrored.Filled.ArrowBack,
@@ -63,7 +63,7 @@ data class ToolbarConfiguration(
 
 @Preview(showBackground = true)
 @Composable
-fun SimpleComposablePreview() {
+private fun SimpleComposablePreview() {
     Toolbar(
         navController = rememberNavController(),
         toolbarConfiguration = ToolbarConfiguration(title = "Android Developer"),

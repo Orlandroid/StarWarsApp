@@ -58,9 +58,7 @@ data class BaseDetailScreenConfig(
 
 @Composable
 @Preview(showBackground = true)
-fun BaseDetailScreenPreview(
-    modifier: Modifier = Modifier
-) {
+private fun BaseDetailScreenPreview() {
     BaseDetailScreen(
         baseDetailScreenConfig = BaseDetailScreenConfig(
             image = "",

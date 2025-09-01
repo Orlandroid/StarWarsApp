@@ -10,14 +10,15 @@ object Versions {
     const val VIEW_MODEL_VERSION = "2.2.0"
     const val LIVE_DATA_VERSION = "2.2.0"
     const val NAVIGATION_VERSION = "2.8.2"
+    const val KOTLIN_VERSION = "2.0.0"
 }
 
 object Dependencies {
     const val ANDROID_MATERIAL = "com.google.android.material:material:${Versions.ANDROID_MATERIAL_VERSION}"
     const val ANDROIDX_CONSTRAINT_LAYOUT = "androidx.constraintlayout:constraintlayout:${Versions.ANDROIDX_CONSTRAINT_LAYOUT_VERSION}"
     const val ANDROIDX_CORE_KTX = "androidx.core:core-ktx:${Versions.ANDROIDX_CORE_KTX_VERSION}"
-    const val DAGGER_HILT = "com.google.dagger:hilt-android:2.49"
-    const val DAGGER_HILT_COMPILER = "com.google.dagger:hilt-android-compiler:2.49"
+    const val DAGGER_HILT = "com.google.dagger:hilt-android:2.51.1"
+    const val DAGGER_HILT_COMPILER = "com.google.dagger:hilt-android-compiler:2.51.1"
     const val GLIDE = "com.github.bumptech.glide:glide:${Versions.GLIDE_VERSION}"
     const val GLIDE_COMPILER = "com.github.bumptech.glide:compiler:${Versions.GLIDE_VERSION}"
     const val NAVIGATION_FRAGMENT = "androidx.navigation:navigation-fragment-ktx:${Versions.NAVIGATION_VERSION}"

@@ -1,13 +1,11 @@
 package com.orlando.androidbase.presentation.features.characters
 
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.Pager
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import com.orlando.androidbase.entities.remote.People
-import com.orlando.androidbase.presentation.base.BaseViewModel
-import com.orlando.androidbase.presentation.helpers.NetworkHelper
-import com.orlando.data.di.CoroutineDispatchers
 import com.orlando.data.pagination.CharactersPagingSource
 import com.orlando.data.remote.ApiService
 import com.orlando.data.utils.getPagingConfig
@@ -16,11 +14,9 @@ import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 @HiltViewModel
-class PeopleViewModel @Inject constructor(
-    private val apiService: ApiService,
-    coroutineDispatchers: CoroutineDispatchers,
-    networkHelper: NetworkHelper
-) : BaseViewModel(coroutineDispatchers, networkHelper) {
+class CharacterViewModel @Inject constructor(
+    private val apiService: ApiService
+) : ViewModel() {
 
     private var characterName: String? = null
 

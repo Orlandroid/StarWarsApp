@@ -61,7 +61,7 @@ fun PlanetsScreen(
 }
 
 @Composable
-fun ItemPlanet(
+private fun ItemPlanet(
     modifier: Modifier = Modifier,
     planet: Planet,
     onClick: (Planet) -> Unit
@@ -92,7 +92,7 @@ fun ItemPlanet(
 }
 
 @Composable
-fun PlanetProperties(planet: Planet) {
+private fun PlanetProperties(planet: Planet) {
     Column(
         modifier = Modifier.fillMaxWidth()
     ) {
@@ -151,7 +151,7 @@ fun PlanetProperties(planet: Planet) {
 
 @Composable
 @Preview(showBackground = true)
-fun ItemPreview(modifier: Modifier = Modifier) {
+private fun ItemPreview() {
     ItemPlanet(
         planet = Planet(
             name = stringResource(R.string.yoda),
@@ -165,9 +165,7 @@ fun ItemPreview(modifier: Modifier = Modifier) {
 
 @Composable
 @Preview(showBackground = true)
-fun PlanetsScreenPreview(
-    modifier: Modifier = Modifier
-) {
+private fun PlanetsScreenPreview() {
     val mockPlanet = Planet(
         name = stringResource(R.string.geonosis),
         population = stringResource(R.string._100000000000),

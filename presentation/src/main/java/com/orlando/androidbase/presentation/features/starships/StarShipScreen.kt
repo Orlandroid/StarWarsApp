@@ -63,7 +63,7 @@ fun StarShipScreen(
 }
 
 @Composable
-fun StarShipItem(
+private fun StarShipItem(
     modifier: Modifier = Modifier,
     starship: Starship,
     onClick: (Starship) -> Unit
@@ -138,7 +138,7 @@ fun StarShipItem(
 
 @Composable
 @Preview(showBackground = true)
-fun StarShipItemPreview(modifier: Modifier = Modifier) {
+private fun StarShipItemPreview() {
     StarShipItem(
         starship = Starship(
             name = stringResource(R.string.name),

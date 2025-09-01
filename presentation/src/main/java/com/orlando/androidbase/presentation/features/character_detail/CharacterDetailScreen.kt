@@ -62,7 +62,7 @@ fun CharacterDetailScreen(people: People) {
 }
 
 @Composable
-fun ItemKeyValue(
+private fun ItemKeyValue(
     modifier: Modifier = Modifier,
     key: String,
     value: String
@@ -86,7 +86,7 @@ fun ItemKeyValue(
 
 @Composable
 @Preview(showBackground = true)
-fun CharacterDetailScreenPreview() {
+private fun CharacterDetailScreenPreview() {
     CharacterDetailScreen(
         People(
             name = "Luke Skywalker",

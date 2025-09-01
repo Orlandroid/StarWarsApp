@@ -49,6 +49,6 @@ fun RowItem(
 
 @Composable
 @Preview(showBackground = true)
-fun RowItemPreview(modifier: Modifier = Modifier) {
+private fun RowItemPreview() {
     RowItem(key = "Android", "Developer")
 }

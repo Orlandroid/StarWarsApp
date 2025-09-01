@@ -41,16 +41,26 @@ android {
 
 dependencies {
 
-    implementation("androidx.core:core-ktx:1.12.0")
-    implementation("androidx.appcompat:appcompat:1.6.1")
-    implementation(Dependencies.ANDROID_MATERIAL)
-    implementation("androidx.navigation:navigation-common-ktx:2.8.5")
-    testImplementation("junit:junit:4.13.2")
-    androidTestImplementation("androidx.test.ext:junit:1.1.5")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
-    implementation(Dependencies.ROOM)
-    implementation(Dependencies.ROOM_KOTLIN_EXTENSION)
-    kapt(Dependencies.ROOM_COMPILER)
-    implementation(Dependencies.RETROFIT_CONVERTER_GSON)
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.3")
+    // Core & UI
+    implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.appcompat)
+    implementation(libs.android.material)
+
+    // Navigation
+    implementation(libs.navigation.common)
+
+    // Tests
+    testImplementation(libs.test.junit)
+    androidTestImplementation(libs.androidx.test.junit)
+    androidTestImplementation(libs.androidx.test.espresso)
+
+    // Room
+    implementation(libs.room.runtime)
+    implementation(libs.room.ktx)
+    kapt(libs.room.compiler)
+
+    // Retrofit + Serialization
+    implementation(libs.retrofit.converter.gson)
+    implementation(libs.serialization.json)
+
 }
