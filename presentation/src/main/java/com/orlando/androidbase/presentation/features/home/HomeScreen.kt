@@ -135,7 +135,7 @@ private fun ItemMenu(
 
 @Composable
 @Preview(showBackground = true)
-private fun HomeScreenPreview(modifier: Modifier = Modifier) {
+private fun HomeScreenPreview() {
     HomeScreen(
         modifier = Modifier,
         menus = listOf(

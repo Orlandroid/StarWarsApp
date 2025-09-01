@@ -6,9 +6,6 @@ import androidx.paging.Pager
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import com.orlando.androidbase.entities.remote.People
-import com.orlando.androidbase.presentation.base.BaseViewModel
-import com.orlando.androidbase.presentation.helpers.NetworkHelper
-import com.orlando.data.di.CoroutineDispatchers
 import com.orlando.data.pagination.CharactersPagingSource
 import com.orlando.data.remote.ApiService
 import com.orlando.data.utils.getPagingConfig

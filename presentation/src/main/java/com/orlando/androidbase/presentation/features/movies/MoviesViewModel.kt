@@ -6,7 +6,6 @@ import androidx.paging.Pager
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import com.orlando.androidbase.entities.remote.Movie
-import com.orlando.androidbase.presentation.base.BaseViewModel
 import com.orlando.androidbase.presentation.helpers.NetworkHelper
 import com.orlando.data.di.CoroutineDispatchers
 import com.orlando.data.pagination.FilmsPagingSource

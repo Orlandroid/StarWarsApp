@@ -1,7 +1,6 @@
 package com.orlando.androidbase.presentation.features.app_navigation
 
 
-import android.util.Log
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
