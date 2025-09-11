@@ -27,6 +27,6 @@ fun ImageBackgroundScreen(
 }
 
 data class ImageBackgroundScreenConfig(
-    @DrawableRes
+    @param:DrawableRes
     val image: Int
 )

@@ -50,9 +50,9 @@ fun BaseDetailScreen(
 
 data class BaseDetailScreenConfig(
     val image: String,
-    @DrawableRes
+    @param:DrawableRes
     val placeHolder: Int,
-    @DrawableRes
+    @param:DrawableRes
     val error: Int,
 )
 

@@ -15,6 +15,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -79,7 +80,8 @@ private fun ItemCharacter(
                     R.drawable.startwars
                 },
                 placeholder = debugPlaceholder(R.drawable.startwars),
-                contentDescription = null
+                contentDescription = null,
+                error = painterResource(R.drawable.startwars)
             )
             Column(
                 modifier = Modifier.fillMaxWidth()
