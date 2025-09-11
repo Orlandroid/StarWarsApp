@@ -12,7 +12,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.Text
@@ -27,11 +26,10 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.paging.compose.LazyPagingItems
-import androidx.paging.compose.itemKey
 import coil.compose.AsyncImage
 import com.orlando.androidbase.R
 import com.orlando.androidbase.entities.remote.Starship
-import com.orlando.androidbase.presentation.extensions.LoadState
+import com.orlando.androidbase.presentation.base.PagingListScreen
 import com.orlando.androidbase.presentation.extensions.debugPlaceholder
 import com.orlando.androidbase.presentation.util.getImageFromJson
 import com.orlando.androidbase.presentation.util.utilimages.data.getStartShipsImages
@@ -42,24 +40,15 @@ fun StarShipScreen(
     starShips: LazyPagingItems<Starship>,
     clickOnItem: (Starship) -> Unit
 ) {
-    LazyColumn(
-        modifier = Modifier.fillMaxWidth()
-    ) {
-        items(
-            count = starShips.itemCount,
-            key = starShips.itemKey { it.name }
-        ) { index ->
-            starShips[index]?.let { starShip ->
-                StarShipItem(
-                    modifier = Modifier.fillMaxWidth(),
-                    starship = starShip,
-                    onClick = clickOnItem
-                )
-            }
-        }
-        item {
-            starShips.LoadState(Modifier.fillParentMaxSize())
-        }
+    PagingListScreen(
+        items = starShips,
+        key = { it.name }
+    ) { starShip ->
+        StarShipItem(
+            modifier = Modifier.fillMaxWidth(),
+            starship = starShip,
+            onClick = clickOnItem
+        )
     }
 }
 

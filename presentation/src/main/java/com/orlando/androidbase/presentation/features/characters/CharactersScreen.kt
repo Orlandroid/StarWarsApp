@@ -8,7 +8,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.Text
@@ -22,11 +21,10 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.paging.compose.collectAsLazyPagingItems
-import androidx.paging.compose.itemKey
 import coil.compose.AsyncImage
 import com.orlando.androidbase.R
 import com.orlando.androidbase.entities.remote.People
-import com.orlando.androidbase.presentation.extensions.LoadState
+import com.orlando.androidbase.presentation.base.PagingListScreen
 import com.orlando.androidbase.presentation.extensions.debugPlaceholder
 import com.orlando.androidbase.presentation.util.getImageFromJson
 import com.orlando.androidbase.presentation.util.utilimages.data.getPeopleImages
@@ -37,24 +35,15 @@ fun CharacterScreen(
     clickOnItem: (people: People) -> Unit = {}
 ) {
     val characters = viewModel.getCharactersPagingSource.collectAsLazyPagingItems()
-    LazyColumn(
-        modifier = Modifier.fillMaxWidth()
-    ) {
-        items(
-            count = characters.itemCount,
-            key = characters.itemKey { it.name }
-        ) { index ->
-            characters[index]?.let { character ->
-                ItemCharacter(
-                    modifier = Modifier.fillMaxWidth(),
-                    character = character,
-                    clickOnItem = clickOnItem
-                )
-            }
-        }
-        item {
-            characters.LoadState(Modifier.fillParentMaxSize())
-        }
+    PagingListScreen(
+        items = characters,
+        key = { it.name }
+    ) { character ->
+        ItemCharacter(
+            modifier = Modifier.fillMaxWidth(),
+            character = character,
+            clickOnItem = clickOnItem
+        )
     }
 }
 

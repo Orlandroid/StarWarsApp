@@ -12,7 +12,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.Text
@@ -26,11 +25,10 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.paging.compose.collectAsLazyPagingItems
-import androidx.paging.compose.itemKey
 import coil.compose.AsyncImage
 import com.orlando.androidbase.R
 import com.orlando.androidbase.entities.remote.Movie
-import com.orlando.androidbase.presentation.extensions.LoadState
+import com.orlando.androidbase.presentation.base.PagingListScreen
 import com.orlando.androidbase.presentation.extensions.debugPlaceholder
 import com.orlando.androidbase.presentation.util.getImageFromJson
 import com.orlando.androidbase.presentation.util.utilimages.data.getFilmsImages
@@ -42,24 +40,15 @@ fun MoviesScreen(
     clickOnItem: (Movie) -> Unit
 ) {
     val movies = viewModel.getFilmsPagingSource.collectAsLazyPagingItems()
-    LazyColumn(
-        modifier = Modifier.fillMaxWidth()
-    ) {
-        items(
-            count = movies.itemCount,
-            key = movies.itemKey { it.title }
-        ) { index ->
-            movies[index]?.let { movie ->
-                ItemMovie(
-                    modifier = Modifier.fillMaxWidth(),
-                    movie = movie,
-                    onClick = clickOnItem
-                )
-            }
-        }
-        item {
-            movies.LoadState(Modifier.fillParentMaxSize())
-        }
+    PagingListScreen(
+        items = movies,
+        key = { it.title }
+    ) { movie ->
+        ItemMovie(
+            modifier = Modifier.fillMaxWidth(),
+            movie = movie,
+            onClick = clickOnItem
+        )
     }
 }
 

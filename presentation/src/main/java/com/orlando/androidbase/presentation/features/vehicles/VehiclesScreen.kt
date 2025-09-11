@@ -12,7 +12,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.Text
@@ -26,11 +25,10 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.paging.compose.LazyPagingItems
-import androidx.paging.compose.itemKey
 import coil.compose.AsyncImage
 import com.orlando.androidbase.R
 import com.orlando.androidbase.entities.remote.Vehicle
-import com.orlando.androidbase.presentation.extensions.LoadState
+import com.orlando.androidbase.presentation.base.PagingListScreen
 import com.orlando.androidbase.presentation.extensions.debugPlaceholder
 import com.orlando.androidbase.presentation.util.getImageFromJson
 import com.orlando.androidbase.presentation.util.utilimages.data.getVehiclesImages
@@ -40,24 +38,15 @@ fun VehiclesScreen(
     vehicles: LazyPagingItems<Vehicle>,
     clickOnItem: (Vehicle) -> Unit
 ) {
-    LazyColumn(
-        modifier = Modifier.fillMaxWidth()
-    ) {
-        items(
-            count = vehicles.itemCount,
-            key = vehicles.itemKey { it.name }
-        ) { index ->
-            vehicles[index]?.let { starShip ->
-                VehicleItem(
-                    modifier = Modifier.fillMaxWidth(),
-                    vehicle = starShip,
-                    onClick = clickOnItem
-                )
-            }
-        }
-        item {
-            vehicles.LoadState(Modifier.fillParentMaxSize())
-        }
+    PagingListScreen(
+        items = vehicles,
+        key = { it.name }
+    ) { starShip ->
+        VehicleItem(
+            modifier = Modifier.fillMaxWidth(),
+            vehicle = starShip,
+            onClick = clickOnItem
+        )
     }
 }
 

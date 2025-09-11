@@ -11,7 +11,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.Text
@@ -25,11 +24,10 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.paging.compose.LazyPagingItems
-import androidx.paging.compose.itemKey
 import coil.compose.AsyncImage
 import com.orlando.androidbase.R
 import com.orlando.androidbase.entities.remote.Specie
-import com.orlando.androidbase.presentation.extensions.LoadState
+import com.orlando.androidbase.presentation.base.PagingListScreen
 import com.orlando.androidbase.presentation.extensions.debugPlaceholder
 import com.orlando.androidbase.presentation.util.getImageFromJson
 import com.orlando.androidbase.presentation.util.utilimages.data.getSpeciesImages
@@ -40,24 +38,15 @@ fun SpeciesScreen(
     species: LazyPagingItems<Specie>,
     clickOnItem: (Specie) -> Unit
 ) {
-    LazyColumn(
-        modifier = Modifier.fillMaxWidth()
-    ) {
-        items(
-            count = species.itemCount,
-            key = species.itemKey { it.name }
-        ) { index ->
-            species[index]?.let { specie ->
-                SpecieItem(
-                    modifier = Modifier.fillMaxWidth(),
-                    specie = specie,
-                    onClick = clickOnItem
-                )
-            }
-        }
-        item {
-            species.LoadState(Modifier.fillParentMaxSize())
-        }
+    PagingListScreen(
+        items = species,
+        key = { it.name }
+    ) { specie ->
+        SpecieItem(
+            modifier = Modifier.fillMaxWidth(),
+            specie = specie,
+            onClick = clickOnItem
+        )
     }
 }
 
@@ -88,7 +77,7 @@ private fun SpecieItem(
                 },
                 placeholder = debugPlaceholder(R.drawable.startwars),
                 contentDescription = null,
-                error = painterResource(R.drawable.startwars)
+                error = painterResource(R.drawable.species)
             )
             Column(
                 modifier = Modifier
