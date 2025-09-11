@@ -29,6 +29,7 @@ import com.orlando.androidbase.R
 import com.orlando.androidbase.entities.remote.Specie
 import com.orlando.androidbase.presentation.base.PagingListScreen
 import com.orlando.androidbase.presentation.extensions.debugPlaceholder
+import com.orlando.androidbase.presentation.features.components.BaseItemImage
 import com.orlando.androidbase.presentation.util.getImageFromJson
 import com.orlando.androidbase.presentation.util.utilimages.data.getSpeciesImages
 
@@ -68,16 +69,10 @@ private fun SpecieItem(
                 .fillMaxWidth()
                 .height(IntrinsicSize.Max)
         ) {
-            AsyncImage(
-                modifier = Modifier
-                    .padding(8.dp)
-                    .size(100.dp),
-                model = image.ifEmpty {
-                    R.drawable.species
-                },
-                placeholder = debugPlaceholder(R.drawable.startwars),
-                contentDescription = null,
-                error = painterResource(R.drawable.species)
+            BaseItemImage(
+                image = image,
+                contentDescription = "SpeciesImage",
+                R.drawable.species
             )
             Column(
                 modifier = Modifier

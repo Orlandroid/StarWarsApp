@@ -1,6 +1,7 @@
 package com.orlando.androidbase.presentation.features.characters
 
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -10,6 +11,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -21,11 +23,11 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.paging.compose.collectAsLazyPagingItems
-import coil.compose.AsyncImage
+import coil.compose.SubcomposeAsyncImage
 import com.orlando.androidbase.R
 import com.orlando.androidbase.entities.remote.People
 import com.orlando.androidbase.presentation.base.PagingListScreen
-import com.orlando.androidbase.presentation.extensions.debugPlaceholder
+import com.orlando.androidbase.presentation.features.components.BaseItemImage
 import com.orlando.androidbase.presentation.util.getImageFromJson
 import com.orlando.androidbase.presentation.util.utilimages.data.getPeopleImages
 
@@ -63,14 +65,10 @@ private fun ItemCharacter(
     ) {
         val image = getImageFromJson(character.name, getPeopleImages())
         Row(Modifier.fillMaxWidth()) {
-            AsyncImage(
-                modifier = Modifier.size(100.dp),
-                model = image.ifEmpty {
-                    R.drawable.startwars
-                },
-                placeholder = debugPlaceholder(R.drawable.startwars),
-                contentDescription = null,
-                error = painterResource(R.drawable.startwars)
+            BaseItemImage(
+                image = image,
+                contentDescription = "CharacterImage",
+                R.drawable.character
             )
             Column(
                 modifier = Modifier.fillMaxWidth()

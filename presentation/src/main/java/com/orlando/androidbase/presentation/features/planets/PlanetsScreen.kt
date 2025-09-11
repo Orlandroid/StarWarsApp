@@ -7,14 +7,12 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -23,11 +21,10 @@ import androidx.compose.ui.unit.dp
 import androidx.paging.PagingData
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
-import coil.compose.AsyncImage
 import com.orlando.androidbase.R
 import com.orlando.androidbase.entities.remote.Planet
 import com.orlando.androidbase.presentation.base.PagingListScreen
-import com.orlando.androidbase.presentation.extensions.debugPlaceholder
+import com.orlando.androidbase.presentation.features.components.BaseItemImage
 import com.orlando.androidbase.presentation.util.getImageFromJson
 import com.orlando.androidbase.presentation.util.utilimages.data.getPlanetsImages
 import kotlinx.coroutines.flow.flowOf
@@ -66,16 +63,10 @@ private fun ItemPlanet(
         Row(
             Modifier.fillMaxWidth()
         ) {
-            AsyncImage(
-                modifier = Modifier
-                    .padding(start = 8.dp)
-                    .size(100.dp),
-                model = image.ifEmpty {
-                    R.drawable.planets
-                },
-                placeholder = debugPlaceholder(R.drawable.planets),
-                contentDescription = null,
-                error = painterResource(R.drawable.startwars)
+            BaseItemImage(
+                image = image,
+                contentDescription = "PlanetsImage",
+                R.drawable.planets
             )
             PlanetProperties(planet = planet)
         }

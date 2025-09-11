@@ -31,6 +31,7 @@ import com.orlando.androidbase.R
 import com.orlando.androidbase.entities.remote.Starship
 import com.orlando.androidbase.presentation.base.PagingListScreen
 import com.orlando.androidbase.presentation.extensions.debugPlaceholder
+import com.orlando.androidbase.presentation.features.components.BaseItemImage
 import com.orlando.androidbase.presentation.util.getImageFromJson
 import com.orlando.androidbase.presentation.util.utilimages.data.getStartShipsImages
 
@@ -70,16 +71,10 @@ private fun StarShipItem(
                 .fillMaxWidth()
                 .height(IntrinsicSize.Max)
         ) {
-            AsyncImage(
-                modifier = Modifier
-                    .padding(8.dp)
-                    .size(100.dp),
-                model = image.ifEmpty {
-                    R.drawable.ic_baseline_arrow_right_24
-                },
-                placeholder = debugPlaceholder(R.drawable.startwars),
-                contentDescription = null,
-                error = painterResource(R.drawable.starships)
+            BaseItemImage(
+                image = image,
+                contentDescription = "starshipsImage",
+                R.drawable.starships
             )
             Column(
                 modifier = Modifier

@@ -30,6 +30,7 @@ import com.orlando.androidbase.R
 import com.orlando.androidbase.entities.remote.Vehicle
 import com.orlando.androidbase.presentation.base.PagingListScreen
 import com.orlando.androidbase.presentation.extensions.debugPlaceholder
+import com.orlando.androidbase.presentation.features.components.BaseItemImage
 import com.orlando.androidbase.presentation.util.getImageFromJson
 import com.orlando.androidbase.presentation.util.utilimages.data.getVehiclesImages
 
@@ -68,16 +69,10 @@ private fun VehicleItem(
                 .fillMaxWidth()
                 .height(IntrinsicSize.Max)
         ) {
-            AsyncImage(
-                modifier = Modifier
-                    .padding(8.dp)
-                    .size(100.dp),
-                model = image.ifEmpty {
-                    R.drawable.vehicles
-                },
-                placeholder = debugPlaceholder(R.drawable.vehicles),
-                contentDescription = null,
-                error = painterResource(R.drawable.vehicles)
+            BaseItemImage(
+                image = image,
+                contentDescription = "vehiclesImage",
+                R.drawable.vehicles
             )
             Column(
                 modifier = Modifier
